@@ -26,13 +26,53 @@ _Site Idea List:_
     - Search features
 
 
+# Features
 
-# Feature List
+## 1. New account creation, log-in, log-out, and guest/demo login
+
+* Users can sign up, log-in, and log-out.
+* Users can use a demo log-in to explore features of the site.
+* Users can't use certain features without logging in (like starting projects or liking/adding comments {*stretch goal!} to projects).
+* Logged-in users are directed to a home starting page with a list of ongoing projects.
+* Logged-in users can edit their account settings (such as password or avatar {*stretch goal!}).
+
+## 2. Hosting on Heroku
+
+## 3. Projects
+
+* Logged-in users can create new fundraiser projects.
+* Logged-in users can perform update and delete operations on fundraiser projects that they own.
+* Users can see a project's progress towards its goal on each individual project page.
+
+## 4. Backing Projects and Rewards
+
+* Users can donate to others' fundraiser projects.
+* Project owners can set reward tiers for various levels of donations.
+
+## 5. Search
+
+* Users can search the website by keywords and (tentatively) categories
+* Users can discover related fundraiser projects in the same category as their search
+
+## 6. Likes
+
+* Logged-in users can add/remove likes to fundraiser projects that they support.
+
+## 7. Credit Card Payments
+
+* Users can make donations to fundraisers of their choice via secure credit card payments.
+* Logged in users will have the option to save credit card information associated with their account.
+
+
+
+# MVP List
 
 * Projects
 * Backing Projects & Rewards
 * Search
 * Categories / Discover Feature
+
+_Bonus_
 * Likes
 * Credit Card Payments
 
