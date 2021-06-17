@@ -81,14 +81,78 @@ _Bonus_
 
 # User Stories
 
+## Users
+
+* As an unregistered and unauthorized user, I want to be able to sign up for the website via a sign-up form.
+      * When I'm on the `/signup` page:
+    * I would like to be able to enter my email, username, and preferred password on a clearly laid out form.
+    * I would like the website to log me in upon successful completion of the sign-up form.
+      * So that I can seamlessly access the site's functionality
+  * When I enter invalid data on the sign-up form:
+    * I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
+    * So that I can try again without needing to refill forms I entered valid data into.
+
+### Log in
+
+* As a registered and unauthorized user, I want to be able to log in to the website via a log-in form.
+  * When I'm on the `/login` page:
+    * I would like to be able to enter my email and password on a clearly laid out form.
+    * I would like the website to log me in upon successful completion of the log-in form.
+      * So that I can seamlessly access the site's functionality
+  * When I enter invalid data on the log-in form:
+    * I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
+      * So that I can try again without needing to refill forms I entered valid data into.
+
+### Log Out
+
+* As a logged in user, I want to log out via an easy to find log out button on the navigation bar.
+  * While on any page of the site:
+    * I can log out of my account and be redirected to a page displaying the site's main generic landing page.
+      * So that I can easily log out to keep my information secure.
+
+### Demo User
+
+* As an unregistered and unauthorized user, I can see various projects and their informational pages.
+  * When I'm on either the `/signup` or `/login` pages:
+    * I can click on the Demo User button to log me in, which gives me increased accessibility to the site.
+      * So that
+        * When I use the search feature, I can query the website to find fundraising projects related to my search query
+
+## Projects
+
+* As a user trying to crowdsource funds for my charity, this platform allows me to create a project page to spread awareness for the cause and accept donations to assist in the campaign.
+
+
+## Backing Projects and Rewards
+
+* As a user trying to encourage larger donations, this site allows me to set tier level rewards for different donation amounts that correspond to various rewards for the contribution size.
+* As a user trying to crowdsource funds for my charity, I can locate information related to which other users have contributed various amounts and what their tier levels would be.
+* As a user visiting the site, I can keep track of information about which projects I have contributed to.
+
+
+# Search
+
+* As a logged-in or logged-out user, I want to be able to use the search bar to locate charities related to a specific category or topic
+
+# Categories / Discover Feature
+
+* As a logged-in user, I can pull up a list of charities by category or charities that are similar to my previous browsing history on the site
+* As a logged-out user, I can pull up a list of charities based on my session's history.
+
+
+# Likes
+
+* As a logged-in user, I can help support a charity and bring awareness to it by pressing the "like" button on its information page.
+
+
+# Credit Card Payments
+* As a user, I can donate to a project that I support with a secure credit card payment option.
+* As a logged-in user, I have the option to save payment information to my account for use later.
 
 
 
 
 
-_TO DO:_
-
-* Create Repo
 
 
 
@@ -117,3 +181,12 @@ _TO DO:_
 
 
 * Wireframing
+
+
+
+
+
+Name ideas:
+Fundasaurus, FundRex
+Charity Tree, Cherrity
+Donat-O
