@@ -9,6 +9,8 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  payment_info = db.Column(db.String(500))
+  avatar_image_url = db.Column(db.String)
 
 
   @property
