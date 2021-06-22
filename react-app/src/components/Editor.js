@@ -6,6 +6,8 @@ import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 
 const EditorComponent = () => {
+
+  const projectPictures = {}
     const editorRef = useRef(null);
    const log = () => {
      if (editorRef.current) {

@@ -10,6 +10,8 @@ import User from "./components/User";
 import EditorComponent from "./components/Editor";
 import { authenticate } from "./store/session";
 
+import MediaUpload from "./components/MediaUpload";
+
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch();
@@ -36,6 +38,9 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/media-upload" exact={true}>
+          <MediaUpload />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
