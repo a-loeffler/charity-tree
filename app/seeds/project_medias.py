@@ -10,6 +10,9 @@ def seed_project_medias():
     project_media_4 = Project_media(project_id=1, media_url="https://i.pinimg.com/originals/0f/c4/55/0fc455dca5836a5876f759b72f422270.jpg")
 
     db.session.add(project_media_1)
+    db.session.add(project_media_2)
+    db.session.add(project_media_3)
+    db.session.add(project_media_4)
 
     db.session.commit()
 
