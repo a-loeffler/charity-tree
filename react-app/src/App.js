@@ -13,6 +13,9 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 
 import MediaUpload from "./components/MediaUpload";
+import LandingPage from "./components/LandingPage";
+
+import './index.css'
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -37,6 +40,12 @@ function App() {
           <Route path="/" exact={true}>
             <Homepage />
           </Route>
+          <Route path="/media-upload" exact={true}>
+          <MediaUpload />
+        </Route>
+        <Route path="/landing-page" exact={true}>
+          <LandingPage />
+        </Route>
         </Switch>
     </BrowserRouter>
   );
