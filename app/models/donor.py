@@ -10,5 +10,5 @@ class Donor(db.Model):
     user_id = db.Column(db.Integer)
     amount = db.Column(db.Integer, nullable=False)
 
-    projects = db.relationship("Project", back_populates="donors")
-    users = db.relationship("User", back_populates="donors")
+    # projects = db.relationship("Project", back_populates="donors")
+    # users = db.relationship("User", back_populates="donors")

@@ -12,9 +12,8 @@ class Project(db.Model):
     current_amount = db.Column(db.Integer)
     deadline = db.Column(db.DateTime, nullable=False)
     owner = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"),
-                            nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
     page_json = db.Column(db.Text)
 
-    categories = db.relationship("Category", back_populates="projects")
-    owners = db.relationship("User", back_populates="users")
+    # categories = db.relationship("Category", back_populates="projects")
+    # owners = db.relationship("User", back_populates="projects")

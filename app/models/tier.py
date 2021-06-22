@@ -10,4 +10,4 @@ class Tier(db.Model):
     description = db.Column(db.Text, nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"),
                            nullable=False)
-    projects = db.relationship("Project", back_populates="tiers")
+    # projects = db.relationship("Project", back_populates="tiers")
