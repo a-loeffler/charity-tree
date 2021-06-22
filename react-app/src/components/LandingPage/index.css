@@ -1,0 +1,79 @@
+
+
+.main-container {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+    grid-template-rows: minmax(100vh, auto);
+    background-color: #F4FFE7;
+}
+
+.side-space {
+    height: 100%;
+}
+
+
+.main-content {
+    background-color: pink;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.carousel-buttons-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: yellow;
+}
+
+.carousel-title-info {
+    display: flex;
+}
+
+.carousel-title {
+    text-transform: uppercase;
+    font-size: 14px;
+
+}
+
+.carousel-title-link {
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.carousel-items-container {
+    height: 250px;
+    background-color: blue;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    overflow: hidden;
+    grid-auto-columns: 20%;
+    grid-template-rows: 1fr;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+
+}
+
+.project-card-container {
+    width: 95%;
+    height: 250px;
+    margin: 5px;
+}
+
+.project-card-image-container {
+    margin: auto;
+    margin-top: 10px;
+    width: 100%;
+    height: 100px;
+    background-color: orange;
+    border-bottom: 4px solid #23924E;
+}
+
+.project-card-title,
+.project-card-description,
+.project-card-creator {
+    font-size: 14px;
+}

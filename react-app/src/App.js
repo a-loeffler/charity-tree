@@ -10,6 +10,9 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 
 import MediaUpload from "./components/MediaUpload";
+import LandingPage from "./components/LandingPage";
+
+import './index.css'
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -39,6 +42,9 @@ function App() {
         </Route>
         <Route path="/media-upload" exact={true}>
           <MediaUpload />
+        </Route>
+        <Route path="/landing-page" exact={true}>
+          <LandingPage />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
