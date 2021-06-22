@@ -3,7 +3,7 @@ from flask import Blueprint, request
 
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
-
+from app.models import Project_media
 
 media_routes = Blueprint("media", __name__)
 
@@ -14,6 +14,11 @@ media_routes = Blueprint("media", __name__)
 #     form = MediaUploadForm()
 
 
+@media_routes.route("/")
+def get_media():
+    print("got the media")
+    media = Project_media.query.all()
+    return media
 
 
 @media_routes.route("/upload", methods=["POST"])

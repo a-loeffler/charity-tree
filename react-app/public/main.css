@@ -1,0 +1,12 @@
+/* to do */
+@import url("./CSS/nav/nav-small.css") (max-width:660px);
+@import url("./CSS/nav/nav-medium.css") (min-width:661px);
+@import url("./CSS/nav/nav-large.css") (min-width:1190px);
+
+
+
+
+body{
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
