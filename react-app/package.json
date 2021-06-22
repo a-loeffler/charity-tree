@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@tinymce/tinymce-react": "^3.12.6",
     "http-proxy-middleware": "^1.0.5",
     "install": "^0.13.0",
     "npm": "^7.18.1",
