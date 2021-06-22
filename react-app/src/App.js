@@ -7,9 +7,15 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import EditorComponent from "./components/Editor";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
+
+import MediaUpload from "./components/MediaUpload";
+import LandingPage from "./components/LandingPage";
+
+import './index.css'
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -34,6 +40,12 @@ function App() {
           <Route path="/" exact={true}>
             <Homepage />
           </Route>
+          <Route path="/media-upload" exact={true}>
+          <MediaUpload />
+        </Route>
+        <Route path="/landing-page" exact={true}>
+          <LandingPage />
+        </Route>
         </Switch>
     </BrowserRouter>
   );
