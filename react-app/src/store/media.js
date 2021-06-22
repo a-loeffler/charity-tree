@@ -40,6 +40,7 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
 const initialState = {media: []};
 
 const mediaReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case POST_MEDIA: {
             let newState = {...state};
