@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+
 
 const POST_MEDIA = "media/postMedia"
 
@@ -23,11 +23,11 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
     if (projectId) formData.append("projectId", projectId);
     formData.append("file", file);
 
-    const response = await csrfFetch("/media/upload", {
+    const response = await fetch("/api/media/upload", {
         method: "POST",
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
+        // headers: {
+        //     'Content-Type': 'multipart/form-data'
+        // },
         body: formData,
     })
 
@@ -40,6 +40,7 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
 const initialState = {media: []};
 
 const mediaReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case POST_MEDIA: {
             let newState = {...state};
