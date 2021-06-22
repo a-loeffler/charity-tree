@@ -4,16 +4,10 @@ import NavBar from "./NavBar";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 
-const DropDownComponent = () => {
-    return (
-        <form>
-            <input></input>
-        </form>
-    )
-}
-
 const EditorComponent = () => {
-    return <Editor />
+    return (
+        <Editor/>
+    )
 //   return (
 //     <Editor
 //       //   ref={editorReference}
