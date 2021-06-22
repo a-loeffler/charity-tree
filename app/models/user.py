@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     payment_info = db.Column(db.String(500))
     avatar_image_url = db.Column(db.String)
+    donors = db.relationship("Donor", back_populates="user")
+    projects = db.relationship("Project", back_populates="owner")
 
     @property
     def password(self):

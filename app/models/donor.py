@@ -7,8 +7,8 @@ class Donor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"),
                            nullable=False)
-    user_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     amount = db.Column(db.Integer, nullable=False)
 
-    # projects = db.relationship("Project", back_populates="donors")
-    # users = db.relationship("User", back_populates="donors")
+    project = db.relationship("Project", back_populates="donors")
+    user = db.relationship("User", back_populates="donors")

@@ -9,4 +9,4 @@ class Project_media(db.Model):
                            nullable=False)
     media_url = db.Column(db.String)
 
-    # projects = db.relationship("Project", back_populates="project_medias")
+    project = db.relationship("Project", back_populates="project_medias")
