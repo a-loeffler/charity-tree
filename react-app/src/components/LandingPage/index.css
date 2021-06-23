@@ -45,13 +45,13 @@
 .carousel-items-container {
     height: 250px;
     background-color: blue;
-    width: 100%;
+    width: 80vw;
     margin-top: 20px;
     margin-bottom: 20px;
     display: grid;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
-    scroll-snap-type: mandatory;
+    scroll-snap-type: mandatory x;
     grid-auto-columns: 21%;
     grid-template-rows: 1fr;
     grid-auto-flow: column;

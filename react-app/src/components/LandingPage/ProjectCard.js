@@ -2,12 +2,12 @@ import React from 'react'
 
 import './index.css'
 
-const ProjectCard = ({title}) => {
+const ProjectCard = ({title, cardId}) => {
 
 
 
     return (
-        <div className="project-card-container">
+        <div className="project-card-container" id={cardId}>
             <div className="project-card-image-container">
                 <img className="project-card-image" src=""></img>
             </div>
