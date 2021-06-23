@@ -11,6 +11,7 @@ import EditorComponent from "./components/Editor";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
+import SignUp from "./components/SignUp"
 
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
@@ -35,12 +36,12 @@ function App() {
 
   return (
     <BrowserRouter>
-        <Navigation />
-        <Switch>
-          <Route path="/" exact={true}>
-            <Homepage />
-          </Route>
-          <Route path="/media-upload" exact={true}>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact={true}>
+          <Homepage />
+        </Route>
+        <Route path="/media-upload" exact={true}>
           <MediaUpload />
         </Route>
         <Route>
@@ -49,7 +50,10 @@ function App() {
         <Route path="/landing-page" exact={true}>
           <LandingPage />
         </Route>
-        </Switch>
+        <Route path="/signup" exact={true}>
+          <SignUp />
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }
