@@ -33,7 +33,7 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
     if (projectId) formData.append("projectId", projectId);
     formData.append("file", file);
 
-    const response = await fetch("/api/media/upload", {
+    const response = await fetch("/api/projects/create/:id/upload", {
         method: "POST",
         // headers: {
         //     'Content-Type': 'multipart/form-data'
