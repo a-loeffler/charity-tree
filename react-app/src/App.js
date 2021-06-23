@@ -41,10 +41,10 @@ function App() {
         <Route path="/" exact={true}>
           <Homepage />
         </Route>
-        <Route path="/media-upload" exact={true}>
+        <Route path="/projects/create/:id/upload" exact={true}>
           <MediaUpload />
         </Route>
-        <Route>
+        <Route path="/projects/:id/edit" exact={true}>
           <EditorComponent />
         </Route>
         <Route path="/landing-page" exact={true}>
