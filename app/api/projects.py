@@ -6,14 +6,15 @@ from app.models import Project_media
 projects_routes = Blueprint("projects", __name__)
 
 
-@media_routes.route("/projects/:id/edit")
-def get_media():
+@projects_routes.route("/<id>/edit")
+def get_media(id):
     print("got the media")
+    print(id)
     medias = Project_media.query.all()
     return {"medias": [media.to_dict() for media in medias]}
 
 
-@media_routes.route("/projects/create/:id/upload", methods=["POST"])
+@projects_routes.route("/create/:id/upload", methods=["POST"])
 def upload_media():
     print("in the route")
     if "file" not in request.files:
