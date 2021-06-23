@@ -27,3 +27,12 @@ h1{
     color: rgb(64, 154, 0);
     font-size: 20px;
 }
+.errors{
+    color: red;
+    font-size: 14px;
+    margin: 0;
+}
+
+.hidden{
+    display: none;
+}

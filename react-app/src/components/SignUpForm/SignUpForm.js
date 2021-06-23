@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -11,20 +11,34 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [mismatchedPassword, setMismatchedPassword] = useState("");
+  const [backendErrors, setBackendErrors] = useState([]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    console.log("Front ned: SignupForm.js")
-    if (password === repeatPassword) {
+    const errorDiv = document.querySelector('.errors')
+    if (errorDiv) {errorDiv.classList.remove("hidden")}
+    if (errors.length > 0) {
+      return
+    } else {
       const data = await dispatch(signUp(username, email, password));
       if (data.errors) {
-        setErrors(data.errors);
+        setBackendErrors(data.errors);
       }
-    } else {
-      setMismatchedPassword("Passwords do not match")
     }
   };
+
+  useEffect(()=> {
+    setBackendErrors([])
+    let err = []
+    const errorDiv = document.querySelector('.errors')
+    if (errorDiv) {errorDiv.classList.add("hidden")}
+    if(!email.includes('@') || !email.includes(".")) err.push("email: Email must be valid")
+    if(username.length < 3) err.push("username: Username must be greater than 3 characters")
+    if(password.length < 6) err.push("password: Password must be greater than 6 characters")
+    if(password !== repeatPassword) err.push("password: Password fields must match")
+     setErrors(err)
+  }, [username, email, password, repeatPassword])
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -48,12 +62,11 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp} className="signup--form">
-
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
+        <div className="errors">
+          {errors.length > 0 && <h3>Errors:</h3> || backendErrors.length > 0 && <h3>Errors:</h3>}
+          {backendErrors.map((error) => ( <div key={error}>{error}</div> ))}
+          {errors.map((error) => ( <div key={error}>{error}</div> ))}
+        </div>
 
         {/* <label>User Name</label> */}
         <h1>Sign Up</h1>
@@ -73,6 +86,7 @@ const SignUpForm = () => {
           onChange={updateEmail}
           value={email}
           placeholder="Email"
+          required={true}
           className="signup-form-input"
         ></input>
 
@@ -82,6 +96,7 @@ const SignUpForm = () => {
           name="password"
           onChange={updatePassword}
           value={password}
+          required={true}
           placeholder="Password"
           className="signup-form-input"
         ></input>
