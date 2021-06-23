@@ -44,11 +44,11 @@ function App() {
         <Route path="/media-upload" exact={true}>
           <MediaUpload />
         </Route>
-        <Route>
-          <EditorComponent />
-        </Route>
         <Route path="/landing-page" exact={true}>
           <LandingPage />
+        </Route>
+        <Route>
+          <EditorComponent />
         </Route>
         <Route path="/signup" exact={true}>
           <SignUp />
