@@ -13,7 +13,7 @@ const Carousel = ({list}) => {
 
     useEffect(() => {
         scrollElement = document.getElementById("carousel-items-container");
-        width = scrollElement.offsetWidth
+        width = scrollElement.offsetWidth;
     }, [])
 
     const rightClick = () => {
