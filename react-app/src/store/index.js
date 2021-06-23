@@ -1,11 +1,13 @@
 import {createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import mediaReducer from "./media";
+import projectReducer from "./project";
 import session from "./session"
 
 const rootReducer = combineReducers({
     session,
     MediaList: mediaReducer,
+    project: projectReducer
 });
 
 
