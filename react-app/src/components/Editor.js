@@ -3,13 +3,15 @@ import { Editor } from "@tinymce/tinymce-react";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
+import { useParams } from "react-router-dom";
 
 const EditorComponent = () => {
   const media = useSelector((state) => state.MediaList.media);
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([])
   const dispatch = useDispatch();
+  const {id} = useParams()
   const getTheMedia = async () => {
-    await dispatch(getMedia());
+    await dispatch(getMedia(id));
     toObj(media)
   };
   useEffect(() => {
@@ -36,6 +38,8 @@ const EditorComponent = () => {
   };
   return (
     <>
+       {/* Handle submit function needs to be added. It will add desc to db*/}
+      <form onSubmit={() => {}}>
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue="<p>This is the initial content of the editor.</p>"
@@ -45,19 +49,22 @@ const EditorComponent = () => {
             "advlist autolink lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
             "insertdatetime media table paste code help wordcount",
-            "image media",
+            "image media save",
           ],
           menubar: false,
           toolbar:
             "undo redo | formatselect | " +
             "bold italic backcolor | alignleft aligncenter " +
             "alignright alignjustify | bullist numlist outdent indent | " +
-            "removeformat | help | image",
+            "removeformat | help | image | save",
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-          image_list: mediaArrayForImageList
+          image_list: mediaArrayForImageList,
+
         }}
       />
+        <button name="submitbtn"></button>
+        </form>
       <button onClick={log}>Log editor content</button>
     </>
   );
