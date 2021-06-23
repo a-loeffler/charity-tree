@@ -1,15 +1,24 @@
 from flask import Blueprint, request
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
-from app.models import Project_media
+from app.models import Project_media, Project
+from app.models.db import db
 
 projects_routes = Blueprint("projects", __name__)
 
 
-@projects_routes.route("/<id>/edit")
+@projects_routes.route("/<id>/edit")  # get media
 def get_media(id):
     medias = Project_media.query.filter_by(project_id=id)
     return {"medias": [media.to_dict() for media in medias]}
+
+
+@projects_routes.route("/<id>/edit", methods=["POST"])  # post page_json
+def post_page_json(id):
+    project = Project.query.get(1)
+    project.page_json = request.get_json()
+    db.session.commit()
+    return {'html': project.page_json}
 
 
 @projects_routes.route("/create/:id/upload", methods=["POST"])
