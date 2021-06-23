@@ -17,8 +17,8 @@ media_routes = Blueprint("media", __name__)
 @media_routes.route("/")
 def get_media():
     print("got the media")
-    media = Project_media.query.all()
-    return media
+    medias = Project_media.query.all()
+    return {"medias": [media.to_dict() for media in medias]}
 
 
 @media_routes.route("/upload", methods=["POST"])
