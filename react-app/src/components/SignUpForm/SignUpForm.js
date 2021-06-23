@@ -3,18 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
-const SignUp = () => {
+const SignUpForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [mismatchedPassword, setMismatchedPassword] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    console.log("Front ned: SignupForm.js")
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
+      if (data.errors) {
+        setErrors(data.errors);
+      }
+    } else {
+      setMismatchedPassword("Passwords do not match")
     }
   };
 
@@ -40,6 +48,12 @@ const SignUp = () => {
 
   return (
     <form onSubmit={onSignUp} className="signup--form">
+
+      <div>
+        {errors.map((error) => (
+          <div>{error}</div>
+        ))}
+      </div>
 
         {/* <label>User Name</label> */}
         <h1>Sign Up</h1>
@@ -88,4 +102,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpForm;
