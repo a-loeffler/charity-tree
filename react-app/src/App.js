@@ -50,6 +50,9 @@ function App() {
         <Route path="/landing-page" exact={true}>
           <LandingPage />
         </Route>
+        <Route>
+          <EditorComponent />
+        </Route>
         <Route path="/signup" exact={true}>
           <SignUp />
         </Route>
