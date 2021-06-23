@@ -12,9 +12,9 @@ const LandingPage = () => {
         <div className="main-container">
             <div className="side-space"></div>
             <div className="main-content">
-                <Carousel list={mockCarouselData}/>
-                <Carousel list={mockCarouselData}/>
-                <Carousel list={mockCarouselData}/>
+                <Carousel id={"car-1"} list={mockCarouselData}/>
+                <Carousel id={"car-2"} list={mockCarouselData}/>
+                <Carousel id={"car-3"} list={mockCarouselData}/>
             </div>
             <div className="side-space"></div>
         </div>
