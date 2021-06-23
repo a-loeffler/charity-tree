@@ -1,9 +1,3 @@
-body{
-    background-color: rgb(240, 255, 225);
-    overflow: hidden;
-    position: relative;
-}
-
 .nav--background{
     background-color: rgb(175, 213, 244);
     width: 100%;
@@ -50,6 +44,7 @@ body{
     padding: 8px;
     border-radius: 12px;
     color:rgb(79, 127, 31);
+    cursor: pointer;
 
 }
 
@@ -203,6 +198,13 @@ body{
 
 .close-login-form:hover{
     background-color: white;
+}
+
+.username{
+    margin-left: 20px;
+    color: #CB2934;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 

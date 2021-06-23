@@ -49,7 +49,9 @@
     margin-top: 20px;
     margin-bottom: 20px;
     display: grid;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: mandatory;
     grid-auto-columns: 21%;
     grid-template-rows: 1fr;
     grid-auto-flow: column;
@@ -61,6 +63,7 @@
     width: 95%;
     height: 250px;
     margin: 5px;
+    scroll-snap-align: start;
 }
 
 .project-card-image-container {
