@@ -14,6 +14,8 @@ def seed_categories():
     homeless = Category(name='Homeless')
     muscular_dystrophy = Category(name='Muscular Dystrophy')
     animals = Category(name='Animals')
+    other = Category(name='Other')
+    
 
     db.session.add(terminal_children)
     db.session.add(cancer)
@@ -25,6 +27,7 @@ def seed_categories():
     db.session.add(homeless)
     db.session.add(muscular_dystrophy)
     db.session.add(animals)
+    db.session.add(other)
 
     db.session.commit()
 
