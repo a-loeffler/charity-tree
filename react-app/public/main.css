@@ -4,6 +4,8 @@
 @import url("./CSS/nav/nav-large.css") (min-width:1190px);
 
 
+@import url("./CSS/SignUp/signup-large.css") (min-width:1190px);
+
 
 
 body{
