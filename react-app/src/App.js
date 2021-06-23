@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+// import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -11,7 +11,7 @@ import EditorComponent from "./components/Editor";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
-import SignUp from "./components/SignUp"
+import SignUpForm from "./components/SignUpForm"
 
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
@@ -44,14 +44,14 @@ function App() {
         <Route path="/media-upload" exact={true}>
           <MediaUpload />
         </Route>
-        <Route>
+        {/* <Route>
           <EditorComponent />
-        </Route>
+        </Route> */}
         <Route path="/landing-page" exact={true}>
           <LandingPage />
         </Route>
         <Route path="/signup" exact={true}>
-          <SignUp />
+          <SignUpForm />
         </Route>
       </Switch>
     </BrowserRouter>
