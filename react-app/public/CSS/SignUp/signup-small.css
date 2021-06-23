@@ -1,0 +1,29 @@
+.signup--form {
+    /* margin: 30px auto; */
+    width: 100%;
+    height: 600px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 25px;
+}
+
+.signup-form-input{
+    /* width: 300px; */
+    height: 45px;
+    font-size: 25px;
+    font-weight: lighter;
+    color: rgb(64, 154, 0);
+
+}
+h1{
+    color: rgb(64, 154, 0);
+    font-weight: lighter;
+}
+.signUpSubmitButton{
+    height: 45px;
+    color: rgb(64, 154, 0);
+    font-size: 20px;
+}
