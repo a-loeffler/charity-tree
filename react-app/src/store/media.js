@@ -18,7 +18,7 @@ const postMedia = (mediaData) => {
 
 
 export const getMedia = () => async (dispatch) => {
-    const response = await fetch("/api/media/")
+    const response = await fetch("/api/projects/1/edit")
     const data = await response.json();
     // console.log('----------------', data)
     dispatch(setMedia(data))
