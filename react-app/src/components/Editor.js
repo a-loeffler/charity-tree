@@ -3,13 +3,15 @@ import { Editor } from "@tinymce/tinymce-react";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
+import { useParams } from "react-router-dom";
 
 const EditorComponent = () => {
   const media = useSelector((state) => state.MediaList.media);
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([])
   const dispatch = useDispatch();
+  const {id} = useParams()
   const getTheMedia = async () => {
-    await dispatch(getMedia());
+    await dispatch(getMedia(id));
     toObj(media)
   };
   useEffect(() => {

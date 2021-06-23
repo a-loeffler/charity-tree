@@ -8,9 +8,7 @@ projects_routes = Blueprint("projects", __name__)
 
 @projects_routes.route("/<id>/edit")
 def get_media(id):
-    print("got the media")
-    print(id)
-    medias = Project_media.query.all()
+    medias = Project_media.query.filter_by(project_id=id)
     return {"medias": [media.to_dict() for media in medias]}
 
 
