@@ -20,6 +20,7 @@ function Navigation() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -35,6 +36,14 @@ function Navigation() {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  const logInDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  }
 
 
   //================  Submenu =============
@@ -67,7 +76,7 @@ function Navigation() {
         closeWrapper.classList.add('close-wrapper--slidein')
       })
 
-  }, [onLogout, onLogin])
+  }, [onLogout, onLogin, logInDemo])
 
 
 
@@ -81,7 +90,6 @@ function Navigation() {
 
   return (
     <div className="nav--background">
-
       <div className="login--background">
         <div className="close-wrapper">
           <div className="close-login-form">X</div>
@@ -131,11 +139,15 @@ function Navigation() {
           </Link>
         </div>
       </div>
-
+      {user && <div className="username small-hide">Logged in as: {user.username}</div>}
       <div className="nav--element">
         <Link to="/" className="nav--link">
           <img src="images/charity-tree-logo.svg" className="logo"></img>
         </Link>
+      </div>
+
+      <div className="nav--element large-hide med-hide">
+         {user && <div className="username">Logged in as: {user.username}</div>}
       </div>
 
       <div className="nav--element">
@@ -166,7 +178,7 @@ function Navigation() {
               <>
                 <div id="loginButton"><div className="submenu--link" >Log In</div></div>
                 <Link to="/signup" className="nav--link"><div className="submenu--link">Sign Up</div></Link>
-                <Link to="/demo" className="nav--link"><div className="submenu--link"> Demo User</div></Link>
+                <div className="nav--link" onClick={(e) => logInDemo(e)}><div className="submenu--link"> Demo User</div></div>
               </>
           }
 
