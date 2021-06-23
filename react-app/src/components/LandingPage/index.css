@@ -33,6 +33,7 @@
     display: flex;
 }
 
+.featured-project-container-title,
 .carousel-title {
     text-transform: uppercase;
     font-size: 14px;
@@ -128,4 +129,41 @@
     padding-top: 2px;
     padding-bottom: 2px;
     cursor: pointer;
+}
+
+.upper-content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.featured-project-container {
+    border-right: 1px solid #6186353b;
+}
+
+.featured-project-container-title,
+.featured-project-image-container,
+.featured-project-title,
+.featured-project-description,
+.featured-project-description-container {
+    margin-bottom: 20px;
+}
+
+.featured-project-description {
+    font-size: 16px;
+    color: #464646;
+}
+
+.featured-project-title {
+    font-size: 20px;
+    color: #464646;
+    font-weight: 500;
+}
+
+.featured-project-creator {
+    font-size: 16px;
+    color: #618635;
+    text-decoration: none;
 }
