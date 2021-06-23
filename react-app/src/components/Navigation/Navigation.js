@@ -147,7 +147,7 @@ function Navigation() {
         </div>
 
         <div className="nav--link--container small-hide">
-          <img src="images/menuImage.png" className="subMenuIcon" id="profileMenu"></img>
+          <img src="images/menuImage.png" className="subMenuIcon" id="profileMenu" draggable="false"></img>
         </div>
 
         <div className="submenu">
