@@ -1,27 +1,19 @@
 from flask import Blueprint, request
-# from app.models import MediaUploadForm
-
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 from app.models import Project_media
 
-media_routes = Blueprint("media", __name__)
+projects_routes = Blueprint("projects", __name__)
 
 
-
-# @media_routes.route("/upload", methods=["GET"])
-# def get_upload_form():
-#     form = MediaUploadForm()
-
-
-@media_routes.route("/")
+@media_routes.route("/projects/:id/edit")
 def get_media():
     print("got the media")
     medias = Project_media.query.all()
     return {"medias": [media.to_dict() for media in medias]}
 
 
-@media_routes.route("/upload", methods=["POST"])
+@media_routes.route("/projects/create/:id/upload", methods=["POST"])
 def upload_media():
     print("in the route")
     if "file" not in request.files:
