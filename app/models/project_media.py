@@ -10,3 +10,9 @@ class Project_media(db.Model):
     media_url = db.Column(db.String)
 
     project = db.relationship("Project", back_populates="project_medias")
+
+    def to_dict(self):
+        return {
+            "project_id": self.project_id,
+            "media_url": self.media_url,
+        }
