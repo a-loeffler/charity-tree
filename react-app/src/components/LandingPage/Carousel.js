@@ -101,14 +101,17 @@ const Carousel = ({list, id}) => {
         <div className="carousel-container">
             <div className="carousel-title-info">
                 <h2 className="carousel-title">Title</h2>
-                <a className="carousel-title-link" href="">Link</a>
+                <a className="carousel-title-link" href="">
+                    <p>Link</p>
+                    <img className="carousel-title-link-arrow" src="images/right-button.svg" alt=""></img>
+                </a>
             </div>
             <div className="carousel-buttons-container">
                 <div className="carousel-button-border right-space">
-                    <img className="carousel-button" src="images/left-button.svg" onClick={leftClick}></img>
+                    <img className="carousel-button" src="images/left-button.svg" alt="" onClick={leftClick}></img>
                 </div>
                 <div className="carousel-button-border">
-                    <img className="carousel-button" src="images/right-button.svg" onClick={rightClick}></img>
+                    <img className="carousel-button" src="images/right-button.svg" alt="" onClick={rightClick}></img>
                 </div>
             </div>
             <div className="carousel-items-container" id={id}>
