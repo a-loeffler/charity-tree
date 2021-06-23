@@ -5,7 +5,7 @@ import apiKey from "../api-key";
 import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
 import { useParams } from "react-router-dom";
-import { postNewDescription } from "../store/project";
+import { postNewPageHTML } from "../store/project";
 
 const EditorComponent = () => {
   const [value, setValue] = useState(
@@ -47,14 +47,12 @@ const EditorComponent = () => {
   };
   return (
     <>
-      {/* Handle submit function needs to be added. It will add desc to db*/}
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          // add thunk that posts to backend
-          dispatch(postNewDescription(value, id))
+          dispatch(postNewPageHTML(value, id))
           console.log(value);
-          // add redirect to the project's official page
+          // add redirect to the project's official page? 
         }}
       >
         <Editor
@@ -85,7 +83,6 @@ const EditorComponent = () => {
             image_list: mediaArrayForImageList,
           }}
         />
-        <button name="submit"></button>
         <button type={"submit"}>Submit</button>
         {/* <button onClick={log}>Log editor content</button> */}
       </form>

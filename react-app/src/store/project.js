@@ -1,28 +1,29 @@
-const SET_DESCRIPTION = "session/SET_DESCRIPTION"
+const SET_PAGE_HTML = "session/SET_PAGE_HTML"
 
-const setDescription = (description) => ({
-    type: SET_DESCRIPTION,
-    payload: description
+const setPageHTML = (pageHTML) => ({
+    type: SET_PAGE_HTML,
+    payload: pageHTML
 })
 
-export const postNewDescription = (newDescription, id) => async (dispatch) => {
+export const postNewPageHTML = (newPageHTML, id) => async (dispatch) => {
     const response = await fetch(`/api/projects/${id}/edit`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newDescription), // this needs to be an object??
+        body: JSON.stringify(newPageHTML),
     })
     const data = await response.json()
-    dispatch(setDescription(data))
+    console.log('this will be state data', data)
+    dispatch(setPageHTML(data))
 }
 
-const initialState = {description: ''}
+const initialState = {pageHTML: ''}
 
 export default function projectReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_DESCRIPTION:
-            return {description: action.payload}
+        case SET_PAGE_HTML:
+            return {pageHTML: action.payload.html}
         default:
             return state;
     }
