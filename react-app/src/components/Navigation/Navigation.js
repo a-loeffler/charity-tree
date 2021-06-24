@@ -5,6 +5,10 @@ import { login } from "../../store/session";
 import { logout } from "../../store/session";
 import { getAllProjects } from "../../store/allProjects";
 import { getAllCategories } from "../../store/allCategories";
+import { getAllDonors } from "../../store/allDonors";
+import { getAllTiers } from "../../store/allTiers";
+
+
 import logo from "./charity-tree-logo.svg"
 import menuImage from "./menuImage.png"
 import justMagnifyingGlass from './justMagnifyingGlass.svg'
@@ -22,6 +26,8 @@ function Navigation() {
   const user = useSelector(state => state.session.user)
   const allProjects = useSelector((state) => state.allProjects.projects)
   const allCategories = useSelector((state) => state.allCategories.categories)
+  const allDonors = useSelector((state) => state.allDonors.donors);
+  const allTiers = useSelector((state) => state.allTiers.tiers);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,6 +65,13 @@ function Navigation() {
     if (allCategories.length === 0) {
       dispatch(getAllCategories())
     }
+    if (allDonors.length === 0) {
+      dispatch(getAllDonors())
+    }
+    if (allTiers.length === 0) {
+      dispatch(getAllTiers())
+    }
+
   }, [])
 
   //================  Submenu =============

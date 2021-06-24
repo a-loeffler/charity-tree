@@ -14,3 +14,11 @@ class Donor(db.Model):
 
     project = db.relationship("Project", back_populates="donors")
     user = db.relationship("User", back_populates="donors")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "project_id": self.project_id,
+            "user_id": self.user_id,
+            "amount": self.amount,
+        }
