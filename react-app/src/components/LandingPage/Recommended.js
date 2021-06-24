@@ -19,6 +19,9 @@ const Recommended = ({recommendedList}) => {
 
         setTilesToDisplay(displayTiles);
 
+        console.log(displayCounter)
+        console.log(tilePosition)
+
     }, [tilePosition, recommendedList, displayCounter])
 
 
@@ -26,6 +29,7 @@ const Recommended = ({recommendedList}) => {
     const navRight = () => {
         if (tilePosition > 0) {
             setTilePosition(tilePosition - 3);
+            setDisplayCounter(displayCounter + 1);
         }
     }
 
@@ -33,6 +37,7 @@ const Recommended = ({recommendedList}) => {
     const navLeft = () => {
         if (tilePosition < recommendedList.length) {
             setTilePosition(tilePosition - 3);
+            setDisplayCounter(displayCounter - 1);
         }
     }
 
