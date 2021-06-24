@@ -8,54 +8,59 @@ import { useSelector } from "react-redux";
 const LandingPage = () => {
   const allProjects = useSelector((state) => state.allProjects.projects);
   console.log(allProjects);
+
   allProjects.forEach((e) => {
     console.log(e);
   });
 
-  allProjects.sort((a, b) => {
-    if (a.current_amount === null) a.current_amount = 100000;
-    if (b.current_amount === null) b.current_amount = 100000;
+  //========== Sort By Most Recent ==============
+  let recentProjects = [...allProjects];
+  recentProjects.sort((b, a) => {
+    return Date.parse(a.created) - Date.parse(b.created);
+  });
+  console.log("recemtProjectsssssssssssssssssssssss", recentProjects);
+
+  //========== Sort By Completed ==============
+  let completionProjects = [...allProjects];
+  completionProjects.sort((b, a) => {
+    if (a.current_amount === null) a.current_amount = 0;
+    if (b.current_amount === null) b.current_amount = 0;
     return (
-      parseFloat(a.current_amount / a.goal).toFixed(2) +
-      parseFloat(b.current_amount / b.goal).toFixed(2)
+      parseFloat(a.current_amount / a.goal).toFixed(10) -
+      parseFloat(b.current_amount / b.goal).toFixed(10)
     );
   });
 
-  allProjects.forEach((e) => {
-    console.log(`${e.current_amount} ${e.goal} ${e.current_amount / e.goal}`);
-  });
-  console.log("this is sorted", allProjects);
-
-  let sortedByRecent = []
-  if (allProjects.length !== 0) {
-    sortedByRecent =
-        [allProjects[allProjects.length - 1],
-        allProjects[allProjects.length - 2],
-        allProjects[allProjects.length - 3],
-        allProjects[allProjects.length - 4],
-        allProjects[allProjects.length - 5],
-        allProjects[allProjects.length - 6],
-        allProjects[allProjects.length - 7],
-        allProjects[allProjects.length - 8],
-        allProjects[allProjects.length - 9],
-        allProjects[allProjects.length - 10],
-        ]
+  let sortedByCompletion = [];
+  if (completionProjects.length !== 0) {
+    let i = 0;
+    sortedByCompletion = [];
+    while (i < 10) {
+      sortedByCompletion.push(completionProjects[i]);
+      i++;
+    }
   }
-;
 
-  console.log(sortedByRecent)
-  const mockCarouselData = [
-    "alpha",
-    "beta",
-    "gamma",
-    "delta",
-    "epsilon",
-    "zeta",
-    "eta",
-    "theta",
-    "iota",
-    "kappa",
-  ];
+  //========== Random Sort ==============
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
+  let random = [...allProjects];
+  const randomProjects = shuffle(random);
+
   const mockFeaturedProjectData = {
     title: "We be broke, y’all!",
     bannerUrl: "https://i.ibb.co/YWvkzkf/mock-banner.png",
@@ -92,9 +97,13 @@ const LandingPage = () => {
           <Recommended recommendedList={mockRecommendedList} />
         </div>
         {allProjects?.length !== 0}
-            <Carousel id={"car-1"} list={sortedByRecent} />
-        {/* <Carousel id={"car-2"} list={mockCarouselData} />
-        <Carousel id={"car-3"} list={mockCarouselData} /> */}
+        <Carousel id={"car-1"} list={recentProjects} title={"Recent"} />
+        <Carousel
+          id={"car-2"}
+          list={sortedByCompletion}
+          title={"Close to Goal"}
+        />
+        <Carousel id={"car-3"} list={randomProjects} title={"Discover"} />
       </div>
       <div className="side-space"></div>
     </div>
