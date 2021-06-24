@@ -20,3 +20,17 @@ class Project(db.Model):
     project_medias = db.relationship("Project_media", back_populates="project")
     donors = db.relationship("Donor", back_populates="project")
     tiers = db.relationship("Tier", back_populates="project")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "goal": self.goal,
+            "goal_reached_date": self.goal_reached_date,
+            "current_amount": self.current_amount,
+            "deadline": self.deadline,
+            "owner_id": self.owner_id,
+            "category_id": self.category_id,
+            "page_json": self.page_json,
+        }

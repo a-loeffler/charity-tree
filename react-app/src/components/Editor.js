@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
 import { useParams } from "react-router-dom";
 import { postNewPageHTML } from "../store/project";
+import { getAllProjects } from "../store/allProjects";
 
 const EditorComponent = () => {
   const [value, setValue] = useState(
@@ -13,6 +14,7 @@ const EditorComponent = () => {
   );
   const [text, setText] = useState("");
   const media = useSelector((state) => state.MediaList.media);
+  const allProjects = useSelector((state) => state.allProjects.projects)
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -22,6 +24,7 @@ const EditorComponent = () => {
   };
   useEffect(() => {
     getTheMedia();
+    dispatch(getAllProjects())
   }, [media]);
 
   useEffect(() => {
@@ -52,7 +55,7 @@ const EditorComponent = () => {
           e.preventDefault();
           dispatch(postNewPageHTML(value, id))
           console.log(value);
-          // add redirect to the project's official page? 
+          // add redirect to the project's official page?
         }}
       >
         <Editor
