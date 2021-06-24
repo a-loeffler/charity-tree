@@ -17,7 +17,7 @@ const LandingPage = () => {
 
     const mockRecommendedData = {
         title: "Can I has moneyz?!",
-        bannerUrl: "https://i.ibb.co/7CCsBs7/mock-tile.png",
+        bannerUrl: "https://i.ibb.co/tQL7qFm/mock-tile.png",
         funded: 14,
         creator: "Mr. Whiskers"
     }
