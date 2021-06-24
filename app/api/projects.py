@@ -13,6 +13,12 @@ def get_all_projects():
     return {"projects": [project.to_dict() for project in projects]}
 
 
+@projects_routes.route("/")
+def get_all_media():
+    project_medias = Project_media.query.selectAll()
+    return {"project_medias": [project_medias.to_dicr() for project_media in project_medias]}
+
+
 @projects_routes.route("/<id>/edit")  # get media
 def get_media(id):
     medias = Project_media.query.filter_by(project_id=id)

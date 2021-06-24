@@ -9,18 +9,22 @@ export default function ProjectPage() {
     const project = useSelector(state => state.allProjects.projects[id])
     const category = useSelector(state => state.allCategories.categories)
     console.log(`*****************${JSON.stringify(category)}***************`)
+    // const a = category[project.category_id]
 
     return (
         <div>
+            {/* picture container flex, grid? */}
+            <div> 
+            {/* for each media, give div */}
+            </div>
             <h1>{project?.name}</h1>
-            <h1>{category?:category[project?.category_id - 1]}</h1>
+            <h1>{category[project?.category_id]?.name}</h1>
             <h1>{project?.description}</h1>
             <h1>{`$${project?.goal.toLocaleString("en-US")}`}</h1>
             <h1>{`$${project?.current_amount.toLocaleString("en-US")}`}</h1>
+            {/* TODO: div for completion percentage bar */}
             <h1>{project?.deadline}</h1>
             <h1>{project?.owner}</h1>
-            
-
             <form action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
                 <input type="hidden" name="no_recurring" value="0" />
