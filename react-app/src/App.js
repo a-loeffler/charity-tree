@@ -15,6 +15,7 @@ import SignUpForm from "./components/SignUpForm"
 import ProjectPage from "./components/ProjectPage";
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
+import ProjectCreator from "./components/ProjectCreator";
 
 import './index.css'
 
@@ -40,6 +41,9 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <Homepage />
+        </Route>
+        <Route path="/profile/projects/create" exact={true}>
+          <ProjectCreator />
         </Route>
         <Route path="/projects/create/:id/upload" exact={true}>
           <MediaUpload />

@@ -63,7 +63,7 @@ const Recommended = ({recommendedList}) => {
 
     return (
         <div className="recommended-container">
-            <h2 className="recommended-container-title">Recommended</h2>
+            <h2 className="recommended-container-title">Recommended For You</h2>
             {tilesToDisplay.map((tileData, index) => <RecommendedTile key={index} tileData={tileData}/>)}
             <div className="recommended-nav-container">
                 <div className="recommended-nav-button-border">

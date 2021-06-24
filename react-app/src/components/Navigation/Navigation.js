@@ -143,7 +143,7 @@ function Navigation() {
         </div>
 
         <div className="nav--link--container">
-          <Link to="/start-a-campaign" className="nav--link">
+          <Link to="/profile/projects/create" className="nav--link">
             Start a Campaign
           </Link>
         </div>
