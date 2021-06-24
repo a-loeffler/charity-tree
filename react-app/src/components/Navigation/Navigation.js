@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { logout } from "../../store/session";
 import { getAllProjects } from "../../store/allProjects";
+import './main.css'
+import logo from "./charity-tree-logo.svg"
+import menuImage from "./menuImage.png"
+import justMagnifyingGlass from './justMagnifyingGlass.svg'
+import './loginform.css'
 
 
 
@@ -118,6 +123,7 @@ function Navigation() {
             placeholder="Email"
             value={email}
             onChange={updateEmail}
+            className="loginForm--input"
           />
 
           <label htmlFor="password">Password</label>
@@ -127,6 +133,7 @@ function Navigation() {
             placeholder="Password"
             value={password}
             onChange={updatePassword}
+            className="loginForm--input"
           />
           <button type="submit" className="loginFormButton">Login</button>
 
@@ -151,7 +158,7 @@ function Navigation() {
       {user && <div className="username small-hide">Logged in as: {user.username}</div>}
       <div className="nav--element">
         <Link to="/" className="nav--link">
-          <img src="images/charity-tree-logo.svg" className="logo"></img>
+          <img src={logo} className="logo"></img>
         </Link>
       </div>
 
@@ -168,13 +175,14 @@ function Navigation() {
         </div>
 
         <div className="nav--link--container small-hide">
-          <img src="images/menuImage.png" className="subMenuIcon" id="profileMenu" draggable="false"></img>
+          <img src={menuImage} className="subMenuIcon" id="profileMenu" draggable="false"></img>
         </div>
 
         <div className="submenu">
+
           <form onSubmit={(e) => handleSearch(e)} className='nav--link--container large-hide med-hide'>
             <input type="text" className="homeSearch large-hide med-hide" placeholder="Search"></input>
-            <button style={{ backgroundImage: 'url(images/justMagnifyingGlass.svg)' }} className="search--icon large-hide med-hide"></button>
+            <button style={{ backgroundImage: `url(${justMagnifyingGlass})` }} className="search--icon large-hide med-hide"></button>
           </form>
 
           <Link to="/dicover" className="nav--link nav--link large-hide"><div className="submenu--link">Discover</div></Link>
@@ -190,8 +198,6 @@ function Navigation() {
                 <div className="nav--link" onClick={(e) => logInDemo(e)}><div className="submenu--link"> Demo User</div></div>
               </>
           }
-
-
 
         </div>
       </div>

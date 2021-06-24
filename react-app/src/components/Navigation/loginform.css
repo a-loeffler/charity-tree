@@ -1,0 +1,93 @@
+
+.login--background{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+    pointer-events: none;
+
+}
+
+.login--background-fadeIn{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.login-form--background{
+    width: 250px;
+    height: 240px;
+    background-color: rgb(236, 236, 236);
+    position: absolute;
+    top: -260px;
+    left: 40%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    box-shadow: 0 0 15px black;
+    font-size: 20px;
+    transition: all 0.5s ease;
+    pointer-events: initial;
+
+}
+
+.login-form--background--slideIn{
+    top: 130px;
+}
+
+.login-errors{
+    color: rgb(255, 0, 0);
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.close-wrapper{
+    top: -240px;
+    left: 40%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    pointer-events: initial;
+}
+
+.close-wrapper--slidein{
+    top: 126px;
+}
+
+.close-login-form{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(206, 206, 206);
+    position: relative;
+    left: 230px;
+    top: -5px;
+    padding: 4px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    border: solid 1px black;
+}
+
+.close-login-form:hover{
+    background-color: white;
+}
+
+.loginForm--input{
+    width: 100%;
+    height: 40px;
+}
+.loginFormButton{
+    width: 100%;
+    height: 40px;
+}
