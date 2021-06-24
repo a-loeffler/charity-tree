@@ -224,7 +224,7 @@
 }
 
 .recommended-nav-number:hover {
-    text-decoration: underline;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -286,4 +286,8 @@
     color: #23924E;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.active-nav-number {
+    border-bottom: 2px solid #618635;
 }
