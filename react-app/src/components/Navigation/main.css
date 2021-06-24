@@ -1,0 +1,20 @@
+/* to do */
+@import url("./nav-small.css") (max-width:660px);
+@import url("./nav-medium.css") (min-width:661px);
+@import url("./nav-large.css") (min-width:1190px);
+
+
+/* @import url("./signup-large-med.css") (min-width:661px);
+@import url("./signup-small.css") (max-width:660px);
+ */
+
+
+
+body{
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(240, 255, 225);
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
