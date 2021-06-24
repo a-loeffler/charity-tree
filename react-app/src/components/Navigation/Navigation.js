@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { logout } from "../../store/session";
 import { getAllProjects } from "../../store/allProjects";
-import './main.css'
+import { getAllCategories } from "../../store/allCategories";
 import logo from "./charity-tree-logo.svg"
 import menuImage from "./menuImage.png"
 import justMagnifyingGlass from './justMagnifyingGlass.svg'
 import './loginform.css'
-
-
+import './main.css'
 
 
 function Navigation() {
@@ -22,6 +21,7 @@ function Navigation() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const allProjects = useSelector((state) => state.allProjects.projects)
+  const allCategories = useSelector((state) => state.allCategories.categories)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,11 +53,12 @@ function Navigation() {
 
   //========== Get All Projects ==============
   useEffect(() => {
-    console.log(allProjects)
     if (allProjects.length === 0) {
       dispatch(getAllProjects())
     }
-    console.log(allProjects)
+    if (allCategories.length === 0) {
+      dispatch(getAllCategories())
+    }
   }, [])
 
   //================  Submenu =============
@@ -150,7 +151,7 @@ function Navigation() {
         </div>
 
         <div className="nav--link--container">
-          <Link to="/start-a-campaign" className="nav--link">
+          <Link to="/profile/projects/create" className="nav--link">
             Start a Campaign
           </Link>
         </div>

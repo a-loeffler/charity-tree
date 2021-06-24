@@ -3,13 +3,15 @@ import thunk from "redux-thunk";
 import mediaReducer from "./media";
 import projectReducer from "./project";
 import allProjectsReducer from "./allProjects";
+import allCategoriesReducer from "./allCategories";
 import session from "./session"
 
 const rootReducer = combineReducers({
     session,
     MediaList: mediaReducer,
     project: projectReducer,
-    allProjects: allProjectsReducer
+    allProjects: allProjectsReducer,
+    allCategories: allCategoriesReducer
 });
 
 
