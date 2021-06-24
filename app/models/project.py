@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 
 class Project(db.Model):
@@ -14,6 +15,7 @@ class Project(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
     page_json = db.Column(db.Text)
+    created = db.Column(db.DateTime, default=datetime.utcnow())
 
     categories = db.relationship("Category", back_populates="projects")
     owner = db.relationship("User", back_populates="projects")

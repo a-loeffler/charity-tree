@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 
 class Project_media(db.Model):
@@ -8,6 +9,7 @@ class Project_media(db.Model):
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"),
                            nullable=False)
     media_url = db.Column(db.String)
+    created = db.Column(db.DateTime, default=datetime.utcnow())
 
     project = db.relationship("Project", back_populates="project_medias")
 

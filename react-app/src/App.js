@@ -47,7 +47,7 @@ function App() {
         <Route path="/projects/:id/edit" exact={true}>
           <EditorComponent />
         </Route>
-        <Route path="/projects/test">
+        <Route path="/projects/:id" exact={true}>
           <ProjectPage />
         </Route>
         <Route path="/landing-page" exact={true}>
