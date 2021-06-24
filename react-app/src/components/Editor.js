@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
 import { useParams } from "react-router-dom";
 import { postNewPageHTML } from "../store/project";
+import { getAllProjects } from "../store/allProjects";
 
 const EditorComponent = () => {
   const [value, setValue] = useState(
@@ -13,20 +14,27 @@ const EditorComponent = () => {
   );
   const [text, setText] = useState("");
   const media = useSelector((state) => state.MediaList.media);
+  const allProjects = useSelector((state) => state.allProjects.projects)
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const getTheMedia = async () => {
     await dispatch(getMedia(id));
     toObj(media);
   };
+
   useEffect(() => {
+    // console.log(allProjects)
+    // if (allProjects.length === 0) {
+    //   dispatch(getAllProjects())
+    // }
+    // console.log(allProjects)
     getTheMedia();
   }, [media]);
 
-  useEffect(() => {
+  useEffect(() => {}, [value, text]) // text change updates RTE
 
-  }, [value, text])
   const editorRef = useRef(null);
   const toObj = (array) => {
     let count = 1;
@@ -40,11 +48,6 @@ const EditorComponent = () => {
     });
     setMediaArrayForImageList(mediaArray);
   };
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
   return (
     <>
       <form
@@ -52,7 +55,7 @@ const EditorComponent = () => {
           e.preventDefault();
           dispatch(postNewPageHTML(value, id))
           console.log(value);
-          // add redirect to the project's official page? 
+          // add redirect to the project's official page?
         }}
       >
         <Editor
@@ -84,7 +87,6 @@ const EditorComponent = () => {
           }}
         />
         <button type={"submit"}>Submit</button>
-        {/* <button onClick={log}>Log editor content</button> */}
       </form>
     </>
   );

@@ -7,6 +7,12 @@ from app.models.db import db
 projects_routes = Blueprint("projects", __name__)
 
 
+@projects_routes.route("/")
+def get_all_projects():
+    projects = Project.query.all()
+    return {"projects": [project.to_dict() for project in projects]}
+
+
 @projects_routes.route("/<id>/edit")  # get media
 def get_media(id):
     medias = Project_media.query.filter_by(project_id=id)

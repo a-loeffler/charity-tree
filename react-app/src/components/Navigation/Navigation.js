@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { logout } from "../../store/session";
+import { getAllProjects } from "../../store/allProjects";
 
 
 
 
 function Navigation() {
-
   const onLogout = async (e) => {
     await dispatch(logout());
   };
@@ -16,6 +16,7 @@ function Navigation() {
   //========== Log in stuffs ==============
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
+  const allProjects = useSelector((state) => state.allProjects.projects)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,6 +46,14 @@ function Navigation() {
     }
   }
 
+  //========== Get All Projects ==============
+  useEffect(() => {
+    console.log(allProjects)
+    if (allProjects.length === 0) {
+      dispatch(getAllProjects())
+    }
+    console.log(allProjects)
+  }, [])
 
   //================  Submenu =============
   useEffect(() => {
@@ -128,7 +137,7 @@ function Navigation() {
 
       <div className="nav--element med-hide small-hide">
         <div className="nav--link--container">
-          <Link to="/dicover" className="nav--link">
+          <Link to="/discover" className="nav--link">
             Discover
           </Link>
         </div>
