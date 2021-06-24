@@ -128,7 +128,7 @@ function Navigation() {
 
       <div className="nav--element med-hide small-hide">
         <div className="nav--link--container">
-          <Link to="/dicover" className="nav--link">
+          <Link to="/discover" className="nav--link">
             Discover
           </Link>
         </div>
