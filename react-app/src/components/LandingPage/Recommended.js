@@ -19,7 +19,7 @@ const Recommended = ({recommendedList}) => {
 
         setTilesToDisplay(displayTiles);
 
-    }, [tilePosition, recommendedList])
+    }, [tilePosition, recommendedList, displayCounter])
 
 
 
@@ -36,8 +36,25 @@ const Recommended = ({recommendedList}) => {
         }
     }
 
+
+    const setOne = () => {
+        setDisplayCounter(1)
+        setTilePosition(0)
+    }
+
+    const setTwo = () => {
+        setDisplayCounter(2)
+        setTilePosition(3)
+    }
+
+    const setThree = () => {
+        setDisplayCounter(3)
+        setTilePosition(6)
+    }
     //To-do: slice recommendedList to get appropriate data
     //use arrow buttons to affect indices in state
+
+    //
 
     return (
         <div className="recommended-container">
@@ -47,9 +64,9 @@ const Recommended = ({recommendedList}) => {
                 <div className="recommended-nav-button-border">
                     <img className="recommended-nav-button" src="images/left-button.svg" alt="" onClick={navRight} ></img>
                 </div>
-                <p className="recommended-nav-number">1</p>
-                <p className="recommended-nav-number">2</p>
-                <p className="recommended-nav-number">3</p>
+                <p className={displayCounter == 1 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setOne}>1</p>
+                <p className={displayCounter == 2 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setTwo}>2</p>
+                <p className={displayCounter == 3 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setThree}>3</p>
                 <div className="recommended-nav-button-border">
                     <img className="recommended-nav-button" src="images/right-button.svg" alt="" ></img>
                 </div>
