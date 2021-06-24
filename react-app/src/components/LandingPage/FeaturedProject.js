@@ -10,7 +10,7 @@ const FeaturedProject = ({featuredProject}) => {
         <div className="featured-project-container">
             <h2 className="featured-project-container-title">Featured Project</h2>
             <div className="featured-project-image-container">
-                <img src={featuredProject.bannerUrl} alt="banner for featured project"></img>
+                <img className="featured-project-image" src={featuredProject.bannerUrl} alt="banner for featured project"></img>
             </div>
             <div className="featured-project-description-container">
                 <h3 className="featured-project-title">{featuredProject.title}</h3>
