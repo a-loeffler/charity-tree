@@ -15,6 +15,7 @@ import SignUpForm from "./components/SignUpForm"
 import ProjectPage from "./components/ProjectPage";
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
+import ProjectCreator from "./components/ProjectCreator";
 
 import './index.css'
 
@@ -41,13 +42,16 @@ function App() {
         <Route path="/" exact={true}>
           <Homepage />
         </Route>
+        <Route path="/profile/projects/create" exact={true}>
+          <ProjectCreator />
+        </Route>
         <Route path="/projects/create/:id/upload" exact={true}>
           <MediaUpload />
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
           <EditorComponent />
         </Route>
-        <Route path="/projects/test">
+        <Route path="/projects/:id" exact={true}>
           <ProjectPage />
         </Route>
         <Route path="/landing-page" exact={true}>

@@ -8,3 +8,9 @@ class Category(db.Model):
     name = db.Column(db.String, nullable=False)
 
     projects = db.relationship("Project", back_populates="categories")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name
+        }

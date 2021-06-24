@@ -225,18 +225,70 @@
 }
 
 .recommended-nav-number:hover {
-    text-decoration: underline;
+    font-weight: bold;
     cursor: pointer;
 }
 
-
-
-
-
 .recommended-tile-container {
-    height: 100px;
-    border: 1px solid black;
+    height: 125px;
     margin-bottom: 20px;
     display: grid;
     grid-template-columns: 3fr 2fr
+}
+
+.recommended-tile-image-container {
+    overflow: hidden;
+}
+
+.recommended-tile-image {
+    width: 100%;
+    height: auto;
+}
+
+.recommended-tile-info-container {
+    padding-left: 20px;
+}
+
+.recommended-tile-funded,
+.recommended-tile-title {
+    font-size: 14px;
+    color: #464646;
+    padding-bottom: 5px;
+}
+
+.recommended-tile-title:hover {
+    color: #23924E;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.recommended-tile-funded {
+    font-weight: bold;
+    color: #618635;
+}
+
+.recommended-tile-creator-info {
+    display: flex;
+}
+
+.recommended-tile-creator {
+    padding-right: 3px;
+}
+
+.recommended-tile-creator-info,
+.recommended-tile-creator,
+.recommended-tile-creator-link {
+    font-size: 12px;
+    color: #464646;
+    padding-bottom: 5px;
+}
+
+.recommended-tile-creator-link:hover {
+    color: #23924E;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.active-nav-number {
+    border-bottom: 2px solid #618635;
 }
