@@ -12,7 +12,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import SignUpForm from "./components/SignUpForm"
-
+import ProjectPage from "./components/ProjectPage";
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
 
@@ -46,6 +46,9 @@ function App() {
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
           <EditorComponent />
+        </Route>
+        <Route path="/projects/test">
+          <ProjectPage />
         </Route>
         <Route path="/landing-page" exact={true}>
           <LandingPage />
