@@ -1,4 +1,4 @@
-const SET_ALL = "session/SET_ALL"
+const SET_ALL = "session/SET_PROJECTS"
 
 const setAll = (projects) => ({
     type: SET_ALL,

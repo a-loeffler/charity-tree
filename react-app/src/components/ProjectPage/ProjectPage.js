@@ -7,6 +7,7 @@ export default function ProjectPage() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const project = useSelector(state => state.allProjects.projects[id])
+    const category = useSelector(state => state.allCategories)
     console.log(project)
 
     return (
@@ -14,8 +15,8 @@ export default function ProjectPage() {
             <h1>{project?.name}</h1>
             <h1>{project?.category}</h1>
             <h1>{project?.description}</h1>
-            <h1>{`$${project?.goal}`}</h1>
-            <h1>{project?.current_amount}</h1>
+            <h1>{`$${project?.goal.toLocaleString("en-US")}`}</h1>
+            <h1>{`$${project?.current_amount.toLocaleString("en-US")}`}</h1>
             <h1>{project?.deadline}</h1>
             <h1>{project?.owner}</h1>
             
