@@ -18,18 +18,23 @@ const EditorComponent = () => {
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const getTheMedia = async () => {
     await dispatch(getMedia(id));
     toObj(media);
   };
+
   useEffect(() => {
+    // console.log(allProjects)
+    // if (allProjects.length === 0) {
+    //   dispatch(getAllProjects())
+    // }
+    // console.log(allProjects)
     getTheMedia();
-    dispatch(getAllProjects())
   }, [media]);
 
-  useEffect(() => {
+  useEffect(() => {}, [value, text]) // text change updates RTE
 
-  }, [value, text])
   const editorRef = useRef(null);
   const toObj = (array) => {
     let count = 1;
@@ -42,11 +47,6 @@ const EditorComponent = () => {
       count++;
     });
     setMediaArrayForImageList(mediaArray);
-  };
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
   };
   return (
     <>
@@ -87,7 +87,6 @@ const EditorComponent = () => {
           }}
         />
         <button type={"submit"}>Submit</button>
-        {/* <button onClick={log}>Log editor content</button> */}
       </form>
     </>
   );
