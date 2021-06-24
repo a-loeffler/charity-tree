@@ -7,13 +7,13 @@ export default function ProjectPage() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const project = useSelector(state => state.allProjects.projects[id])
-    const category = useSelector(state => state.allCategories)
-    console.log(project)
+    const category = useSelector(state => state.allCategories.categories)
+    console.log(`*****************${JSON.stringify(category)}***************`)
 
     return (
         <div>
             <h1>{project?.name}</h1>
-            <h1>{project?.category}</h1>
+            <h1>{category?:category[project?.category_id - 1]}</h1>
             <h1>{project?.description}</h1>
             <h1>{`$${project?.goal.toLocaleString("en-US")}`}</h1>
             <h1>{`$${project?.current_amount.toLocaleString("en-US")}`}</h1>
