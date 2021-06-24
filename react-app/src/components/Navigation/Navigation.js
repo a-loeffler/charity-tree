@@ -5,6 +5,7 @@ import { login } from "../../store/session";
 import { logout } from "../../store/session";
 import { getAllProjects } from "../../store/allProjects";
 import { getAllCategories } from "../../store/allCategories";
+import { mediaGetter } from "../../store/media";
 import logo from "./charity-tree-logo.svg"
 import menuImage from "./menuImage.png"
 import justMagnifyingGlass from './justMagnifyingGlass.svg'
@@ -22,6 +23,7 @@ function Navigation() {
   const user = useSelector(state => state.session.user)
   const allProjects = useSelector((state) => state.allProjects.projects)
   const allCategories = useSelector((state) => state.allCategories.categories)
+  const project_medias = useSelector((state) => state.MediaList.project_medias)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,13 +53,16 @@ function Navigation() {
     }
   }
 
-  //========== Get All Projects ==============
+  //========== Dispatch Get All ==============
   useEffect(() => {
     if (allProjects.length === 0) {
       dispatch(getAllProjects())
     }
     if (allCategories.length === 0) {
       dispatch(getAllCategories())
+    }
+    if (project_medias.length === 0) {
+      dispatch(mediaGetter())
     }
   }, [])
 
