@@ -106,6 +106,7 @@
 .project-card-description {
     font-size: 14px;
     color: #464646;
+    word-wrap: break-word;
 }
 
 .project-card-creator {
