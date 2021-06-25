@@ -59,7 +59,7 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
 }
 
 
-const initialState = {updated_media_info: [], project_medias: []};
+const initialState = {updated_media_info: [], project_medias: [], temp_media: []};
 
 const mediaReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -81,7 +81,7 @@ const mediaReducer = (state = initialState, action) => {
         case POST_MEDIA: {
             let newState = {...state};
 
-            newState.media.push(action.payload.mediaUrl)
+            newState.temp_media.push(action.payload.mediaUrl)
             return newState;
         }
         default: {
