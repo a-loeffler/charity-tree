@@ -15,7 +15,6 @@ def seed_categories():
     muscular_dystrophy = Category(name='Muscular Dystrophy')
     animals = Category(name='Animals')
     other = Category(name='Other')
-    
 
     db.session.add(terminal_children)
     db.session.add(cancer)
