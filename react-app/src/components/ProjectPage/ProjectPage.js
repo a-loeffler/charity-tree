@@ -8,13 +8,13 @@ export default function ProjectPage() {
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
+    console.log(`projectwhereID: ${JSON.stringify(project)}`)
     const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
+    console.log('-------------', project_medias)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
-
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
-
 
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
@@ -30,7 +30,6 @@ export default function ProjectPage() {
         return total > 100 ? 100 : total;
     }
 
-    // ======== adds thumbnails and eventlistener.
     if (project_medias2) {
         const thumbnails = document.querySelector('.thumbnail--container')
         if (thumbnails !== null) thumbnails.innerHTML = '';
