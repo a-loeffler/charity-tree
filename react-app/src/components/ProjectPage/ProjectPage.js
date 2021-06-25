@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {useSelector, useDispatch} from "react-redux"
 import {useParams} from 'react-router-dom'
 import './project_page.css'
@@ -42,6 +42,7 @@ export default function ProjectPage() {
                         </div>
 
                         <div className="thumbnail--container">
+                        {/* <div className="thumbnail--container">
                                 {project_medias2?.map(item => {
                                     return (
                                 <span className="thumbnail--div">
@@ -49,9 +50,18 @@ export default function ProjectPage() {
                                 </span>
                                 )
                                 })}
+                        </div> */}
+
                         </div>
 
                     </div>
+
+
+
+
+
+
+
 
 
                     <div className="stuff_on_right--container">
