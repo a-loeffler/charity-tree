@@ -4,7 +4,7 @@ import './index.css'
 
 import ProjectCard from './ProjectCard'
 
-const Carousel = ({list, id}) => {
+const Carousel = ({list, id, title}) => {
 
     const [slidePosition, setSlidePosition] = useState(0);
 
@@ -12,7 +12,7 @@ const Carousel = ({list, id}) => {
 
 
     useEffect(() => {
-
+        console.log(list)
         let displaySlides = list.slice(slidePosition, slidePosition + 5);
 
         setSlidesToDisplay(displaySlides);
@@ -36,6 +36,7 @@ const Carousel = ({list, id}) => {
         // else {}
     }
 
+    //#region
     // const totalLength = list.length - 1;
     // const [scrollIndex, setScrollIndex] = useState(0)
     // const [scrollId, setScrollId] = useState(`${id}-${scrollIndex}`)
@@ -96,11 +97,12 @@ const Carousel = ({list, id}) => {
     //         }
     //     }
     // }
+    //#endregion
 
     return (
         <div className="carousel-container">
             <div className="carousel-title-info">
-                <h2 className="carousel-title">Title</h2>
+                <h2 className="carousel-title">{title}</h2>
                 <a className="carousel-title-link" href="">
                     <p>Link</p>
                     <img className="carousel-title-link-arrow" src="images/right-button.svg" alt=""></img>
@@ -115,7 +117,11 @@ const Carousel = ({list, id}) => {
                 </div>
             </div>
             <div className="carousel-items-container" id={id}>
-                {slidesToDisplay.map((project, index) => <ProjectCard key={index} title={project} cardId={`${id}-${index}`}/>)}
+                {console.log('slidesTod siplay ', slidesToDisplay)}
+                {slidesToDisplay.map((project, index) =>  {
+                    console.log(slidesToDisplay)
+                    return <ProjectCard key={index} title={project.name} description={project.description} cardId={`${id}-${index}`}/>
+            })}
             </div>
         </div>
     )

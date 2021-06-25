@@ -11,6 +11,8 @@ from .api.auth_routes import auth_routes
 from .api.projects import projects_routes
 from .api.categories import categories_routes
 from .api.project_medias import project_medias_routes
+from .api.donors import donors_routes
+from .api.tiers import tiers_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +39,9 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(projects_routes, url_prefix='/api/projects')
 app.register_blueprint(categories_routes, url_prefix='/api/categories')
 app.register_blueprint(project_medias_routes, url_prefix='/api/project_medias')
+app.register_blueprint(donors_routes, url_prefix='/api/donors')
+app.register_blueprint(tiers_routes, url_prefix='/api/tiers')
+
 db.init_app(app)
 Migrate(app, db)
 
@@ -48,6 +53,7 @@ CORS(app)
 # Therefore, we need to make sure that in production any
 # request made over http is redirected to https.
 # Well.........
+
 
 @app.before_request
 def https_redirect():
