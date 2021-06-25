@@ -1,5 +1,6 @@
 const SET_MEDIA = "media/setMedia"
 const POST_MEDIA = "media/postMedia"
+const GET_MEDIA = "media/getMedia"
 
 const setMedia = (mediaData) => {
     return {
@@ -16,6 +17,18 @@ const postMedia = (mediaData) => {
     }
 }
 
+const getAllMedia = mediaData => {
+    return {
+        type: GET_MEDIA,
+        payload: mediaData
+    }
+}
+
+export const mediaGetter = () => async dispatch => {
+    const response = await fetch(`/api/project_medias/`)
+    const data = await response.json();
+    dispatch(getAllMedia(data))
+}
 
 export const getMedia = (id) => async (dispatch) => {
     const response = await fetch(`/api/projects/${id}/edit`)
@@ -46,14 +59,17 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
 }
 
 
-const initialState = {media: []};
+const initialState = {updated_media_info: [], project_medias: []};
 
 const mediaReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_MEDIA: {
+            return state.project_medias = action.payload
+        }
         case SET_MEDIA: {
             let newState = {...state}
             action.payload.medias.forEach(url => {
-                newState.media.push(url.media_url)
+                newState.updated_media_info.push(url.media_url)
             });
             return newState
         }
