@@ -32,19 +32,21 @@ export default function ProjectPage() {
 
     if (project_medias2) {
         const thumbnails = document.querySelector('.thumbnail--container')
-        if (thumbnails !== null) thumbnails.innerHTML = '';
-        for (let i = 0; i < project_medias2?.length; i++) {
-            let obj = project_medias2[i]
-            let newSpan = document.createElement("span")
-            newSpan.setAttribute("class", 'thumbnail--span')
-            let newImg = `<img src="${obj.media_url}" class="thumbnails"></img>`
-            newSpan.innerHTML = newImg
-            thumbnails.appendChild(newSpan)
-
-            newSpan.addEventListener("click", (e) => {
-                document.querySelector(".background_image").style.backgroundImage = `url("${e.target.src}")`
-                document.querySelector(".mainImage").src = e.target.src
-            })
+        if (thumbnails !== null) {
+            thumbnails.innerHTML = '';
+            for (let i = 0; i < project_medias2?.length; i++) {
+                let obj = project_medias2[i]
+                let newSpan = document.createElement("span")
+                newSpan.setAttribute("class", 'thumbnail--span')
+                let newImg = `<img src="${obj.media_url}" class="thumbnails"></img>`
+                newSpan.innerHTML = newImg
+                thumbnails.appendChild(newSpan)
+                
+                newSpan.addEventListener("click", (e) => {
+                    document.querySelector(".background_image").style.backgroundImage = `url("${e.target.src}")`
+                    document.querySelector(".mainImage").src = e.target.src
+                })
+            }
         }
     }
 
@@ -74,7 +76,6 @@ export default function ProjectPage() {
                                 })}
                         </div> */}
                     </div>
-
                 </div>
 
 
