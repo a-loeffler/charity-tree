@@ -2,6 +2,9 @@ import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom'
 import './project_page.css'
+import silverStar from "./silverStar.png"
+import goldStar from "./goldStar.png"
+import platinumStar from "./platinumStar.png"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -15,6 +18,7 @@ export default function ProjectPage() {
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
+    console.log(filtered_tiers)
 
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
@@ -118,7 +122,22 @@ export default function ProjectPage() {
                 </div>
 
                 <div className="tiers">
-                    {/* ================================== Tiers go here ============================ */}
+
+                   { filtered_tiers?.map((obj) =>
+                    <div className="tier--container">
+                       { obj.name == "Silver" ? <img src={silverStar}></img>
+                         : obj.name == "Silver" ? <img src={silverStar}></img>
+                         : <img src={silverStar}></img>
+                       }
+
+                        <h1>{obj.name}</h1>
+
+
+                        <p>{obj.description}</p>
+                    </div>
+
+                   )}
+
                 </div>
             </div>
 
