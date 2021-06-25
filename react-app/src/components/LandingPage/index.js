@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const LandingPage = () => {
   const allProjects = useSelector((state) => state.allProjects.projects);
-  console.log(allProjects);
 
   allProjects.forEach((e) => {
     console.log(e);
@@ -18,7 +17,6 @@ const LandingPage = () => {
   recentProjects.sort((b, a) => {
     return Date.parse(a.created) - Date.parse(b.created);
   });
-  console.log("recemtProjectsssssssssssssssssssssss", recentProjects);
 
   //========== Sort By Completed ==============
   let completionProjects = [...allProjects];

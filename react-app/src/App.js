@@ -40,7 +40,8 @@ function App() {
       <Navigation />
       <Switch>
         <Route path="/" exact={true}>
-          <Homepage />
+          <LandingPage />
+          {/* <Homepage /> */}
         </Route>
         <Route path="/profile/projects/create" exact={true}>
           <ProjectCreator />
@@ -53,9 +54,6 @@ function App() {
         </Route>
         <Route path="/projects/:id" exact={true}>
           <ProjectPage />
-        </Route>
-        <Route path="/landing-page" exact={true}>
-          <LandingPage />
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm />
