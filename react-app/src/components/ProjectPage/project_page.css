@@ -134,12 +134,15 @@ h2{
 .users_project_website_tiers{
     width: 100%;
     height: 900px;
-    background-color: rgb(148, 148, 148);
+    /* background-color: rgb(148, 148, 148); */
     display: grid;
     grid-template-columns: 3fr 1fr;
 }
 .project_website{
-    background-color: rgb(18, 81, 122);
+    background-color: rgb(236, 236, 236);
+    display: flex;
+    padding: 25px;
+    border-top-right-radius: 25px;
 }
 
 .thumbnails{
@@ -167,7 +170,7 @@ h2{
     flex-direction: row;
 }
 .tiers{
-    background-color: rgb(111, 163, 223);
+    /* background-color: rgb(111, 163, 223); */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -175,9 +178,36 @@ h2{
 
 
 .tier--container{
-    width: 150px;
+    width: 200px;
     height: 300px;
     margin-bottom: 15px;
-    background-color: brown;
+    background-color: rgb(236, 236, 236);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.tierStar{
+    display: inline-block;
+}
+
+.tireName{
+    align-self: center;
+}
+
+
+.tierDescription{
+    font-size: 20px;
+}
+.tierValue{
+    align-self: center;
+}
+
+h1{
+    display: inline-block;
+    font-weight: bolder;
 }

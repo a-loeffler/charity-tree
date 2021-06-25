@@ -1,29 +1,35 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom'
 import './project_page.css'
 import silverStar from "./silverStar.png"
 import goldStar from "./goldStar.png"
 import platinumStar from "./platinumStar.png"
+import { Link } from "react-router-dom"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
-    console.log(`projectwhereID: ${JSON.stringify(project)}`)
-    const category = useSelector(state => state.allCategories.categories)
+    // const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
-    console.log('-------------', project_medias)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
-    console.log(filtered_tiers)
+    const projectHtml = document.querySelector('.project_html')
+    const user = useSelector(state => state.session.user)
+
+    // ============ adds the project html ========
+    if (projectHtml) projectHtml.innerHTML = project?.page_html
 
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
         const days = milliseconds / 1000 / 60 / 60 / 24
-        if (milliseconds <= 0) {
+        if (days === NaN){
+            return 'Hmm... something is broken'
+        }
+        else if (milliseconds <= 0) {
             return 0
         } else {
             return Math.trunc(days)
@@ -31,6 +37,7 @@ export default function ProjectPage() {
     }
     const getPercent = () => {
         const total = Math.trunc(project?.current_amount / project?.goal * 100)
+        if(total === NaN) return "The math is not adding up..."
         return total > 100 ? 100 : total;
     }
 
@@ -41,7 +48,8 @@ export default function ProjectPage() {
             let obj = project_medias2[i]
             let newSpan = document.createElement("span")
             newSpan.setAttribute("class", 'thumbnail--span')
-            let newImg = `<img src="${obj.media_url}" class="thumbnails"></img>`
+            newSpan.setAttribute("key", `key${i}`)
+            let newImg = `<img src="${obj.media_url}" class="thumbnails" alt="pic-number-${obj.project_id}"></img>`
             newSpan.innerHTML = newImg
             thumbnails.appendChild(newSpan)
 
@@ -115,25 +123,31 @@ export default function ProjectPage() {
                     </form>
                 </div>
             </div>
+            {user?.id === project?.owner_id &&
+                <Link to={`/projects/${project?.id}/edit`}> Edit page - and please style this link!!!!</Link>
+                }
 
             <div className="users_project_website_tiers">
+
                 <div className="project_website">
-                    {/* ================================== Project Website ============================ */}
+                    <div className="project_html">
                 </div>
+            </div>
 
                 <div className="tiers">
 
                    { filtered_tiers?.map((obj) =>
-                    <div className="tier--container">
-                       { obj.name == "Silver" ? <img src={silverStar}></img>
-                         : obj.name == "Silver" ? <img src={silverStar}></img>
-                         : <img src={silverStar}></img>
-                       }
+                    <div className="tier--container" key={`tier-container-${obj.id}`}>
+                        <div className="tierName" key={`tier-name-${obj.id}`}>
+                            { obj.name == "Silver" ? <img src={silverStar} className="tierStar" key={`star-${obj.id}`}></img>
+                                : obj.name == "Gold" ? <img src={goldStar} className="tierStar" key={`star-${obj.id}`}></img>
+                                : <img src={platinumStar} className="tierStar" key={`star-${obj.id}`}></img>
+                            }
+                                <h1 key={`name-${obj.id}`}>{obj.name}</h1>
+                        </div>
 
-                        <h1>{obj.name}</h1>
-
-
-                        <p>{obj.description}</p>
+                        <div className="tierDescription" key={`description-${obj.id}`}>{obj.description}</div>
+                        <h1 className="tierValue" key={`value-${obj.id}`}>${obj.value}</h1>
                     </div>
 
                    )}
