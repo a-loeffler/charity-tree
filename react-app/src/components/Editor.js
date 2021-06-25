@@ -10,7 +10,7 @@ import { postNewPageHTML } from "../store/project";
 const EditorComponent = () => {
 
   const [text, setText] = useState("");
-  const media = useSelector((state) => state.MediaList.media);
+  const media = useSelector((state) => state.MediaList.updated_media_info);
   const allProjects = useSelector((state) => state.allProjects.projects)
   const [value, setValue] = useState('');
   const [loaded, setLoaded] = useState(false)
@@ -21,19 +21,19 @@ const EditorComponent = () => {
 
   const getTheMedia = async () => {
     await dispatch(getMedia(id));
-    toObj(media);
   };
 
   useEffect(() => {
-    //========== Sets the RTE Value to the page_json of Project in useParams ==============
+    //========== Sets the RTE Value to the page_html of Project in useParams ==============
     if (allProjects[1] && !loaded) {
       currentProject = allProjects.filter(proj => {
         return proj.id === Number(id)
       })
-      setValue(currentProject[0].page_json)
+      setValue(currentProject[0].page_html)
       setLoaded(true)
     }
-    getTheMedia();
+    if (media?.length === 0) getTheMedia();
+    toObj(media)
   }, [media, allProjects]);
 
   useEffect(() => {}, [media, text]) // text change updates RTE
@@ -46,7 +46,7 @@ const EditorComponent = () => {
     array.forEach((ele) => {
       let mediaObj = {};
       mediaObj["title"] = `Image ${count}`;
-      mediaObj["value"] = ele;
+      mediaObj["value"] = ele.media_url;
       mediaArray.push(mediaObj);
       count++;
     });
@@ -63,7 +63,7 @@ const EditorComponent = () => {
           currentProject = allProjects.filter(proj => {
             return proj.id === Number(id)
           })
-          currentProject[0].page_json = value
+          currentProject[0].page_html = value
           // add redirect to the project's official page?
         }}
       >

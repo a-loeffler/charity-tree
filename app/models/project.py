@@ -14,7 +14,7 @@ class Project(db.Model):
     deadline = db.Column(db.DateTime, nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
-    page_json = db.Column(db.Text)
+    page_html = db.Column(db.Text)
     created = db.Column(db.DateTime, default=datetime.utcnow())
 
     categories = db.relationship("Category", back_populates="projects")
@@ -34,6 +34,6 @@ class Project(db.Model):
             "deadline": self.deadline,
             "owner_id": self.owner_id,
             "category_id": self.category_id,
-            "page_json": self.page_json,
+            "page_html": self.page_html,
             "created": self.created,
         }

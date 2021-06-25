@@ -64,13 +64,18 @@ const initialState = {updated_media_info: [], project_medias: []};
 const mediaReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_MEDIA: {
-            return state.project_medias = action.payload
+            state.project_medias = action.payload
+            return state
         }
         case SET_MEDIA: {
+            state.updated_media_info = action.payload.medias
             let newState = {...state}
-            action.payload.medias.forEach(url => {
-                newState.updated_media_info.push(url.media_url)
-            });
+            // console.log('action.payload', action.payload)
+            // console.log('newState', newState)
+            // action.payload.medias.forEach(url => {
+            //     newState.updated_media_info.push(url.media_url)
+            // });
+            console.log(newState)
             return newState
         }
         case POST_MEDIA: {
