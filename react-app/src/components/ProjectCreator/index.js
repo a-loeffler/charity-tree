@@ -29,7 +29,23 @@ const ProjectCreator = () => {
     const [tempTierValue, setTempTierValue] = useState(0);
     const [tempTierDescription, setTempTierDescription] = useState("");
 
-
+    useEffect(() => {
+        const deleteTierButtons = document.querySelectorAll(".tier-button-cancel-button")
+        if(deleteTierButtons) {
+            console.log("Delete buttons:    ", deleteTierButtons);
+            deleteTierButtons.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    e.preventDefault()
+                    let targetId = e.target.id;
+                    let process1 = targetId.split("-");
+                    let indexNumber = process1[process1.length - 1];
+                    let newTiers = tiers.slice();
+                    newTiers.splice(indexNumber, 1);
+                    setTiers(newTiers);
+                })
+            })
+        }
+    }, [tiers])
 
     //TO-DO: get owner id from auth; otherwise redirect to sign-in page
     const owner_id = 0
@@ -51,6 +67,25 @@ const ProjectCreator = () => {
         e.preventDefault();
         setTierEditorOpen(true);
 
+    }
+
+    const setNewTier = (e) => {
+        e.preventDefault();
+        let newTier = {
+            name: tempTierName,
+            value: tempTierValue,
+            description: tempTierDescription,
+        }
+
+        e.target.classList.add("blackshift")
+
+        setTimeout(() => {
+            setTempTierDescription("");
+            setTempTierName("");
+            setTempTierValue(0);
+            setTierEditorOpen(false);
+            setTiers(tiers.concat([newTier]))
+        }, 1500)
     }
 
 
@@ -103,30 +138,39 @@ const ProjectCreator = () => {
                         <h2 className="project-creator-form-text">Add your rewards</h2>
                         <h3 className="project-creator-form-sub-text">Offer simple, meaningful ways to bring backers closer to your project and celebrate it coming to life.</h3>
                         <div className="project-creator-form-tier-container">
-                            {tiers.map((tier, index) => <TierButton key={index} tierInfo={tier} />)}
+                            {tiers.map((tier, index) => <TierButton key={index} tierInfo={tier} index={index} />)}
                         </div>
                         <div className="tier-creator-container">
-                            <form className="tier-create-form">
+                            <form className={`${!tierEditorOpen ? "hidden-section": "tier-create-form"}`}>
                                 <p className="tier-create-item">
                                     <label className="project-creator-form-label" htmlFor="tierNameField">Name: </label>
-                                    <input className="project-creator-input" type="text" id="tierNameField" value={tempTierValue} onChange={e => setTempTierName(e.target.value)}></input>
+                                    <div className="tier-create-field-container">
+                                        <input className="tier-creator-input" type="text" id="tierNameField" value={tempTierName} onChange={e => setTempTierName(e.target.value)}></input>
+                                    </div>
                                 </p>
                                 <p className="tier-create-item">
                                     <label className="project-creator-form-label" htmlFor="tierValueField">Value: </label>
-                                    <span className="project-creator-form-label">$</span><input className="project-creator-input" type="number" id="tierValueField" value={tempTierValue} onChange={e => setTempTierValue(e.target.value)}></input>
+                                    <div className="tier-create-field-container">
+                                        <input className="tier-creator-input" type="number" id="tierValueField" min="10.00" step="10.00" value={tempTierValue} onChange={e => setTempTierValue(e.target.value)}></input>
+                                    </div>
                                 </p>
                                 <p className="tier-create-item">
                                     <label className="project-creator-form-label" htmlFor="tierDescriptionField">Description: </label>
-                                    <textarea className="tier-creator-description" type="number" id="tierDescriptionField" value={tempTierDescription} onChange={e => setTempTierDescription(e.target.value)}></textarea>
+                                    <div className="tier-create-field-container">
+                                        <textarea className="tier-creator-description" id="tierDescriptionField" value={tempTierDescription} onChange={e => setTempTierDescription(e.target.value)}></textarea>
+                                    </div>
                                 </p>
+                                <div className="project-creator-button-container bottom-space">
+                                    <button className={`${tempTierName && tempTierValue && tempTierDescription ? "project-creator-next-button bottom-space" : "disabled bottom-space"}`} disabled={!(tempTierName && tempTierValue && tempTierDescription)} onClick={e => setNewTier(e)} >Next</button>
+                                </div>
                             </form>
-                            <button className="tier-create-button" onClick={e => addNewTier(e)}>Add a new tier</button>
+                            <button className={`${tierEditorOpen ? "hidden-section": "tier-create-button"}`} onClick={e => addNewTier(e)}>+ Add a new tier</button>
                         </div>
                         {/* TO-DO: tier input fields & place to show/update created tiers*/}
                         {/* TO-DO: Media uploads */}
                         {/* TO-DO: submit button that creates basic project in db and directs to RTE to finish up json */}
                         <div className="project-creator-button-container">
-                            <button className={`${goal && deadline ? "project-creator-next-button" : "disabled"}`} disabled={!(goal && deadline)} onClick={e => sectionForward(e)} >Next</button>
+                            <button className={`${tiers ? "project-creator-next-button" : "disabled"}`} disabled={!(tiers)} onClick={e => sectionForward(e)} >Next</button>
                         </div>
                     </div>
                 </div>
