@@ -5,6 +5,9 @@ import { login } from "../../store/session";
 import { logout } from "../../store/session";
 import { getAllProjects } from "../../store/allProjects";
 import { getAllCategories } from "../../store/allCategories";
+import { mediaGetter } from "../../store/media";
+import { getAllDonors } from "../../store/allDonors";
+import { getAllTiers } from "../../store/allTiers";
 import logo from "./charity-tree-logo.svg"
 import menuImage from "./menuImage.png"
 import justMagnifyingGlass from './justMagnifyingGlass.svg'
@@ -22,6 +25,9 @@ function Navigation() {
   const user = useSelector(state => state.session.user)
   const allProjects = useSelector((state) => state.allProjects.projects)
   const allCategories = useSelector((state) => state.allCategories.categories)
+  const project_medias = useSelector((state) => state.MediaList.project_medias)
+  const allDonors = useSelector((state) => state.allDonors.donors);
+  const allTiers = useSelector((state) => state.allTiers.tiers);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,13 +57,22 @@ function Navigation() {
     }
   }
 
-  //========== Get All Projects ==============
+  //========== Dispatch Get All ==============
   useEffect(() => {
     if (allProjects.length === 0) {
       dispatch(getAllProjects())
     }
     if (allCategories.length === 0) {
       dispatch(getAllCategories())
+    }
+    if (project_medias.length === 0) {
+      dispatch(mediaGetter())
+    }
+    if (allDonors.length === 0) {
+      dispatch(getAllDonors())
+    }
+    if (allTiers.length === 0) {
+      dispatch(getAllTiers())
     }
   }, [])
 

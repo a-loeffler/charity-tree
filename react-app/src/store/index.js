@@ -4,6 +4,8 @@ import mediaReducer from "./media";
 import projectReducer from "./project";
 import allProjectsReducer from "./allProjects";
 import allCategoriesReducer from "./allCategories";
+import allDonorsReducer from "./allDonors";
+import allTiersReducer from "./allTiers"
 import session from "./session"
 
 const rootReducer = combineReducers({
@@ -11,7 +13,10 @@ const rootReducer = combineReducers({
     MediaList: mediaReducer,
     project: projectReducer,
     allProjects: allProjectsReducer,
-    allCategories: allCategoriesReducer
+    allCategories: allCategoriesReducer,
+    allDonors: allDonorsReducer,
+    allTiers: allTiersReducer,
+
 });
 
 
