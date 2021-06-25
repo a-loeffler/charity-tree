@@ -43,7 +43,7 @@
     background-position: center;
     background-size: cover;
 }
-.images{
+.mainImage{
     height: 100%;
     position: relative;
 }
@@ -137,4 +137,29 @@ h2{
 }
 .tiers{
     background-color: rgb(111, 163, 223);
+}
+
+.thumbnails{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+.thumbnails:hover{
+    filter: brightness(1.5);
+    opacity: 0.7;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+.thumbnails:active{
+    height: 48px;
+    width: 48px;
+}
+.thumbnail--div{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.thumbnail--container{
+    /* flex: 0 1 auto; */
+    flex-direction: row;
 }
