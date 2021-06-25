@@ -27,7 +27,7 @@ def get_media(id):
 
 @projects_routes.route("/<id>/edit", methods=["POST"])  # post page_json
 def post_page_json(id):
-    project = Project.query.get(1)
+    project = Project.query.get(id)
     project.page_json = request.get_json()
     db.session.commit()
     return {'html': project.page_json}

@@ -6,18 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
 import { useParams } from "react-router-dom";
 import { postNewPageHTML } from "../store/project";
-import { getAllProjects } from "../store/allProjects";
 
 const EditorComponent = () => {
-  const [value, setValue] = useState(
-    "<p>The quick brown fox jumps over the lazy dog</p>"
-  );
+
   const [text, setText] = useState("");
   const media = useSelector((state) => state.MediaList.media);
   const allProjects = useSelector((state) => state.allProjects.projects)
+  const [value, setValue] = useState('');
+  const [loaded, setLoaded] = useState(false)
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
+  let currentProject;
 
   const getTheMedia = async () => {
     await dispatch(getMedia(id));
@@ -25,16 +25,20 @@ const EditorComponent = () => {
   };
 
   useEffect(() => {
-    // console.log(allProjects)
-    // if (allProjects.length === 0) {
-    //   dispatch(getAllProjects())
-    // }
-    // console.log(allProjects)
+    //========== Sets the RTE Value to the page_json of Project in useParams ==============
+    if (allProjects[1] && !loaded) {
+      currentProject = allProjects.filter(proj => {
+        return proj.id === Number(id)
+      })
+      setValue(currentProject[0].page_json)
+      setLoaded(true)
+    }
     getTheMedia();
-  }, [media]);
+  }, [media, allProjects]);
 
-  useEffect(() => {}, [value, text]) // text change updates RTE
+  useEffect(() => {}, [media, text]) // text change updates RTE
 
+  //========== Sets Media In DropDown Select Field ==============
   const editorRef = useRef(null);
   const toObj = (array) => {
     let count = 1;
@@ -48,20 +52,24 @@ const EditorComponent = () => {
     });
     setMediaArrayForImageList(mediaArray);
   };
+
   return (
     <>
       <form
+        //========== Updates the Value in the Database and allProjects Thunk ==============
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(postNewPageHTML(value, id))
-          console.log(value);
+          currentProject = allProjects.filter(proj => {
+            return proj.id === Number(id)
+          })
+          currentProject[0].page_json = value
           // add redirect to the project's official page?
         }}
       >
         <Editor
           apiKey={apiKey}
           onInit={(evt, editor) => (editorRef.current = editor)}
-          // initialValue="<p>This is the initial content of the editor.</p>"
           value={value}
           onEditorChange={(newValue, editor) => {
             setValue(newValue);

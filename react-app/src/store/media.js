@@ -49,20 +49,16 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
 const initialState = {media: []};
 
 const mediaReducer = (state = initialState, action) => {
-    // console.log(action)
     switch (action.type) {
         case SET_MEDIA: {
             let newState = {...state}
-            // console.log('******************', action.payload.medias[0].media_url)
             action.payload.medias.forEach(url => {
                 newState.media.push(url.media_url)
             });
-            // HOW TO ACCESS THE MEDIA URL
             return newState
         }
         case POST_MEDIA: {
             let newState = {...state};
-            //state.media is an array
 
             newState.media.push(action.payload.mediaUrl)
             return newState;
