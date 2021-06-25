@@ -11,6 +11,10 @@ export default function ProjectPage() {
     const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
+    const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
+
+    const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
+
 
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
