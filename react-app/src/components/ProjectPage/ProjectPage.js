@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {useSelector, useDispatch} from "react-redux"
 import {useParams} from 'react-router-dom'
 import './project_page.css'
@@ -34,10 +34,35 @@ export default function ProjectPage() {
             <div className="project_description"><p>{project?.description}</p></div>
 
             <div className="pics_and_goals--container">
-                    <div className="pics_container" >
-                        <div style={{backgroundImage: `url(${avengers})`}} className="background_image"></div>
-                        <img src={avengers} className="images"></img>
+
+                    <div className="pic_and_thumbnails">
+                        <div className="pics_container" >
+                            <div style={{backgroundImage: `url(${project_medias2[0]?.media_url})`}} className="background_image"></div>
+                            <img src={project_medias2[0]?.media_url} className="mainImage"></img>
+                        </div>
+
+                        <div className="thumbnail--container">
+                        {/* <div className="thumbnail--container">
+                                {project_medias2?.map(item => {
+                                    return (
+                                <span className="thumbnail--div">
+                                    <img src={item.media_url} className="thumbnails"></img>
+                                </span>
+                                )
+                                })}
+                        </div> */}
+
+                        </div>
+
                     </div>
+
+
+
+
+
+
+
+
 
                     <div className="stuff_on_right--container">
 
@@ -77,23 +102,6 @@ export default function ProjectPage() {
             </div>
 
         {/* End Container*/}
-        <div>
-           
-            <h1>{project?.name}</h1>    
-            <h1>{category[project?.category_id]?.name}</h1>
-            <h1>{project?.description}</h1>
-            <h1>{`$${project?.goal.toLocaleString("en-US")}`}</h1>
-            <h1>{`$${project?.current_amount.toLocaleString("en-US")}`}</h1>
-            {/* TODO: div for completion percentage */}
-            <h1>{project?.deadline}</h1>
-            <h1>{project?.owner}</h1>
-            <form action="https://www.paypal.com/donate" method="post" target="_top">
-                <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
-                <input type="hidden" name="no_recurring" value="0" />
-                <input type="hidden" name="currency_code" value="USD" />
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-            </form>
-        </div>
+           </div>
     )
 }
