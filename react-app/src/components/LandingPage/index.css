@@ -98,6 +98,11 @@
     border-bottom: 4px solid #23924E;
 }
 
+.project-card-image {
+    height: 100%;
+    width: 100%;
+}
+
 .project-card-title {
     font-size: 18px;
     color: #464646;

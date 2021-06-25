@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
 
 import './index.css'
 
@@ -10,14 +11,14 @@ const Carousel = ({list, id, title}) => {
 
     const [slidesToDisplay, setSlidesToDisplay] = useState([]);
 
+    const project_medias = useSelector((state) => state.MediaList.project_medias)
 
     useEffect(() => {
-        console.log(list)
         let displaySlides = list.slice(slidePosition, slidePosition + 5);
 
         setSlidesToDisplay(displaySlides);
 
-    }, [slidePosition, list])
+    }, [slidePosition, list, project_medias])
 
 
     const leftClick = () => {
@@ -119,8 +120,8 @@ const Carousel = ({list, id, title}) => {
             <div className="carousel-items-container" id={id}>
                 {console.log('slidesTod siplay ', slidesToDisplay)}
                 {slidesToDisplay.map((project, index) =>  {
-                    console.log(slidesToDisplay)
-                    return <ProjectCard key={index} title={project.name} description={project.description} cardId={`${id}-${index}`}/>
+                    const project_medias2 = project_medias?.filter(obj => obj['project_id'] === project.id);
+                    return <ProjectCard key={index} title={project.name} description={project.description} cardId={`${id}-${index}`} image={project_medias2[0]}/>
             })}
             </div>
         </div>
