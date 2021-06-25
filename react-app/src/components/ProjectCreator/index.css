@@ -29,9 +29,10 @@
 
 .project-creator-form-label {
     color: #464646;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: lighter;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .project-creator-input,
@@ -84,7 +85,7 @@
 }
 
 .blackshift {
-    background: linear-gradient(to right, #000000 50%,  50%);
+    background: linear-gradient(to right, #000000 50%,  #CB2934 50%);
     background-size: 200% 100%;
     background-position: right bottom;
     animation: blackshift 1.5s forwards;
@@ -172,21 +173,46 @@
     height: 50px;
 }
 
+.tier-creator-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tier-create-form {
+    background-color: rgb(175, 213, 244);
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 20px;
+    width: 60%;
+
+}
+
 .tier-create-button:hover {
     top: 2px;
     background-color:rgb(113, 144, 168);
 }
 
 .tier-creator-description {
-    width: 50%;
     height: 100px;
     margin-bottom: 20px;
     color: #464646;
     font-size: 18px;
+    width: 349px;
+
 }
 
 .tier-create-item {
     display: grid;
-    grid-template-columns: 20% 80%;
-    margin: auto;
+    grid-template-columns: 30% 70%;
+    width: 60%;
+    padding-left: 20px;
+}
+
+.tier-creator-input {
+    height: 45px;
+    color: #464646;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
 }
