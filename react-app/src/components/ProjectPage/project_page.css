@@ -1,0 +1,165 @@
+.temp_img_holder{
+    background-color: rgb(48, 56, 90);
+}
+.temp_image{
+    height: 300px;
+}
+
+.projectPage--container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+
+}
+.project_name{
+    margin-top: 25px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.project_description{
+    margin: 10px 10% 50px 10%;
+}
+
+.pics_and_goals--container{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+    /* background-color: maroon; */
+}
+.pics_container{
+    background-color: rgb(20, 25, 29);
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+
+}
+.background_image{
+    filter: blur(5px) brightness(0.7);
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+}
+.mainImage{
+    height: 100%;
+    position: relative;
+}
+@media screen and (min-width: 1020px) {
+    .pics_container{
+        width: 600px;
+        height: 400px;
+    }
+    .background_image{
+        width: 600px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 1019px) {
+    .pics_container{
+        width: 400px;
+        height: 250px;
+    }
+    .background_image{
+        width: 400px;
+        height: 250px;
+    }
+}
+
+.stuff_on_right--container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.projectGoal--container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 350px;
+    height: 90px;
+}
+
+.statusBar{
+    width: 350px;
+    height: 10px;
+}
+
+.statusBar-back{
+    width: 350px;
+    background-color: rgb(233, 233, 233);
+    height: 10px;
+    position:relative;
+    border-radius: 5px;
+
+}
+
+.statusBar-front{
+    /* width: 300px; */
+    background-color: rgb(64, 154, 0);
+    height: 10px;
+    position:relative;
+    z-index: 5;
+    top:-10px;
+    border-radius: 5px;
+}
+
+.currentAmount{
+    margin:0;
+}
+
+.goalAmount{
+    margin-bottom: 25px;
+}
+
+.daysLeft{
+    margin-bottom: 25px;
+}
+
+h2{
+    font-size: 30px;
+    color: rgb(64, 154, 0);
+    font-weight: bold;
+}
+
+.users_project_website_tiers{
+    width: 100%;
+    height: 900px;
+    background-color: rgb(148, 148, 148);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.project_website{
+    background-color: rgb(18, 81, 122);
+}
+.tiers{
+    background-color: rgb(111, 163, 223);
+}
+
+.thumbnails{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+.thumbnails:hover{
+    filter: brightness(1.5);
+    opacity: 0.7;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+.thumbnails:active{
+    height: 48px;
+    width: 48px;
+}
+.thumbnail--div{
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.thumbnail--container{
+    /* flex: 0 1 auto; */
+    flex-direction: row;
+}

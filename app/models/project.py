@@ -35,4 +35,5 @@ class Project(db.Model):
             "owner_id": self.owner_id,
             "category_id": self.category_id,
             "page_json": self.page_json,
+            "created": self.created,
         }
