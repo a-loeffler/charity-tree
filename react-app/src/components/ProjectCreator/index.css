@@ -1,0 +1,192 @@
+
+.project-creator-form {
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    margin: auto;
+    width: 60%;
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+    min-height: 500px;
+}
+
+.project-creator-form-section {
+    padding-top: 20px;
+}
+
+.project-creator-form-text {
+    color: #000000;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.project-creator-form-sub-text {
+    color: rgb(64, 154, 0);
+    font-size: 20px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+.project-creator-form-label {
+    color: #464646;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+.project-creator-input,
+.project-creator-dropdown {
+    height: 45px;
+    width: 50%;
+    color: #464646;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.project-creator-description {
+    width: 50%;
+    height: 200px;
+    margin-bottom: 20px;
+    color: #464646;
+    font-size: 18px;
+}
+
+.project-creator-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+    width: 50%;
+}
+
+.project-creator-next-button {
+    width: 200px;
+    height: 50px;
+    background-color: #CB2934;
+    color: #FFFFFF;
+    border: none;
+    font-size: 20px;
+    position: relative;
+}
+
+.project-creator-next-button:hover {
+    position: relative;
+    top: 2px;
+}
+
+.disabled {
+    background-color: #464646;
+    width: 200px;
+    height: 50px;
+    color: #FFFFFF;
+    border: none;
+    font-size: 20px;
+}
+
+.blackshift {
+    background: linear-gradient(to right, #000000 50%,  50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    animation: blackshift 1.5s forwards;
+    width: 200px;
+    height: 50px;
+    border: none;
+    font-size: 20px;
+    color: white;
+}
+
+@keyframes blackshift {
+    100% {
+        background-position: left bottom;
+    }
+}
+
+
+.hidden-section {
+    visibility: hidden;
+    height: 0;
+}
+
+.visible-section {
+    visibility: visible;
+}
+
+.project-creator-form-tier-container {
+    border: 1px solid #464646;
+    border-radius: 25px;
+    min-height: 100px;
+    padding: 5px;
+    width: 60%;
+    margin: auto;
+}
+
+.tier-button-container {
+    display: grid;
+    border: 2px solid #CB2934;
+    color: #464646;
+    font-size: 16px;
+    grid-template-columns: 3fr, 1fr, 5fr, 10px;
+    grid-template-rows: 20px;
+    grid-auto-flow: column;
+    text-align: center;
+    height: 24px;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 80%;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.tier-button-description {
+    text-overflow: ellipsis;
+}
+
+.tier-button-cancel {
+    text-align: center;
+    background-color: #CB2934;
+
+}
+
+.tier-button-cancel-button {
+    background: transparent;
+    color: #000000;
+    font-size: 14px;
+    border: none;
+    font-weight: bold;
+
+}
+
+.tier-button-cancel-button:hover {
+    color: #FFFFFF;
+}
+
+.tier-create-button {
+    margin-top: 20px;
+    margin-bottom: 100px;
+    width: 50%;
+    border: none;
+    background-color: rgb(175, 213, 244);
+    color: #000000;
+    position: relative;
+    font-size: 24px;
+    height: 50px;
+}
+
+.tier-create-button:hover {
+    top: 2px;
+    background-color:rgb(113, 144, 168);
+}
+
+.tier-creator-description {
+    width: 50%;
+    height: 100px;
+    margin-bottom: 20px;
+    color: #464646;
+    font-size: 18px;
+}
+
+.tier-create-item {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin: auto;
+}
