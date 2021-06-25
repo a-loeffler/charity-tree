@@ -2,7 +2,7 @@ import React from "react";
 
 import './index.css'
 
-const TierButton = ({tierInfo}) => {
+const TierButton = ({tierInfo, index}) => {
 
 
 
@@ -12,7 +12,7 @@ const TierButton = ({tierInfo}) => {
             <h3 className="tier-button-value">{tierInfo.value}</h3>
             <h3 className="tier-button-description">{tierInfo.description}</h3>
             <div className="tier-button-cancel">
-                <button className="tier-button-cancel-button">X</button>
+                <button className="tier-button-cancel-button" id={`delete-${index}`}>X</button>
             </div>
         </div>
     )
