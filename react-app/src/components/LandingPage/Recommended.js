@@ -69,9 +69,9 @@ const Recommended = ({recommendedList}) => {
                 <div className="recommended-nav-button-border">
                     <img className="recommended-nav-button" src="images/left-button.svg" alt="" onClick={navRight} ></img>
                 </div>
-                <p className={displayCounter == 1 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setOne}>1</p>
-                <p className={displayCounter == 2 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setTwo}>2</p>
-                <p className={displayCounter == 3 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setThree}>3</p>
+                <p className={displayCounter === 1 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setOne}>1</p>
+                <p className={displayCounter === 2 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setTwo}>2</p>
+                <p className={displayCounter === 3 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setThree}>3</p>
                 <div className="recommended-nav-button-border">
                     <img className="recommended-nav-button" src="images/right-button.svg" alt="" ></img>
                 </div>

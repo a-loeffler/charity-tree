@@ -7,14 +7,15 @@ def seed_categories():
     terminal_children = Category(name='Terminally Ill Children')
     cancer = Category(name='Cancer')
     education = Category(name='Education')
-    abuse = Category(name='abuse')
-    awareness = Category(name='awareness')
+    abuse = Category(name='Abuse')
+    awareness = Category(name='Awareness')
     feed_the_hungry = Category(name='Feed The Hungry')
     suicide_prevention = Category(name='Suicide Prevention')
     homeless = Category(name='Homeless')
     muscular_dystrophy = Category(name='Muscular Dystrophy')
     animals = Category(name='Animals')
     other = Category(name='Other')
+
 
     db.session.add(terminal_children)
     db.session.add(cancer)
