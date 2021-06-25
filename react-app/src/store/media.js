@@ -27,7 +27,7 @@ const getAllMedia = mediaData => {
 export const mediaGetter = () => async dispatch => {
     const response = await fetch(`/api/project_medias/`)
     const data = await response.json();
-    dispatch(getAllMedia(data))
+    dispatch(getAllMedia(data.project_medias))
 }
 
 export const getMedia = (id) => async (dispatch) => {

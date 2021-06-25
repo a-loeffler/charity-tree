@@ -8,10 +8,12 @@ export default function ProjectPage() {
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
+    console.log(`projectwhereID: ${JSON.stringify(project)}`)
     const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     console.log('-------------', project_medias)
-    let project_medias2 = [];
+    const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
+    
 
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
@@ -29,8 +31,7 @@ export default function ProjectPage() {
 
     useEffect(() => {
         if (project_medias.project_medias) {
-            console.log('project_medias', project_medias)
-            project_medias2= project_medias.project_medias.filter(obj => obj['project_id'] === Number(id));
+            console.log('project_medias', project_medias.project_medias)
         }
     }, [project_medias])
 
