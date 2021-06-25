@@ -186,7 +186,7 @@ function Navigation() {
         <div className="nav--link--container small-hide">
           <form onSubmit={(e) => handleSearch(e)} className='nav--link--container'>
             <input type="text" className="homeSearch" placeholder="Search"></input>
-            <button style={{ backgroundImage: 'url(images/justMagnifyingGlass.svg)' }} className="search--icon"></button>
+            <button className="search--icon"><img src={justMagnifyingGlass} className="search--icon"></img></button>
           </form>
         </div>
 
