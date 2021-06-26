@@ -22,7 +22,7 @@ export default function ProjectPage() {
     const user = useSelector(state => state.session.user)
 
     // ============ adds the project html ========
-    if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
+    // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
 
 
 
@@ -136,6 +136,8 @@ export default function ProjectPage() {
             <div className="users_project_website_tiers">
 
                 <div className="project_website">
+
+                <div dangerouslySetInnerHTML={{__html: `${project?.page_html}`}} />
                     <div className="project_html">
                 </div>
             </div>
