@@ -8,6 +8,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import EditorComponent from "./components/Editor";
+import EditName from "./components/EditName";
+import EditDescription from "./components/EditDescription";
+import EditGoal from "./components/EditGoal";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
@@ -16,6 +19,7 @@ import ProjectPage from "./components/ProjectPage";
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
 import ProjectCreator from "./components/ProjectCreator";
+import Discover from "./components/Discover/Discover";
 
 import './index.css'
 
@@ -50,6 +54,9 @@ function App() {
           <MediaUpload />
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
+          <EditName />
+          <EditDescription />
+          <EditGoal />
           <EditorComponent />
         </Route>
         <Route path="/projects/:id" exact={true}>
@@ -57,6 +64,9 @@ function App() {
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route>
+          <Discover />
         </Route>
       </Switch>
     </BrowserRouter>

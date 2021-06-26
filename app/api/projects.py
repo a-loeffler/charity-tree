@@ -78,6 +78,30 @@ def post_page_html(id):
     return {'html': project.page_html}
 
 
+@projects_routes.route("/<id>/edit/name", methods=["PATCH"])
+def patch_name(id):
+    project = Project.query.get(id)
+    project.name = request.get_json()
+    db.session.commit()
+    return 'OK'
+
+
+@projects_routes.route("/<id>/edit/description", methods=["PATCH"])
+def patch_description(id):
+    project = Project.query.get(id)
+    project.description = request.get_json()
+    db.session.commit()
+    return 'OK'
+
+
+@projects_routes.route("/<id>/edit/goal", methods=["PATCH"])
+def patch_goal(id):
+    project = Project.query.get(id)
+    project.goal = request.get_json()
+    db.session.commit()
+    return 'OK'
+
+
 @projects_routes.route("/create/:id/upload", methods=["POST"])
 def upload_media():
     print("in the route")

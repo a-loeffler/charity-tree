@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom'
 import './project_page.css'
@@ -13,7 +13,8 @@ export default function ProjectPage() {
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
-    // const category = useSelector(state => state.allCategories.categories)
+    const [dollar, setDollar] = useState("0")
+    const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
@@ -22,10 +23,6 @@ export default function ProjectPage() {
     const user = useSelector(state => state.session.user)
 
     // ============ adds the project html ========
-    if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
-
-
-
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
         const days = milliseconds / 1000 / 60 / 60 / 24
@@ -113,9 +110,15 @@ export default function ProjectPage() {
                     }
 
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
+                    <textarea placeholder="Enter Donation Amount" onKeyUp={(e) => {
+                        setDollar(e.target.value)}
+                    }/>
+                    {console.log("dollar", dollar)}
+                    {/* {console.log("value", this.value)} */}
+
                     <form action="https://www.paypal.com/donate" method="post" target="_top">
                         <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
-                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="no_recurring" value={`${dollar}`} />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
@@ -136,6 +139,8 @@ export default function ProjectPage() {
             <div className="users_project_website_tiers">
 
                 <div className="project_website">
+
+                <div dangerouslySetInnerHTML={{__html: `${project?.page_html}`}} />
                     <div className="project_html">
                 </div>
             </div>
