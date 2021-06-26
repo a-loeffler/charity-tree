@@ -4,6 +4,16 @@
 .temp_image{
     height: 300px;
 }
+.header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: cornsilk;
+    margin: 25px;
+    padding: 25px;
+    border-radius: 30px;
+}
 
 .projectPage--container{
     display: flex;
@@ -13,13 +23,13 @@
 
 }
 .project_name{
-    margin-top: 25px;
+    margin-left: 5%;
     font-size: 30px;
     font-weight: bold;
 }
 
 .project_description{
-    margin: 10px 10% 50px 10%;
+    margin: 10px 5% 30px 5%;
 }
 
 .pics_and_goals--container{
@@ -105,7 +115,7 @@
 
 .statusBar-front{
     /* width: 300px; */
-    background-color: rgb(64, 154, 0);
+    background-color: rgb(105, 132, 64);
     height: 10px;
     position:relative;
     z-index: 5;
@@ -127,22 +137,22 @@
 
 h2{
     font-size: 30px;
-    color: rgb(64, 154, 0);
+    color: rgb(105, 132, 64);
     font-weight: bold;
 }
 
 .users_project_website_tiers{
     width: 100%;
     height: 900px;
-    background-color: rgb(148, 148, 148);
+    /* background-color: rgb(148, 148, 148); */
     display: grid;
     grid-template-columns: 3fr 1fr;
 }
 .project_website{
-    background-color: rgb(18, 81, 122);
-}
-.tiers{
-    background-color: rgb(111, 163, 223);
+    background-color: rgb(236, 236, 236);
+    display: flex;
+    padding: 25px;
+    border-top-right-radius: 25px;
 }
 
 .thumbnails{
@@ -168,4 +178,75 @@ h2{
 .thumbnail--container{
     /* flex: 0 1 auto; */
     flex-direction: row;
+}
+.tiers{
+    /* background-color: rgb(111, 163, 223); */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.justTiers{
+    /* background-color: rgb(111, 163, 223); */
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+
+.tier--container{
+    width: 200px;
+    height: 300px;
+    margin-bottom: 15px;
+    background-color: rgb(236, 236, 236);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.tierStar{
+    display: inline-block;
+}
+
+.tireName{
+    align-self: center;
+}
+
+
+.tierDescription{
+    font-size: 20px;
+}
+.tierValue{
+    align-self: center;
+}
+
+h1{
+    display: inline-block;
+    font-weight: bolder;
+}
+.edit-page-btn{
+    align-self: flex-start;
+    width: 130px;
+    height: 40px;
+    background-color: rgb(105, 132, 64);
+
+    border-radius: 12px;
+    border: 1px solid rgb(58, 56, 56);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 5px 25px;
+}
+
+.edit-page-btn:hover{
+    background-color: rgb(143, 173, 97);
 }

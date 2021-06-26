@@ -4,7 +4,7 @@ import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import apiKey from "../api-key";
 import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import { postNewPageHTML } from "../store/project";
 
 const EditorComponent = () => {
@@ -18,6 +18,7 @@ const EditorComponent = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   let currentProject;
+  let history = useHistory();
 
   const getTheMedia = async () => {
     await dispatch(getMedia(id));
@@ -65,8 +66,9 @@ const EditorComponent = () => {
           })
           currentProject[0].page_html = value
           // add redirect to the project's official page?
+          return history.push(`/projects/${id}`)
         }}
-      >
+        >
         <Editor
           apiKey={apiKey}
           onInit={(evt, editor) => (editorRef.current = editor)}
