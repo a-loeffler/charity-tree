@@ -4,6 +4,16 @@
 .temp_image{
     height: 300px;
 }
+.header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: cornsilk;
+    margin: 25px;
+    padding: 25px;
+    border-radius: 30px;
+}
 
 .projectPage--container{
     display: flex;
@@ -13,13 +23,13 @@
 
 }
 .project_name{
-    margin-top: 25px;
+    margin-left: 5%;
     font-size: 30px;
     font-weight: bold;
 }
 
 .project_description{
-    margin: 10px 10% 50px 10%;
+    margin: 10px 5% 30px 5%;
 }
 
 .pics_and_goals--container{
@@ -105,7 +115,7 @@
 
 .statusBar-front{
     /* width: 300px; */
-    background-color: rgb(64, 154, 0);
+    background-color: rgb(105, 132, 64);
     height: 10px;
     position:relative;
     z-index: 5;
@@ -127,7 +137,7 @@
 
 h2{
     font-size: 30px;
-    color: rgb(64, 154, 0);
+    color: rgb(105, 132, 64);
     font-weight: bold;
 }
 
@@ -176,6 +186,15 @@ h2{
     flex-direction: column;
 }
 
+.justTiers{
+    /* background-color: rgb(111, 163, 223); */
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
 
 .tier--container{
     width: 200px;
@@ -210,4 +229,24 @@ h2{
 h1{
     display: inline-block;
     font-weight: bolder;
+}
+.edit-page-btn{
+    align-self: flex-start;
+    width: 130px;
+    height: 40px;
+    background-color: rgb(105, 132, 64);
+
+    border-radius: 12px;
+    border: 1px solid rgb(58, 56, 56);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 5px 25px;
+}
+
+.edit-page-btn:hover{
+    background-color: rgb(143, 173, 97);
 }

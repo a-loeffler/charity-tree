@@ -6,6 +6,7 @@ import silverStar from "./silverStar.png"
 import goldStar from "./goldStar.png"
 import platinumStar from "./platinumStar.png"
 import { Link } from "react-router-dom"
+import EditorComponent from '../Editor'
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -21,7 +22,9 @@ export default function ProjectPage() {
     const user = useSelector(state => state.session.user)
 
     // ============ adds the project html ========
-    if (projectHtml) projectHtml.innerHTML = project?.page_html
+    if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
+
+
 
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
@@ -53,7 +56,7 @@ export default function ProjectPage() {
                 let newImg = `<img src="${obj.media_url}" class="thumbnails"></img>`
                 newSpan.innerHTML = newImg
                 thumbnails.appendChild(newSpan)
-                
+
                 newSpan.addEventListener("click", (e) => {
                     document.querySelector(".background_image").style.backgroundImage = `url("${e.target.src}")`
                     document.querySelector(".mainImage").src = e.target.src
@@ -66,8 +69,10 @@ export default function ProjectPage() {
 
     return (
         <div className="projectPage--container">
-            <div className="project_name"> <h1>{project?.name}</h1></div>
-            <div className="project_description"><p>{project?.description}</p></div>
+            <div className="header">
+                <div className="project_name"> <h1>{project?.name}</h1></div>
+                <div className="project_description"><p>{project?.description}</p></div>
+            </div>
 
             <div className="pics_and_goals--container">
 
@@ -78,17 +83,10 @@ export default function ProjectPage() {
                     </div>
 
                     <div className="thumbnail--container">
-                        {/* <div className="thumbnail--container">
-                                {project_medias2?.map(item => {
-                                    return (
-                                <span className="thumbnail--span">
-                                    <img src={item.media_url} className="thumbnails"></img>
-                                </span>
-                                )
-                                })}
-                        </div> */}
+                        {/* Dynamic content here */}
                     </div>
                 </div>
+
 
 
 
@@ -125,8 +123,15 @@ export default function ProjectPage() {
                 </div>
             </div>
             {user?.id === project?.owner_id &&
-                <Link to={`/projects/${project?.id}/edit`}> Edit page - and please style this link!!!!</Link>
+            // <button className="edit-page-btn">Edit page</button>
+                <Link to={`/projects/${project?.id}/edit`} className="edit-page-btn"> &#8681; Edit page &#8681;</Link>
                 }
+
+
+
+
+             {/* If project page exists, this will render two columns. Otherwise just the tiers. */}
+             {project?.page_html ?
 
             <div className="users_project_website_tiers">
 
@@ -155,6 +160,27 @@ export default function ProjectPage() {
 
                 </div>
             </div>
+        // Else, just the tiers will render
+        :
+        // Be careful not to delete this
+        <div className="justTiers">
+            { filtered_tiers?.map((obj) =>
+            <div className="tier--container" key={`tier-container-${obj.id}`}>
+                <div className="tierName" key={`tier-name-${obj.id}`}>
+                    { obj.name == "Silver" ? <img src={silverStar} className="tierStar" key={`star-${obj.id}`}></img>
+                        : obj.name == "Gold" ? <img src={goldStar} className="tierStar" key={`star-${obj.id}`}></img>
+                        : <img src={platinumStar} className="tierStar" key={`star-${obj.id}`}></img>
+                    }
+                        <h1 key={`name-${obj.id}`}>{obj.name}</h1>
+                </div>
+                <div className="tierDescription" key={`description-${obj.id}`}>{obj.description}</div>
+                <h1 className="tierValue" key={`value-${obj.id}`}>${obj.value}</h1>
+            </div>
+
+            )}
+        </div>
+
+        }
 
             {/* End Container*/}
         </div>

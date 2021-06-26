@@ -16,6 +16,7 @@ export const postNewPageHTML = (newPageHTML, id) => async (dispatch) => {
     const data = await response.json()
     console.log('this will be state data', data)
     dispatch(setPageHTML(data))
+    return data
 }
 
 const initialState = {pageHTML: ''}
