@@ -17,8 +17,16 @@ const EditDescription = () => {
         }
     }, [project])
 
-    const onSubmit = (e) => {
+    //========== Updates the project.description in the Database and Store ==============
+    const onSubmit = async (e) => {
         e.preventDefault()
+        const response = await fetch(`/api/projects/${id}/edit/description`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(value),
+        })
         console.log('submit')
     }
     return (

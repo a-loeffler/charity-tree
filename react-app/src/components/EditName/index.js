@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 const EditName = () => {
     const allProjects = useSelector((state) => state.allProjects.projects)
     const { id } = useParams();
-    //========== The specific project could be passed in through the props ==============
     const project = allProjects.filter(proj => {
         return proj.id === Number(id)
     })
@@ -18,8 +17,16 @@ const EditName = () => {
         }
     }, [project])
 
-    const onSubmit = (e) => {
+    //========== Updates the project.name in the Database and Store ==============
+    const onSubmit = async (e) => {
         e.preventDefault()
+        const response = await fetch(`/api/projects/${id}/edit/name`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(value),
+        })
         console.log('submit')
     }
     return (
