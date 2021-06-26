@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom";
+import { getAllProjects } from "../../store/allProjects";
 
-const EditGoal = () => {
+const EditGoal = () => { 
+    const dispatch = useDispatch();
     const allProjects = useSelector((state) => state.allProjects.projects)
     const { id } = useParams();
     const project = allProjects.filter(proj => {
@@ -28,6 +30,7 @@ const EditGoal = () => {
             body: JSON.stringify(value),
         })
         console.log('submit')
+        dispatch(getAllProjects())
     }
     return (
         <>

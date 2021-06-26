@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom'
 import './project_page.css'
@@ -14,7 +14,7 @@ export default function ProjectPage() {
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
     // const [html, setHtml] = useState(project?.page_html)
-
+    const [dollar, setDollar] = useState("0")
     // const category = useSelector(state => state.allCategories.categories)
     console.log("********************", project?.name)
     const project_medias = useSelector(state => state.MediaList.project_medias)
@@ -116,9 +116,15 @@ export default function ProjectPage() {
                     }
 
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
+                    <textarea placeholder="Enter Donation Amount" onKeyUp={(e) => {
+                        setDollar(e.target.value)}
+                    }/>
+                    {console.log("dollar", dollar)}
+                    {/* {console.log("value", this.value)} */}
+
                     <form action="https://www.paypal.com/donate" method="post" target="_top">
                         <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
-                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="no_recurring" value={`${dollar}`} />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
