@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
-from app.models import Project, Project_media
+from app.models import Project, Project_media, Tier
 from app.models.db import db
 
 projects_routes = Blueprint("projects", __name__)
@@ -11,6 +11,50 @@ projects_routes = Blueprint("projects", __name__)
 def get_all_projects():
     projects = Project.query.all()
     return {"projects": [project.to_dict() for project in projects]}
+
+
+@projects_routes.route("/", methods=["POST"])
+def post_new_project():
+    print('line 18', request.get_json(force=False))
+    # print(request.data)
+    data = request.get_json()
+
+
+    project = data['project']
+    
+    # print(data['project']['name'])
+
+    newProject = Project(
+        name=project["name"],
+        description=project["description"],
+        goal=project["goal"],
+        deadline=project["deadline"],
+        owner_id=project["owner_id"],
+        category_id=project["category_id"],
+    )
+
+    print("****", newProject.to_dict())
+
+    db.session.add(newProject)
+
+    # To-do: if tiers, add each tier
+    # tiers = data['tiers']
+
+    # if len(tiers) > 0:
+    #     for tier in tiers:
+    #         newTier = Tier(
+    #             name=tier["name"],
+    #             value=tier["value"],
+    #             description=tier["description"],
+    #         )
+    #         db.session.add(newTier)
+
+
+    db.session.commit()
+    # newProject = data['project']['name']
+
+    # return {'project': project}
+    return "OK"
 
 
 @projects_routes.route("/")

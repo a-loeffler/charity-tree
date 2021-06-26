@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {Redirect, useHistory} from 'react-router-dom';
 import TierButton from './TierButton';
 import MediaTile from './MediaTile';
 import MediaUpload from '../MediaUpload';
+import RedirectModal from '../RedirectModal';
+import { postNewProject } from '../../store/project';
 
 import './index.css'
 
 
 const ProjectCreator = () => {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
     const mockMedia = ["https://i.ibb.co/7CCsBs7/mock-tile.png", "https://i.ibb.co/7CCsBs7/mock-tile.png"]
 
 
@@ -33,8 +38,10 @@ const ProjectCreator = () => {
     const [tempTierValue, setTempTierValue] = useState(0);
     const [tempTierDescription, setTempTierDescription] = useState("");
     const [media, setMedia] = useState(mockMedia);
+    const [ownerId, setOwnerId] = useState(0);
 
-
+    const owner = useSelector(state => state.session.user)
+    const categories = useSelector(state => state.allCategories.categories);
 
     useEffect(() => {
         const deleteTierButtons = document.querySelectorAll(".tier-button-cancel-button")
@@ -69,19 +76,32 @@ const ProjectCreator = () => {
             })
         }
 
-    }, [tiers, media])
+    }, [tiers, media, owner])
 
     //TO-DO: get owner id from auth; otherwise redirect to sign-in page
-    const owner = useSelector(state => state.session.user)
-    if (!owner) {
-
-    }
 
 
+    // const redirectWait = async() => {
+    //     await setTimeout(() => {
+    //         return true;
+    //     }, 2000)
+    // }
+
+
+    // if (!owner) {
+    //     return (
+    //         <>
+    //             <RedirectModal />
+    //             {redirectWait() && <Redirect to="/" />}
+    //         </>
+    //     )
+    // }
+
+    // setOwnerId(owner.id)
 
 
     //To do: need to get categories from store
-    const categories = useSelector(state => state.allCategories.categories);
+
 
     const sectionForward = (e) => {
         e.preventDefault();
@@ -94,12 +114,23 @@ const ProjectCreator = () => {
     }
 
 
-    const createAndForward = (e) => {
+    const createAndForward = async (e) => {
         e.preventDefault();
         e.target.classList.add("blackshift")
 
+        const projectData = {
+            name: name,
+            description: description,
+            goal: goal,
+            deadline: deadline,
+            owner_id: owner.id,
+            category_id: category,
+        }
+
+        const data = dispatch(postNewProject(projectData, tiers))
+
         setTimeout(() => {
-            
+
             setSection(section + 1)
         }, 1500)
 
