@@ -12,9 +12,12 @@ const EditorComponent = () => {
   const [text, setText] = useState("");
   const media = useSelector((state) => state.MediaList.updated_media_info);
   const allProjects = useSelector((state) => state.allProjects.projects)
+  // const project = allProjects?.find(obj => obj.id == Number(id));
   const [value, setValue] = useState('');
   const [loaded, setLoaded] = useState(false)
+  const [page_html, setPage_Html] = useState('')
   const [mediaArrayForImageList, setMediaArrayForImageList] = useState([]);
+  const [letThisWork, setLetThisWork] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
   let currentProject;
@@ -65,8 +68,11 @@ const EditorComponent = () => {
             return proj.id === Number(id)
           })
           currentProject[0].page_html = value
+          setPage_Html(currentProject[0].page_html)
           // add redirect to the project's official page?
-          return history.push(`/projects/${id}`)
+          setLetThisWork(true);
+          // return history.push(`/projects/${id}`)
+
         }}
         >
         <Editor
@@ -98,6 +104,7 @@ const EditorComponent = () => {
         />
         <button type={"submit"}>Submit</button>
       </form>
+      {letThisWork? <Redirect to={`/projects/${id}`} />: null}
     </>
   );
 };

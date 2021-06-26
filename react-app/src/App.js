@@ -16,6 +16,7 @@ import ProjectPage from "./components/ProjectPage";
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
 import ProjectCreator from "./components/ProjectCreator";
+import Discover from "./components/Discover/Discover";
 
 import './index.css'
 
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route>
+          <Discover />
         </Route>
       </Switch>
     </BrowserRouter>
