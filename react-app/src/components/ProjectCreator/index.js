@@ -81,21 +81,16 @@ const ProjectCreator = () => {
     //TO-DO: get owner id from auth; otherwise redirect to sign-in page
 
 
-    // const redirectWait = async() => {
-    //     await setTimeout(() => {
-    //         return true;
-    //     }, 2000)
-    // }
 
 
-    // if (!owner) {
-    //     return (
-    //         <>
-    //             <RedirectModal />
-    //             {redirectWait() && <Redirect to="/" />}
-    //         </>
-    //     )
-    // }
+
+    if (!owner) {
+        return (
+            <>
+                <RedirectModal />
+            </>
+        )
+    }
 
     // setOwnerId(owner.id)
 

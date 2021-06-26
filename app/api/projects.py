@@ -19,8 +19,8 @@ def post_new_project():
     # print(request.data)
     data = request.get_json()
 
-
     project = data['project']
+
     # print(data['project']['name'])
 
     newProject = Project(
@@ -32,28 +32,30 @@ def post_new_project():
         category_id=project["category_id"],
     )
 
-    print("****", newProject.to_dict())
-
     db.session.add(newProject)
 
+    db.session.commit()
+
+    owner_id = newProject.to_dict()["id"]
+
     # To-do: if tiers, add each tier
-    # tiers = data['tiers']
+    tiers = data['tiers']
 
-    # if len(tiers) > 0:
-    #     for tier in tiers:
-    #         newTier = Tier(
-    #             name=tier["name"],
-    #             value=tier["value"],
-    #             description=tier["description"],
-    #         )
-    #         db.session.add(newTier)
-
+    if len(tiers) > 0:
+        for tier in tiers:
+            newTier = Tier(
+                name=tier["name"],
+                value=tier["value"],
+                description=tier["description"],
+                project_id=owner_id,
+            )
+            db.session.add(newTier)
 
     db.session.commit()
     # newProject = data['project']['name']
 
     # return {'project': project}
-    return "OK"
+    return {"project": newProject.to_dict()}
 
 
 @projects_routes.route("/")
