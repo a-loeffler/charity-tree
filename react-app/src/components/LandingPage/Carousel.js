@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 import './index.css'
 
@@ -121,7 +122,7 @@ const Carousel = ({list, id, title}) => {
                 {console.log('slidesTod siplay ', slidesToDisplay)}
                 {slidesToDisplay.map((project, index) =>  {
                     const project_medias2 = project_medias?.filter(obj => obj['project_id'] === project.id);
-                    return <ProjectCard key={index} title={project.name} description={project.description} cardId={`${id}-${index}`} image={project_medias2[0]}/>
+                    return <Link to={`/projects/${project.id}`}> <ProjectCard key={index} title={project.name} description={project.description} cardId={`${id}-${index}`} image={project_medias2[0]}/></Link>
             })}
             </div>
         </div>

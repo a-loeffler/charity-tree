@@ -19,11 +19,11 @@ const EditorComponent = () => {
   const { id } = useParams();
   let currentProject;
   let history = useHistory();
-  
+
   const getTheMedia = async () => {
     await dispatch(getMedia(id));
   };
-  
+
   useEffect(() => {
     //========== Sets the RTE Value to the page_html of Project in useParams ==============
     if (allProjects[1] && !loaded) {
@@ -36,7 +36,7 @@ const EditorComponent = () => {
     if (media?.length === 0) getTheMedia();
     toObj(media)
   }, [media, allProjects]);
-  
+
   useEffect(() => {}, [media, text]) // text change updates RTE
 
   //========== Sets Media In DropDown Select Field ==============

@@ -15,16 +15,16 @@
     height: 45px;
     font-size: 25px;
     font-weight: lighter;
-    color: rgb(64, 154, 0);
+    color: rgb(105, 132, 64);
 
 }
 h1{
-    color: rgb(64, 154, 0);
+    color: rgb(105, 132, 64);
     font-weight: lighter;
 }
 .signUpSubmitButton{
     height: 45px;
-    color: rgb(64, 154, 0);
+    color: rgb(105, 132, 64);
     font-size: 20px;
 }
 .errors{
