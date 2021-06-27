@@ -28,7 +28,7 @@ const ProjectCreator = () => {
     const today = `${yyyy}-${mm}-${dd}`;
 
     const tempMedia = useSelector(state => state.MediaList.temp_media)
-    const project = useSelector(state => state.project.projectInfo)
+    const projectInfo = useSelector(state => state.project.projectInfo)
     const owner = useSelector(state => state.session.user)
     const categories = useSelector(state => state.allCategories.categories);
 
@@ -52,8 +52,8 @@ const ProjectCreator = () => {
 
     useEffect(() => {
 
-        if (project) {
-            setProjectId(project.id)
+        if (projectInfo.project) {
+            setProjectId(projectInfo.project.id)
         }
 
         const deleteTierButtons = document.querySelectorAll(".tier-button-cancel-button")
@@ -185,12 +185,26 @@ const ProjectCreator = () => {
     }
 
 
-    const mediaSubmit = (e) => {
+    const goToLast = (e) => {
         e.preventDefault();
         e.target.classList.add("blackshift")
 
+        setTimeout(() => {
+            setSection(7)
+        }, 1500)
+
         //to do: dispatch thunk with mediaUrls and project id
+
+    }
+
+    const mediaSubmit = (e) => {
+        e.preventDefault();
+        e.target.classList.add("blackshift");
         dispatch(postProjectMedia(tempMedia, projectId))
+
+        setTimeout(() => {
+            history.push(`/projects/${projectId}`)
+        }, 1500)
     }
 
 
@@ -294,7 +308,7 @@ const ProjectCreator = () => {
                         <h3 className="project-creator-form-sub-text">Supports video and image uploads</h3>
                         {readyForNewMedia && <MediaUpload />}
                         <div className="project-creator-button-container">
-                            <button className="project-creator-next-button max-content-width" onClick={e => mediaSubmit(e)} >Finished Adding Media</button>
+                            <button className="project-creator-next-button max-content-width" onClick={e => goToLast(e)} >Finished Adding Media</button>
                         </div>
                     </div>
                 </div>
@@ -306,6 +320,13 @@ const ProjectCreator = () => {
                     <div className="project-creator-button-container">
                         <button className="media-addmore-button max-content-width" onClick={e => addMoreMedia(e)} >+ Add Additional Media</button>
                     </div>
+                    </div>
+                </div>
+                <div className={`${section === 7 ? "visible-section" : "hidden-section"}`}>
+                    <div className="project-creator-form-section" id="project-creator-form-section-7">
+                        <h2 className="project-creator-form-text">Congrats!  You're all ready to finish creating your project</h2>
+                        <h3 className="project-creator-form-sub-text">Don't worry, you can go back and edit details on it later</h3>
+                        <button className="project-creator-next-button max-content-width" disabled={!(tiers)} onClick={e => mediaSubmit(e)} >Create Project</button>
                     </div>
                 </div>
             </form>

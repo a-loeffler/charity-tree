@@ -28,6 +28,7 @@ def post_new_project():
         deadline=project["deadline"],
         owner_id=project["owner_id"],
         category_id=project["category_id"],
+        current_amount=0,
     )
 
     db.session.add(newProject)
@@ -124,14 +125,13 @@ def upload_media(id):
 def add_media_for_project(id):
     project = Project.query.get(id)
     mediaData = request.get_json()
-    print("******Line127*******", mediaData)
 
     for url in mediaData:
         newMedia = Project_media(
             project_id=id,
             media_url=url
         )
-        
+
         db.session.add(newMedia)
 
     db.session.commit()

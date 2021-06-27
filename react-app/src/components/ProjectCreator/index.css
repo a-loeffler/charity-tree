@@ -195,7 +195,7 @@
 
 }
 
-.media-addmore-button,
+.media-addmore-button:hover,
 .tier-create-button:hover {
     top: 2px;
     background-color:rgb(113, 144, 168);
