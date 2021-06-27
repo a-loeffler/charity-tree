@@ -73,7 +73,7 @@ const Recommended = ({recommendedList}) => {
                 <p className={displayCounter === 2 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setTwo}>2</p>
                 <p className={displayCounter === 3 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setThree}>3</p>
                 <div className="recommended-nav-button-border">
-                    <img className="recommended-nav-button" src="images/right-button.svg" alt="" ></img>
+                    <img className="recommended-nav-button" src="images/right-button.svg" alt="" onClick={navLeft}></img>
                 </div>
             </div>
         </div>

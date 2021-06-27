@@ -7,6 +7,9 @@ import MediaUpload from '../MediaUpload';
 import RedirectModal from '../RedirectModal';
 import { postNewProject } from '../../store/project';
 
+import { deleteTempMedia, postProjectMedia } from '../../store/media';
+
+
 import './index.css'
 
 
@@ -25,8 +28,13 @@ const ProjectCreator = () => {
     const today = `${yyyy}-${mm}-${dd}`;
 
     const tempMedia = useSelector(state => state.MediaList.temp_media)
+    const project = useSelector(state => state.project.projectInfo)
+    const owner = useSelector(state => state.session.user)
+    const categories = useSelector(state => state.allCategories.categories);
 
-    const [section, setSection] = useState(1);
+
+
+    const [section, setSection] = useState(5);
     const [category, setCategory] = useState(null);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -37,15 +45,20 @@ const ProjectCreator = () => {
     const [tempTierName, setTempTierName] = useState("");
     const [tempTierValue, setTempTierValue] = useState(0);
     const [tempTierDescription, setTempTierDescription] = useState("");
-    const [media, setMedia] = useState(mockMedia);
-    const [ownerId, setOwnerId] = useState(0);
+    const [readyForNewMedia, setReadyForNewMedia] = useState(true)
 
-    const owner = useSelector(state => state.session.user)
-    const categories = useSelector(state => state.allCategories.categories);
+    const [projectId, setProjectId] = useState(0)
+
+
 
     useEffect(() => {
+
+        if (project) {
+            setProjectId(project.id)
+        }
+
         const deleteTierButtons = document.querySelectorAll(".tier-button-cancel-button")
-        if(deleteTierButtons) {
+        if (deleteTierButtons) {
             deleteTierButtons.forEach(button => {
                 button.addEventListener("click", (e) => {
                     e.preventDefault()
@@ -68,15 +81,31 @@ const ProjectCreator = () => {
                     let targetId = e.target.id;
                     let process1 = targetId.split("-");
                     let indexNumber = process1[process1.length - 1];
-                    console.log(indexNumber)
-                    let newMedia = media.slice();
-                    newMedia.splice(indexNumber, 1);
-                    setMedia(newMedia);
+
+                    dispatch(deleteTempMedia(indexNumber))
+                    // let newMedia = media.slice();
+                    // newMedia.splice(indexNumber, 1);
+                    // setMedia(newMedia);
                 })
             })
         }
 
-    }, [tiers, media, owner])
+        const mediaSubmitButton = document.querySelector(".media-submit-button")
+        if (mediaSubmitButton) {
+            mediaSubmitButton.addEventListener("click", (e) => {
+                e.target.classList.add("blueshift")
+
+                setTimeout(() => {
+                    setSection(6)
+                    e.target.classList.remove("blueshift")
+                    setReadyForNewMedia(false)
+                }, 4000)
+
+
+            })
+        }
+
+    }, [tiers, owner, section])
 
     //TO-DO: get owner id from auth; otherwise redirect to sign-in page
 
@@ -157,6 +186,23 @@ const ProjectCreator = () => {
     }
 
 
+    const mediaSubmit = (e) => {
+        e.preventDefault();
+        e.target.classList.add("blackshift")
+
+        //to do: dispatch thunk with mediaUrls and project id
+        dispatch(postProjectMedia(tempMedia, projectId))
+    }
+
+
+    const addMoreMedia = (e) => {
+        e.preventDefault();
+        setSection(5);
+        setReadyForNewMedia(true);
+    }
+
+
+
     return (
         <div className="project-creator-container">
             <form className="project-creator-form">
@@ -202,7 +248,7 @@ const ProjectCreator = () => {
                     </div>
                 </div>
                 <div className={`${section === 4 ? "visible-section" : "hidden-section"}`}>
-                    <div className="project-creator-form-section" id="project-creator-form-section-3">
+                    <div className="project-creator-form-section" id="project-creator-form-section-4">
                         <h2 className="project-creator-form-text">Add your rewards</h2>
                         <h3 className="project-creator-form-sub-text">Offer simple, meaningful ways to bring backers closer to your project and celebrate it coming to life.</h3>
                         <div className={`${tiers ? "project-creator-form-tier-container" : "hidden-section"}`}>
@@ -241,13 +287,26 @@ const ProjectCreator = () => {
                     </div>
                 </div>
                 <div className={`${section === 5 ? "visible-section" : "hidden-section"}`}>
-                    <div className="project-creator-form-section" id="project-creator-form-section-4">
+                    <div className="project-creator-form-section" id="project-creator-form-section-5">
                         <div className="media-upload-display">
-                            {media.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
+                            {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                         </div>
                         <h2 className="project-creator-form-text">Upload media for your project</h2>
                         <h3 className="project-creator-form-sub-text">Supports video and image uploads</h3>
-                        <MediaUpload />
+                        {readyForNewMedia && <MediaUpload />}
+                        <div className="project-creator-button-container">
+                            <button className="project-creator-next-button max-content-width" onClick={e => mediaSubmit(e)} >Finished Adding Media</button>
+                        </div>
+                    </div>
+                </div>
+                <div className={`${section === 6 ? "visible-section" : "hidden-section"}`}>
+                    <div className="project-creator-form-section" id="project-creator-form-section-6">
+                    <div className="media-upload-display">
+                        {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
+                    </div>
+                    <div className="project-creator-button-container">
+                        <button className="media-addmore-button max-content-width" onClick={e => addMoreMedia(e)} >+ Add Additional Media</button>
+                    </div>
                     </div>
                 </div>
             </form>

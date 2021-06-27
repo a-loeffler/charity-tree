@@ -1,0 +1,62 @@
+.media-upload-form {
+    margin-bottom: 100px;
+}
+
+
+.media-submit-button {
+    background-color: rgb(175, 213, 244);
+    color: #000000;
+    position: relative;
+    font-size: 20px;
+    height: 50px;
+    border: none;
+    width: 200px;
+}
+
+.media-submit-button:hover {
+    top: 2px;
+    background-color:rgb(113, 144, 168);
+}
+
+
+.blueshift {
+    background: linear-gradient(to right, rgb(1, 72, 129) 50%,  rgb(113, 144, 168) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    animation: blueshift 4.0s forwards;
+    width: 200px;
+    height: 50px;
+    border: none;
+    font-size: 20px;
+}
+
+@keyframes blueshift {
+    100% {
+        background-position: left bottom;
+        color: white;
+    }
+}
+
+.media-submit-button-disabled {
+    background-color: #464646;
+    width: 200px;
+    height: 50px;
+    color: #FFFFFF;
+    border: none;
+    font-size: 20px;
+}
+
+.media-upload-input {
+    height: 50px;
+    color: #464646;
+    font-size: 20px;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.media-submit-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+    width: 50%;
+}
