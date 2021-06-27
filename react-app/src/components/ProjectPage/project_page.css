@@ -10,9 +10,9 @@
     flex-direction: column;
     align-items: flex-start;
     background-color: cornsilk;
-    margin: 25px;
-    padding: 25px;
-    border-radius: 30px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
 }
 
 .projectPage--container{
@@ -193,6 +193,7 @@ h2{
     /* background-color: red; */
     justify-content: space-evenly;
     flex-direction: row;
+    margin-bottom: 50px;
 }
 
 
@@ -207,7 +208,7 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .tierStar{
@@ -220,7 +221,7 @@ h2{
 
 
 .tierDescription{
-    font-size: 20px;
+    font-size: 16px;
 }
 .tierValue{
     align-self: center;
@@ -230,12 +231,11 @@ h1{
     display: inline-block;
     font-weight: bolder;
 }
-.edit-page-btn{
-    align-self: flex-start;
-    width: 130px;
-    height: 40px;
+.add-page-btn,.edit-page-btn{
+    /* align-self: flex-start; */
+    /* width: 130px;
+    height: 40px; */
     background-color: rgb(105, 132, 64);
-
     border-radius: 12px;
     border: 1px solid rgb(58, 56, 56);
     display: grid;
@@ -247,6 +247,19 @@ h1{
     margin: 5px 25px;
 }
 
-.edit-page-btn:hover{
+
+.add-page-btn{
+    width: 70%;
+    height: 40px;
+    margin: 20px 0 60px 0;
+}
+.edit-page-btn{
+    width: 130px;
+    height: 40px;
+    align-self: flex-start;
+}
+
+
+.add-page-btn:hover,.edit-page-btn:hover{
     background-color: rgb(143, 173, 97);
 }
