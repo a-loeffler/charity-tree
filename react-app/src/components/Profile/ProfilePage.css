@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.users_projects{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.noProjects{
+    font-size: 24px;
+    margin-top: 40px;
+}
+.myProjects{
+    margin: 30px 0 30px 40px;
+}

@@ -13,6 +13,7 @@ from .api.categories import categories_routes
 from .api.project_medias import project_medias_routes
 from .api.donors import donors_routes
 from .api.tiers import tiers_routes
+from .api.media import media_routes
 
 from .seeds import seed_commands
 
@@ -41,6 +42,7 @@ app.register_blueprint(categories_routes, url_prefix='/api/categories')
 app.register_blueprint(project_medias_routes, url_prefix='/api/project_medias')
 app.register_blueprint(donors_routes, url_prefix='/api/donors')
 app.register_blueprint(tiers_routes, url_prefix='/api/tiers')
+app.register_blueprint(media_routes, url_prefix='/api/media')
 
 db.init_app(app)
 Migrate(app, db)

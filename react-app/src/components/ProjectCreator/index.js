@@ -6,6 +6,11 @@ import MediaTile from './MediaTile';
 import MediaUpload from '../MediaUpload';
 import RedirectModal from '../RedirectModal';
 import { postNewProject } from '../../store/project';
+import { getAllProjects } from '../../store/allProjects';
+import { resetTempMedia } from '../../store/media';
+
+import { deleteTempMedia, postProjectMedia } from '../../store/media';
+
 
 import './index.css'
 
@@ -25,6 +30,10 @@ const ProjectCreator = () => {
     const today = `${yyyy}-${mm}-${dd}`;
 
     const tempMedia = useSelector(state => state.MediaList.temp_media)
+    const projectInfo = useSelector(state => state.project.projectInfo)
+    const owner = useSelector(state => state.session.user)
+    const categories = useSelector(state => state.allCategories.categories);
+
 
     const [section, setSection] = useState(1);
     const [category, setCategory] = useState(null);
@@ -37,15 +46,20 @@ const ProjectCreator = () => {
     const [tempTierName, setTempTierName] = useState("");
     const [tempTierValue, setTempTierValue] = useState(0);
     const [tempTierDescription, setTempTierDescription] = useState("");
-    const [media, setMedia] = useState(mockMedia);
-    const [ownerId, setOwnerId] = useState(0);
+    const [readyForNewMedia, setReadyForNewMedia] = useState(true)
 
-    const owner = useSelector(state => state.session.user)
-    const categories = useSelector(state => state.allCategories.categories);
+    const [projectId, setProjectId] = useState(0)
+
+
 
     useEffect(() => {
+
+        if (projectInfo.project) {
+            setProjectId(projectInfo.project.id)
+        }
+
         const deleteTierButtons = document.querySelectorAll(".tier-button-cancel-button")
-        if(deleteTierButtons) {
+        if (deleteTierButtons) {
             deleteTierButtons.forEach(button => {
                 button.addEventListener("click", (e) => {
                     e.preventDefault()
@@ -68,15 +82,31 @@ const ProjectCreator = () => {
                     let targetId = e.target.id;
                     let process1 = targetId.split("-");
                     let indexNumber = process1[process1.length - 1];
-                    console.log(indexNumber)
-                    let newMedia = media.slice();
-                    newMedia.splice(indexNumber, 1);
-                    setMedia(newMedia);
+
+                    dispatch(deleteTempMedia(indexNumber))
+                    // let newMedia = media.slice();
+                    // newMedia.splice(indexNumber, 1);
+                    // setMedia(newMedia);
                 })
             })
         }
 
-    }, [tiers, media, owner])
+        const mediaSubmitButton = document.querySelector(".media-submit-button")
+        if (mediaSubmitButton) {
+            mediaSubmitButton.addEventListener("click", (e) => {
+                e.target.classList.add("blueshift")
+
+                setTimeout(() => {
+                    setSection(6)
+                    e.target.classList.remove("blueshift")
+                    setReadyForNewMedia(false)
+                }, 4000)
+
+
+            })
+        }
+
+    }, [tiers, owner, section])
 
     //TO-DO: get owner id from auth; otherwise redirect to sign-in page
 
@@ -157,6 +187,41 @@ const ProjectCreator = () => {
     }
 
 
+    const goToLast = (e) => {
+        e.preventDefault();
+        e.target.classList.add("blackshift")
+
+        setTimeout(() => {
+            setSection(7)
+        }, 1500)
+
+        //to do: dispatch thunk with mediaUrls and project id
+
+    }
+
+    const mediaSubmit = (e) => {
+        e.preventDefault();
+        e.target.classList.add("blackshift");
+        dispatch(postProjectMedia(tempMedia, projectId))
+        setTimeout(() => {
+            dispatch(getAllProjects())
+            dispatch(resetTempMedia())
+        }, 500)
+
+        setTimeout(() => {
+            history.push(`/projects/${projectId}/edit`)
+        }, 1000)
+    }
+
+
+    const addMoreMedia = (e) => {
+        e.preventDefault();
+        setSection(5);
+        setReadyForNewMedia(true);
+    }
+
+
+
     return (
         <div className="project-creator-container">
             <form className="project-creator-form">
@@ -192,17 +257,13 @@ const ProjectCreator = () => {
                         <span className="project-creator-form-label">$</span><input className="project-creator-input" type="number" min="10.00" step="10.00" placeholder="Goal..." onChange={e => setGoal(e.target.value)}></input>
                         <h3 className="project-creator-form-sub-text">When were you hoping to reach your goal?</h3>
                         <input className="project-creator-input" type="date" min={today} placeholder={today} onChange={e => setDeadline(e.target.value)}></input>
-
-                        {/* TO-DO: tier input fields & place to show/update created tiers*/}
-                        {/* TO-DO: Media uploads */}
-                        {/* TO-DO: submit button that creates basic project in db and directs to RTE to finish up json */}
                         <div className="project-creator-button-container">
                             <button className={`${goal && deadline ? "project-creator-next-button" : "disabled"}`} disabled={!(goal && deadline)} onClick={e => sectionForward(e)} >Next</button>
                         </div>
                     </div>
                 </div>
                 <div className={`${section === 4 ? "visible-section" : "hidden-section"}`}>
-                    <div className="project-creator-form-section" id="project-creator-form-section-3">
+                    <div className="project-creator-form-section" id="project-creator-form-section-4">
                         <h2 className="project-creator-form-text">Add your rewards</h2>
                         <h3 className="project-creator-form-sub-text">Offer simple, meaningful ways to bring backers closer to your project and celebrate it coming to life.</h3>
                         <div className={`${tiers ? "project-creator-form-tier-container" : "hidden-section"}`}>
@@ -234,20 +295,39 @@ const ProjectCreator = () => {
                             </form>
                             <button className={`${tierEditorOpen ? "hidden-section": "tier-create-button"}`} onClick={e => addNewTier(e)}>+ Add a new tier</button>
                         </div>
-                        {/* TO-DO: submit button that creates basic project in db and directs to RTE to finish up json */}
                         <div className="project-creator-button-container">
                             <button className={`${tiers ? "project-creator-next-button" : "disabled"}`} disabled={!(tiers)} onClick={e => createAndForward(e)} >Next</button>
                         </div>
                     </div>
                 </div>
                 <div className={`${section === 5 ? "visible-section" : "hidden-section"}`}>
-                    <div className="project-creator-form-section" id="project-creator-form-section-4">
+                    <div className="project-creator-form-section" id="project-creator-form-section-5">
                         <div className="media-upload-display">
-                            {media.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
+                            {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                         </div>
                         <h2 className="project-creator-form-text">Upload media for your project</h2>
                         <h3 className="project-creator-form-sub-text">Supports video and image uploads</h3>
-                        <MediaUpload />
+                        {readyForNewMedia && <MediaUpload />}
+                        <div className="project-creator-button-container">
+                            <button className="project-creator-next-button max-content-width" onClick={e => goToLast(e)} >Finished Adding Media</button>
+                        </div>
+                    </div>
+                </div>
+                <div className={`${section === 6 ? "visible-section" : "hidden-section"}`}>
+                    <div className="project-creator-form-section" id="project-creator-form-section-6">
+                    <div className="media-upload-display">
+                        {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
+                    </div>
+                    <div className="project-creator-button-container">
+                        <button className="media-addmore-button max-content-width" onClick={e => addMoreMedia(e)} >+ Add Additional Media</button>
+                    </div>
+                    </div>
+                </div>
+                <div className={`${section === 7 ? "visible-section" : "hidden-section"}`}>
+                    <div className="project-creator-form-section" id="project-creator-form-section-7">
+                        <h2 className="project-creator-form-text">Congrats!  You're all ready to finish creating your project</h2>
+                        <h3 className="project-creator-form-sub-text">Don't worry, you can go back and edit details on it later</h3>
+                        <button className="project-creator-next-button max-content-width" disabled={!(tiers)} onClick={e => mediaSubmit(e)} >Create Project</button>
                     </div>
                 </div>
             </form>
