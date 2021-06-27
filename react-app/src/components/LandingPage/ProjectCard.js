@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './index.css'
 
-const ProjectCard = ({width, display, minHeight, title, cardId, description, image}) => {
+const ProjectCard = ({width, display, minHeight, title, cardId, description, image, ownerId}) => {
 
 
     return (
@@ -17,7 +17,7 @@ const ProjectCard = ({width, display, minHeight, title, cardId, description, ima
                 <p className="project-card-description">{description}</p>
                 <div className="project-card-creator">
                     {/* <span>Creator Info</span> */}
-        <Link to={`/discover`} className="project-card-creator-link ">Creator Info</Link>
+                    <Link to={`/profile/${ownerId}`} className="project-card-creator-link ">Creator Info</Link>
                 </div>
             </div>
         </Link>
