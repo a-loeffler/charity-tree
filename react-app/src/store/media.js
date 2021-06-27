@@ -3,6 +3,7 @@ const POST_MEDIA = "media/postMedia"
 const GET_MEDIA = "media/getMedia"
 const DELETE_TEMP_MEDIA = "media/deleteTempMedia"
 const POST_MEDIA_TO_PROJECT = "media/postMediaToProject"
+const RESET_MEDIA = "media/resetTempMedia"
 
 const setMedia = (mediaData) => {
     return {
@@ -37,6 +38,12 @@ const postMediaToProject = (mediaData) => {
     return {
         type: POST_MEDIA_TO_PROJECT,
         payload: mediaData,
+    }
+}
+
+const resetMediaInStore = () => {
+    return {
+        type: RESET_MEDIA,
     }
 }
 
@@ -80,10 +87,23 @@ export const deleteTempMedia = (deleteIndex) => async (dispatch) => {
 
 
 export const postProjectMedia = (mediaData, projectId) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/add_media`)
+    const response = await fetch(`/api/projects/${projectId}/add_media`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({mediaData})
+    })
     const data = await response.json();
 
     dispatch(postMediaToProject(data))
+    return data
+}
+
+
+export const resetTempMedia = () => async (dispatch) => {
+    dispatch(resetMediaInStore())
+
 }
 
 
@@ -117,6 +137,11 @@ const mediaReducer = (state = initialState, action) => {
             let newTempMedia = newState.temp_media.slice();
             newTempMedia.splice(action.payload, 1);
             newState.temp_media = newTempMedia;
+            return newState;
+        }
+        case RESET_MEDIA: {
+            let newState = {...state};
+            newState.temp_media = [];
             return newState;
         }
         default: {

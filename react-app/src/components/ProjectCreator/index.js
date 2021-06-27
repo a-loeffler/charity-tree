@@ -6,6 +6,8 @@ import MediaTile from './MediaTile';
 import MediaUpload from '../MediaUpload';
 import RedirectModal from '../RedirectModal';
 import { postNewProject } from '../../store/project';
+import { getAllProjects } from '../../store/allProjects';
+import { resetTempMedia } from '../../store/media';
 
 import { deleteTempMedia, postProjectMedia } from '../../store/media';
 
@@ -201,10 +203,14 @@ const ProjectCreator = () => {
         e.preventDefault();
         e.target.classList.add("blackshift");
         dispatch(postProjectMedia(tempMedia, projectId))
+        setTimeout(() => {
+            dispatch(getAllProjects())
+            dispatch(resetTempMedia())
+        }, 500)
 
         setTimeout(() => {
-            history.push(`/projects/${projectId}`)
-        }, 1500)
+            history.push(`/projects/${projectId}/edit`)
+        }, 1000)
     }
 
 
@@ -251,10 +257,6 @@ const ProjectCreator = () => {
                         <span className="project-creator-form-label">$</span><input className="project-creator-input" type="number" min="10.00" step="10.00" placeholder="Goal..." onChange={e => setGoal(e.target.value)}></input>
                         <h3 className="project-creator-form-sub-text">When were you hoping to reach your goal?</h3>
                         <input className="project-creator-input" type="date" min={today} placeholder={today} onChange={e => setDeadline(e.target.value)}></input>
-
-                        {/* TO-DO: tier input fields & place to show/update created tiers*/}
-                        {/* TO-DO: Media uploads */}
-                        {/* TO-DO: submit button that creates basic project in db and directs to RTE to finish up json */}
                         <div className="project-creator-button-container">
                             <button className={`${goal && deadline ? "project-creator-next-button" : "disabled"}`} disabled={!(goal && deadline)} onClick={e => sectionForward(e)} >Next</button>
                         </div>
@@ -293,7 +295,6 @@ const ProjectCreator = () => {
                             </form>
                             <button className={`${tierEditorOpen ? "hidden-section": "tier-create-button"}`} onClick={e => addNewTier(e)}>+ Add a new tier</button>
                         </div>
-                        {/* TO-DO: submit button that creates basic project in db and directs to RTE to finish up json */}
                         <div className="project-creator-button-container">
                             <button className={`${tiers ? "project-creator-next-button" : "disabled"}`} disabled={!(tiers)} onClick={e => createAndForward(e)} >Next</button>
                         </div>
