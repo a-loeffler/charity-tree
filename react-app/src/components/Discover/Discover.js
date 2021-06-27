@@ -20,7 +20,7 @@ export default function Discover() {
     //         null
     //     )
     // }
-    console.log('***********************************', allProjects[0]?.name)
+    // console.log('***********************************', allProjects[0]?.name)
     const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
     let width = "300px"
     let minHeight = "300px"
