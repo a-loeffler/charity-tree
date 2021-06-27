@@ -8,6 +8,7 @@ import { getAllCategories } from "../../store/allCategories";
 import { mediaGetter } from "../../store/media";
 import { getAllDonors } from "../../store/allDonors";
 import { getAllTiers } from "../../store/allTiers";
+import { getAllUsers } from "../../store/allusers";
 import logo from "./charity-tree-logo.svg"
 import menuImage from "./menuImage.png"
 import justMagnifyingGlass from './justMagnifyingGlass.svg'
@@ -28,6 +29,7 @@ function Navigation() {
   const project_medias = useSelector((state) => state.MediaList.project_medias)
   const allDonors = useSelector((state) => state.allDonors.donors);
   const allTiers = useSelector((state) => state.allTiers.tiers);
+  const allUsers = useSelector((state) => state.allUsers.users)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -73,6 +75,9 @@ function Navigation() {
     }
     if (allTiers.length === 0) {
       dispatch(getAllTiers())
+    }
+    if (allUsers.length === 0) {
+      dispatch(getAllUsers())
     }
   }, [])
 

@@ -16,7 +16,7 @@ const ProjectCard = ({title, cardId, description, image}) => {
                 <h3 className="project-card-title">{title}</h3>
                 <p className="project-card-description">{description}</p>
                 <a className="project-card-creator" href="">Creator Info</a>
-            </Link>
+            </Link> 
         </div>
     )
 }

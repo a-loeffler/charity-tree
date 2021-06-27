@@ -122,7 +122,7 @@ const Carousel = ({list, id, title}) => {
                 {console.log('slidesTod siplay ', slidesToDisplay)}
                 {slidesToDisplay.map((project, index) =>  {
                     const project_medias2 = project_medias?.filter(obj => obj['project_id'] === project.id);
-                    return <Link to={`/projects/${project.id}`}> <ProjectCard key={index} title={project.name} description={project.description} cardId={`${id}-${index}`} image={project_medias2[0]}/></Link>
+                    return <ProjectCard key={index} title={project.name} description={project.description} cardId={`${project.id}`} image={project_medias2[0]}/>
             })}
             </div>
         </div>

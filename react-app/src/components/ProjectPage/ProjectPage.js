@@ -7,6 +7,7 @@ import goldStar from "./goldStar.png"
 import platinumStar from "./platinumStar.png"
 import { Link } from "react-router-dom"
 import EditorComponent from '../Editor'
+import { addADonor } from "../../store/allDonors"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -26,7 +27,9 @@ export default function ProjectPage() {
 
     // ============ adds the project html ========
     // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
-
+    const test = async () => {
+        await dispatch(addADonor({'project_id': 1, "user_id": 1, "amount": 9999}))
+    }
 
 
     const daysLeft = () => {
@@ -130,6 +133,9 @@ export default function ProjectPage() {
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </form>
                 </div>
+                <form onSubmit={test}>
+                    <button type="submit">test donor thunk</button>
+                </form> 
             </div>
             {user?.id === project?.owner_id &&
             // <button className="edit-page-btn">Edit page</button>
