@@ -87,7 +87,7 @@ export const postProjectMedia = (mediaData, projectId) => async (dispatch) => {
 }
 
 
-const initialState = {updated_media_info: [], project_medias: [], temp_media: ["https://i.ibb.co/7CCsBs7/mock-tile.png", "https://i.ibb.co/7CCsBs7/mock-tile.png"]};
+const initialState = {updated_media_info: [], project_medias: [], temp_media: []};
 
 const mediaReducer = (state = initialState, action) => {
     switch (action.type) {

@@ -34,7 +34,7 @@ const ProjectCreator = () => {
 
 
 
-    const [section, setSection] = useState(5);
+    const [section, setSection] = useState(1);
     const [category, setCategory] = useState(null);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
