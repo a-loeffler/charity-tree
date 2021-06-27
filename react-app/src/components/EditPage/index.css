@@ -1,0 +1,24 @@
+/* .outer-div-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+.edit-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    width: 98%;
+    margin: 10px auto;
+}
+
+.edit-page-field {
+    display: flex;
+}
+
+.edit-page-product-descriptor {
+    margin-left: -50px;
+}

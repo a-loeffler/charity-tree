@@ -11,6 +11,7 @@ import EditorComponent from "./components/Editor";
 import EditName from "./components/EditName";
 import EditDescription from "./components/EditDescription";
 import EditGoal from "./components/EditGoal";
+import EditPage from "./components/EditPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
@@ -54,10 +55,7 @@ function App() {
           <MediaUpload />
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
-          <EditName />
-          <EditDescription />
-          <EditGoal />
-          <EditorComponent />
+          <EditPage />
         </Route>
         <Route path="/projects/:id" exact={true}>
           <ProjectPage />
