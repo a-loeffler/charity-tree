@@ -17,6 +17,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import SignUpForm from "./components/SignUpForm"
 import ProjectPage from "./components/ProjectPage";
+import ProfilePage from "./components/Profile/ProfilePage";
 import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
 import ProjectCreator from "./components/ProjectCreator";
@@ -47,6 +48,9 @@ function App() {
         <Route path="/" exact={true}>
           <LandingPage />
           {/* <Homepage /> */}
+        </Route>
+        <Route path="/profile/:id" exact={true}>
+          <ProfilePage />
         </Route>
         <Route path="/profile/projects/create" exact={true}>
           <ProjectCreator />

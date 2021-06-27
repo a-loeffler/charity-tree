@@ -7,16 +7,15 @@ import goldStar from "./goldStar.png"
 import platinumStar from "./platinumStar.png"
 import { Link } from "react-router-dom"
 import EditorComponent from '../Editor'
+import { addADonor } from "../../store/allDonors"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
-    // const [html, setHtml] = useState(project?.page_html)
     const [dollar, setDollar] = useState("0")
-    // const category = useSelector(state => state.allCategories.categories)
-    console.log("********************", project?.name)
+    const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
@@ -26,7 +25,9 @@ export default function ProjectPage() {
 
     // ============ adds the project html ========
     // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
-
+    const test = async () => {
+        await dispatch(addADonor({'project_id': 1, "user_id": 1, "amount": 9999}))
+    }
 
 
     const daysLeft = () => {
@@ -130,6 +131,9 @@ export default function ProjectPage() {
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </form>
                 </div>
+                <form onSubmit={test}>
+                    <button type="submit">test donor thunk</button>
+                </form> 
             </div>
             {user?.id === project?.owner_id &&
             // <button className="edit-page-btn">Edit page</button>
@@ -140,7 +144,7 @@ export default function ProjectPage() {
 
 
              {/* If project page exists, this will render two columns. Otherwise just the tiers. */}
-             {project?.page_html?
+             {project?.page_html ?
 
             <div className="users_project_website_tiers">
 

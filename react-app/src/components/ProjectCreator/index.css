@@ -161,6 +161,7 @@
     color: #FFFFFF;
 }
 
+.media-addmore-button,
 .tier-create-button {
     margin-top: 20px;
     margin-bottom: 100px;
@@ -171,6 +172,12 @@
     position: relative;
     font-size: 24px;
     height: 50px;
+}
+
+.max-content-width {
+    width: max-content;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .tier-creator-container {
@@ -188,6 +195,7 @@
 
 }
 
+.media-addmore-button:hover,
 .tier-create-button:hover {
     top: 2px;
     background-color:rgb(113, 144, 168);

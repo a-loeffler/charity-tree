@@ -21,25 +21,31 @@ const MediaUpload = () => {
     const handleSubmit= (e) => {
         e.preventDefault();
 
-        const mediaData = {projectId: 1, file: mediaFile}
+        const mediaData = {file: mediaFile}
 
         dispatch(postNewMedia(mediaData))
             .then(() => {
-                setMediaFile(null);
+                setMediaFile(null)
             })
     }
 
+    // {`${mediaFile ? "media-submit-button" : "disabled"}`}
+
+
     return (
         <>
-            <form onSubmit={e => handleSubmit(e)}>
+            <form className="media-upload-form" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="media-file-upload" />
                 <input
+                    className="media-upload-input"
                     type="file"
                     id="media-file-upload"
-                    accept="image/*"
+                    accept="image/*,video/*"
                     onChange={(e) => updateFile(e)}>
                 </input>
-                <button type="submit">Upload</button>
+                <div className="media-submit-button-container">
+                    <button className="media-submit-button" type="submit" onClick={e => handleSubmit(e)}>Upload</button>
+                </div>
             </form>
         </>
     )

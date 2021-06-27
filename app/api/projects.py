@@ -16,12 +16,10 @@ def get_all_projects():
 @projects_routes.route("/", methods=["POST"])
 def post_new_project():
     print('line 18', request.get_json(force=False))
-    # print(request.data)
+
     data = request.get_json()
 
-
     project = data['project']
-    # print(data['project']['name'])
 
     newProject = Project(
         name=project["name"],
@@ -30,30 +28,30 @@ def post_new_project():
         deadline=project["deadline"],
         owner_id=project["owner_id"],
         category_id=project["category_id"],
+        current_amount=0,
     )
-
-    print("****", newProject.to_dict())
 
     db.session.add(newProject)
 
-    # To-do: if tiers, add each tier
-    # tiers = data['tiers']
+    db.session.commit()
 
-    # if len(tiers) > 0:
-    #     for tier in tiers:
-    #         newTier = Tier(
-    #             name=tier["name"],
-    #             value=tier["value"],
-    #             description=tier["description"],
-    #         )
-    #         db.session.add(newTier)
+    owner_id = newProject.to_dict()["id"]
 
+    tiers = data['tiers']
+
+    if len(tiers) > 0:
+        for tier in tiers:
+            newTier = Tier(
+                name=tier["name"],
+                value=tier["value"],
+                description=tier["description"],
+                project_id=owner_id,
+            )
+            db.session.add(newTier)
 
     db.session.commit()
-    # newProject = data['project']['name']
 
-    # return {'project': project}
-    return "OK"
+    return {"project": newProject.to_dict()}
 
 
 @projects_routes.route("/")
@@ -100,9 +98,9 @@ def patch_goal(id):
     return 'OK'
 
 
-@projects_routes.route("/create/:id/upload", methods=["POST"])
-def upload_media():
-    print("in the route")
+@projects_routes.route("/create/<id>/upload", methods=["POST"])
+def upload_media(id):
+
     if "file" not in request.files:
         return {"errors": "no media uploaded"}, 400
 
@@ -121,3 +119,23 @@ def upload_media():
     url = upload["url"]
 
     return {"mediaUrl": url}
+
+
+@projects_routes.route("/<id>/add_media")
+def add_media_for_project(id):
+    project = Project.query.get(id)
+    mediaData = request.get_json()
+
+    for url in mediaData:
+        newMedia = Project_media(
+            project_id=id,
+            media_url=url
+        )
+
+        db.session.add(newMedia)
+
+    db.session.commit()
+
+    projectMedia = Project_media.query.filter_by(project_id=id)
+
+    return {f"{id}": [media.to_dict() for media in projectMedia]}
