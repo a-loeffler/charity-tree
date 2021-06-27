@@ -12,6 +12,14 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
+# @user_routes.route('/test')
+# @login_required
+# def users():
+#     users = User.query.all()
+#     print('*********************************************************', users)
+#     return {"users": [user.to_dict() for user in users]}
+
+
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
