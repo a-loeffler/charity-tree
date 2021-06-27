@@ -27,9 +27,10 @@ const MediaUpload = () => {
             .then(() => {
                 setMediaFile(null)
             })
+
+        //TO-DO: Error handling
     }
 
-    // {`${mediaFile ? "media-submit-button" : "disabled"}`}
 
 
     return (

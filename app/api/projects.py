@@ -121,10 +121,13 @@ def upload_media(id):
     return {"mediaUrl": url}
 
 
-@projects_routes.route("/<id>/add_media")
+@projects_routes.route("/<id>/add_media", methods=["POST"])
 def add_media_for_project(id):
     project = Project.query.get(id)
-    mediaData = request.get_json()
+    data = request.get_json()
+    print("*****line 128*****", data)
+
+    mediaData = data["mediaData"]
 
     for url in mediaData:
         newMedia = Project_media(
