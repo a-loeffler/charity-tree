@@ -33,7 +33,6 @@ const ProjectCreator = () => {
     const categories = useSelector(state => state.allCategories.categories);
 
 
-
     const [section, setSection] = useState(1);
     const [category, setCategory] = useState(null);
     const [name, setName] = useState("");
