@@ -94,6 +94,7 @@
     justify-content: space-between;
     margin: 4px;
     scroll-snap-align: start;
+    z-index: -5;
 }
 
 .project-card-container:hover{
@@ -139,9 +140,18 @@
     font-size: 12px;
     color: #618635;
     text-decoration: none;
+    position: relative;
+}
+.project-card-creator-link {
+    font-size: 12px;
+    color: #618635;
+    text-decoration: none;
+    position: relative;
+    left: 0;
+    z-index: 15;
 }
 
-.project-card-creator:hover {
+.project-card-creator-link:hover {
     text-decoration: underline;
 }
 

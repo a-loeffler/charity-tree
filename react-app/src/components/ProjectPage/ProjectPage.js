@@ -135,19 +135,16 @@ export default function ProjectPage() {
                     <button type="submit">test donor thunk</button>
                 </form> 
             </div>
-            {user?.id === project?.owner_id &&
-            // <button className="edit-page-btn">Edit page</button>
-                <Link to={`/projects/${project?.id}/edit`} className="edit-page-btn"> &#8681; Edit page &#8681;</Link>
-                }
+
 
 
 
 
              {/* If project page exists, this will render two columns. Otherwise just the tiers. */}
              {project?.page_html ?
-
-            <div className="users_project_website_tiers">
-
+                    <>
+                    {user?.id === project?.owner_id && <Link to={`/projects/${project?.id}/edit`} className="edit-page-btn"> &#8681; Edit page &#8681;</Link>}
+                <div className="users_project_website_tiers">
                 <div className="project_website">
 
                 <div dangerouslySetInnerHTML={{__html: `${project?.page_html}`}} />
@@ -175,9 +172,11 @@ export default function ProjectPage() {
 
                 </div>
             </div>
+            </>
         // Else, just the tiers will render
         :
-        // Be careful not to delete this
+        <>
+
         <div className="justTiers">
             { filtered_tiers?.map((obj) =>
             <div className="tier--container" key={`tier-container-${obj.id}`}>
@@ -194,7 +193,8 @@ export default function ProjectPage() {
 
             )}
         </div>
-
+        {user?.id === project?.owner_id && <Link to={`/projects/${project?.id}/edit`} className="add-page-btn">Add Page</Link>}
+        </>
         }
 
             {/* End Container*/}
