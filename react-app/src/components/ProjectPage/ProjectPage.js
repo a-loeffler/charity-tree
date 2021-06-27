@@ -14,10 +14,8 @@ export default function ProjectPage() {
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const project = allProjects?.find(obj => obj.id == Number(id));
-    // const [html, setHtml] = useState(project?.page_html)
     const [dollar, setDollar] = useState("0")
-    // const category = useSelector(state => state.allCategories.categories)
-    console.log("********************", project?.name)
+    const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
@@ -146,7 +144,7 @@ export default function ProjectPage() {
 
 
              {/* If project page exists, this will render two columns. Otherwise just the tiers. */}
-             {project?.page_html?
+             {project?.page_html ?
 
             <div className="users_project_website_tiers">
 
