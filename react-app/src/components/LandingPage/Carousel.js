@@ -14,6 +14,7 @@ const Carousel = ({list, id, title}) => {
 
     const project_medias = useSelector((state) => state.MediaList.project_medias)
 
+    console.log("WTFWTFWTFWTFWTFWTFWTFWTFWTFWTFW", list[0]?.owner_id)
     useEffect(() => {
         let displaySlides = list.slice(slidePosition, slidePosition + 5);
 
@@ -127,7 +128,7 @@ const Carousel = ({list, id, title}) => {
                 {console.log('slidesTod siplay ', slidesToDisplay)}
                 {slidesToDisplay.map((project, index) =>  {
                     const project_medias2 = project_medias?.filter(obj => obj['project_id'] === project.id);
-                    return <ProjectCard key={index} width={width} minHeight={minHeight} display={display} title={project.name} description={limitText(project.description)} cardId={`${project.id}`} image={project_medias2[0]}/>
+                    return <ProjectCard key={index} width={width} minHeight={minHeight} display={display} title={project.name} description={limitText(project.description)} cardId={`${project.id}`} image={project_medias2[0]} ownerId={project.owner_id}/>
             })}
             </div>
         </div>
