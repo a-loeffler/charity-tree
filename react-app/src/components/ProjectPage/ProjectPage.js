@@ -95,15 +95,6 @@ export default function ProjectPage() {
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
                 <div className="stuff_on_right--container">
 
                     <div className="projectGoal--container">

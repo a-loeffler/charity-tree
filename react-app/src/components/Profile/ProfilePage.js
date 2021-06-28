@@ -35,8 +35,7 @@ export default function ProfilePage() {
 
                 {userProjects.map(project => {
                     return(
-                        <ProjectCard key={project.id} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id
-                            )[0]}/>
+                        <ProjectCard key={project.id} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
                     )
                 })}
                 </>
