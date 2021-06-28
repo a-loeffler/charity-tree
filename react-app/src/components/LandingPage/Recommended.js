@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 
 import './index.css'
-
+import leftButton from "./left-button.svg";
+import rightButton from "./right-button.svg";
 import RecommendedTile from "./RecommendedTile";
 
 
@@ -67,13 +68,13 @@ const Recommended = ({recommendedList}) => {
             {tilesToDisplay.map((tileData, index) => <RecommendedTile key={index} tileData={tileData}/>)}
             <div className="recommended-nav-container">
                 <div className="recommended-nav-button-border">
-                    <img className="recommended-nav-button" src="images/left-button.svg" alt="" onClick={navRight} ></img>
+                    <img className="recommended-nav-button" src={leftButton} alt="" onClick={navRight} ></img>
                 </div>
                 <p className={displayCounter === 1 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setOne}>1</p>
                 <p className={displayCounter === 2 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setTwo}>2</p>
                 <p className={displayCounter === 3 ? "recommended-nav-number active-nav-number" : "recommended-nav-number"} onClick={setThree}>3</p>
                 <div className="recommended-nav-button-border">
-                    <img className="recommended-nav-button" src="images/right-button.svg" alt="" onClick={navLeft}></img>
+                    <img className="recommended-nav-button" src={rightButton} alt="" onClick={navLeft}></img>
                 </div>
             </div>
         </div>
