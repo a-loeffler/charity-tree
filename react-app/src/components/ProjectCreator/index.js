@@ -230,6 +230,7 @@ const ProjectCreator = () => {
                         <h2 className="project-creator-form-text">Let's get started...</h2>
                         <h3 className="project-creator-form-sub-text">Choose a category for your project from the list below:</h3>
                         <select className="project-creator-dropdown" placeholder="Choose a category..." value={category} onChange={e => setCategory(e.target.value)}>
+                            <option>Select:</option>
                             {categories.map((category, index) => <option value={category.id} key={index}>{category.name}</option>)}
                         </select>
                         <div className="project-creator-button-container">
