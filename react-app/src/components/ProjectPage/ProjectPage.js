@@ -7,29 +7,32 @@ import goldStar from "./goldStar.png"
 import platinumStar from "./platinumStar.png"
 import { Link } from "react-router-dom"
 import EditorComponent from '../Editor'
-import { addADonor } from "../../store/allDonors"
+import { addADonor, getAllDonors } from "../../store/allDonors"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
-    const project = allProjects?.find(obj => obj.id == Number(id));
-    const [dollar, setDollar] = useState("0")
     const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
-    const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
+    const user = useSelector(state => state.session.user)
+    const project = allProjects?.find(obj => obj.id == Number(id));
+    const [dollar, setDollar] = useState("0")
+    const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
     const projectHtml = document.querySelector('.project_html')
-    const user = useSelector(state => state.session.user)
-
+    
     // ============ adds the project html ========
     // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
-    const test = async () => {
-        await dispatch(addADonor({'project_id': 1, "user_id": 1, "amount": 9999}))
+    const test = async (event) => {
+        event.preventDefault();
+        
+        await dispatch(addADonor({'project_id': id, "user_id": user.id, "amount": dollar}))
+        await dispatch(getAllDonors())
     }
-
-
+    
+    
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
         const days = milliseconds / 1000 / 60 / 60 / 24
@@ -47,10 +50,11 @@ export default function ProjectPage() {
         if(total === NaN) return "The math is not adding up..."
         return total > 100 ? 100 : total;
     }
-
+    
+    
     if (project_medias2) {
         const thumbnails = document.querySelector('.thumbnail--container')
-
+        
         if (thumbnails !== null) {
             thumbnails.innerHTML = '';
             for (let i = 0; i < project_medias2?.length; i++) {
@@ -60,7 +64,7 @@ export default function ProjectPage() {
                 let newImg = `<img src="${obj.media_url}" class="thumbnails"></img>`
                 newSpan.innerHTML = newImg
                 thumbnails.appendChild(newSpan)
-
+                
                 newSpan.addEventListener("click", (e) => {
                     document.querySelector(".background_image").style.backgroundImage = `url("${e.target.src}")`
                     document.querySelector(".mainImage").src = e.target.src
@@ -68,9 +72,9 @@ export default function ProjectPage() {
             }
         }
     }
-
-
-
+    
+    
+    
     return (
         <div className="projectPage--container">
             <div className="header">
@@ -113,11 +117,12 @@ export default function ProjectPage() {
 
                     {daysLeft() < 0 ? <div className="daysLeft"><h2>{daysLeft()}</h2>project date expired</div>
                         : daysLeft() === 1 ? <div className="daysLeft"><h2>{daysLeft()}</h2> day to go!!</div>
-                            : <div className="daysLeft"><h2>{daysLeft()}</h2> days to go</div>
+                        : <div className="daysLeft"><h2>{daysLeft()}</h2> days to go</div>
                     }
 
+                    
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
-                    <textarea placeholder="Enter Donation Amount" onKeyUp={(e) => {
+                    <textarea placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
                         setDollar(e.target.value)}
                     }/>
                     {console.log("dollar", dollar)}
@@ -131,7 +136,7 @@ export default function ProjectPage() {
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </form>
                 </div>
-                <form onSubmit={test}>
+                <form action="" onSubmit={test}>
                     <button type="submit">test donor thunk</button>
                 </form> 
             </div>

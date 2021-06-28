@@ -57,7 +57,8 @@ def post_new_project():
 @projects_routes.route("/")
 def get_all_media():
     project_medias = Project_media.query.selectAll()
-    return {"project_medias": [project_medias.to_dict() for project_media in project_medias]}
+    return {"project_medias":
+            [project_medias.to_dict() for project_media in project_medias]}
 
 
 @projects_routes.route("/<id>/edit")  # get media
