@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import './index.css'
 
 import ProjectCard from './ProjectCard'
+import leftButton from "./left-button.svg";
+import rightButton from "./right-button.svg";
 
 const Carousel = ({list, id, title}) => {
 
@@ -118,10 +120,10 @@ const Carousel = ({list, id, title}) => {
             </div>
             <div className="carousel-buttons-container">
                 <div className="carousel-button-border right-space">
-                    <img className="carousel-button" src="images/left-button.svg" alt="" onClick={leftClick}></img>
+                    <img className="carousel-button" src={leftButton} alt="" onClick={leftClick}></img>
                 </div>
                 <div className="carousel-button-border">
-                    <img className="carousel-button" src="images/right-button.svg" alt="" onClick={rightClick}></img>
+                    <img className="carousel-button" src={rightButton} alt="" onClick={rightClick}></img>
                 </div>
             </div>
             <div className="carousel-items-container" id={id}>

@@ -5,6 +5,8 @@ import FeaturedProject from "./FeaturedProject";
 import Recommended from "./Recommended";
 import { useSelector } from "react-redux";
 
+
+
 const LandingPage = () => {
   const allProjects = useSelector((state) => state.allProjects.projects);
 
