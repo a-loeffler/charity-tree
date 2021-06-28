@@ -206,12 +206,18 @@ function Navigation() {
             <button style={{ backgroundImage: `url(${justMagnifyingGlass})` }} className="search--icon large-hide med-hide"></button>
           </form>
 
-          <Link to="/discover" className="nav--link nav--link large-hide"><div className="submenu--link">Discover</div></Link>
+          <Link to="/discover" className="nav--link large-hide"><div className="submenu--link">Discover</div></Link>
           <Link to="/profile/projects/create" className="nav--link large-hide"><div className="submenu--link">Start a Campaign</div></Link>
 
 
           {
-            user ? <div className="submenu--link" onClick={(e) => onLogout()}>Log Out</div> :
+            user ?
+              <>
+                <div className="submenu--link" onClick={(e) => onLogout()}>Log Out!!!</div>
+                <Link to={`/profile/${user.id}`} className="nav--link"><div className="submenu--link">My Profile</div></Link>
+              </>
+
+            :
 
               <>
                 <div id="loginButton"><div className="submenu--link" >Log In</div></div>

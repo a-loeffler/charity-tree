@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from app.models import Donor
 from app.models.db import db
 
@@ -14,8 +14,19 @@ def get_all_donors():
 
 @donors_routes.route("/", methods=["POST"])
 def add_a_donor():
-    print('DONORDONORDONORDATA!!!!!', REQUEST.GET_JSON())
-    print('DONORDONORDONORDATA!!!!!', REQUEST.GET_JSON(force=False))
+    print(request)
+    print('DONORDONORDONORDATA!!!!!', request.get_json())
+    print('DONORDONORDONORDATA!!!!!', request.get_json(force=False))
 
-    # data = request.get_json()
-    # donor =
+    data = request.get_json()
+
+    newDonor = Donor(
+        project_id=data["project_id"],
+        user_id=data["user_id"],
+        amount=data["amount"]
+    )
+    # donor = a
+
+    db.session.add(newDonor)
+    db.session.commit()
+    return {"donor": newDonor.to_dict()}
