@@ -62,7 +62,7 @@ const LandingPage = () => {
   const mockFeaturedProjectData = {
     title: "We be broke, y’all!",
     bannerUrl: "https://i.ibb.co/YWvkzkf/mock-banner.png",
-    creator: "Poor Creators",
+    creator: "Charity Tree Creators",
     description:
       "The creators of Charity Tree are working to develop web software that can aid and support charities and nonprofit organizations.  Join us in helping others!",
   };
