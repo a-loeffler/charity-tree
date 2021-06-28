@@ -12,6 +12,7 @@ export default function ProfilePage() {
     const projectMedia = useSelector(state => state.MediaList.project_medias)
     const userProjects = allProjects?.filter(obj => obj.owner_id == Number(id));
     const Users = useSelector(state => state.allUsers.users)
+    const user = useSelector(state => state.session.user)
     const selectedUser = Users?.filter(user => user.id === Number(id))[0]
     console.log(selectedUser)
     console.log(allProjects)
@@ -22,10 +23,28 @@ export default function ProfilePage() {
     let minHeight = "300px"
     let display = "flex"
 
+    const updateInfo = () => {
+        console.log('userid: ', user.id)
+        console.log('id: ', id)
+        console.log(user.id === Number(id))
+        if(user.id === Number(id)) {
+            return(
+                <>
+                    <button><Link to={`/profile/${id}/update`}>Update Profile</Link></button>
+                    {/* <button onClick={}>Delete Profile</button> */}
+                </>
+            )
+        }
+    }
+    
     return(
         <div className="container">
             <div className="header">
                 <h1>{`Welcome to ${selectedUser?.username}'s Page!`}</h1>
+                {updateInfo()}
+                {/* <button onClick={() => {
+                    return console.log('aewfewfc')
+                }}>tester</button> */}
             </div>
             <h3 className="myProjects">{`${selectedUser?.username}'s Projects:`}</h3>
             <div className="users_projects">

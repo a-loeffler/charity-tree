@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User
 
@@ -10,6 +10,10 @@ def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
 
+
+@user_routes.route('/update', methods=["POST"])
+def update_users():
+    print('77777777777777777777777777777777777777', request_json())
 
 # @user_routes.route('/test')
 # @login_required

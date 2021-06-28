@@ -21,6 +21,7 @@ import MediaUpload from "./components/MediaUpload";
 import LandingPage from "./components/LandingPage";
 import ProjectCreator from "./components/ProjectCreator";
 import Discover from "./components/Discover/Discover";
+import UpdateUser from "./components/Profile/UpdateUser";
 
 import './index.css'
 
@@ -47,6 +48,9 @@ function App() {
         <Route path="/" exact={true}>
           <LandingPage />
           {/* <Homepage /> */}
+        </Route>
+        <Route path="/profile/:id/update">
+          <UpdateUser />
         </Route>
         <Route path="/profile/:id" exact={true}>
           <ProfilePage />
