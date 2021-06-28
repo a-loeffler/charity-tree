@@ -41,6 +41,7 @@
 
 .login-form--background--slideIn{
     top: 130px;
+    z-index: 4;
 }
 
 .login-errors{
