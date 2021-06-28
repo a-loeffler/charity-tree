@@ -20,7 +20,7 @@ export default function ProjectPage() {
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
     const user = useSelector(state => state.session.user)
     const project = allProjects?.find(obj => obj.id == Number(id));
-    const [dollar, setDollar] = useState("0")
+    const [dollar, setDollar] = useState(null)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
     const projectHtml = document.querySelector('.project_html')
@@ -127,7 +127,7 @@ export default function ProjectPage() {
                     {console.log("dollar", dollar)}
                     {/* {console.log("value", this.value)} */}
 
-                    <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={test()}>
+                    <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={() => {test()}}>
                         <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
                         <input type="hidden" name="no_recurring" value={`${dollar}`} />
                         <input type="hidden" name="currency_code" value="USD" />
