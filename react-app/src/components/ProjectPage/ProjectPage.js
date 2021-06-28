@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useRef} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom'
 import './project_page.css'
@@ -12,6 +12,8 @@ import { addADonor, getAllDonors } from "../../store/allDonors"
 export default function ProjectPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const form1 = useRef(null);
+    const form2 = useRef(null);
     const allProjects = useSelector(state => state.allProjects.projects)
     const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
@@ -26,13 +28,19 @@ export default function ProjectPage() {
     // ============ adds the project html ========
     // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
     const test = async (event) => {
-        event.preventDefault();
-        
+        // event.preventDefault();
+
+        console.log("*-*-*-*-*/*-/-*/-*/-*/*-/-*/-*/*-/-*/-*/-*/*-/-*/-*/-*/-*", form2.current)
         await dispatch(addADonor({'project_id': id, "user_id": user.id, "amount": dollar}))
         await dispatch(getAllDonors())
     }
-    
-    
+
+    // const doubleSubmit = async event => {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     form1.submit()  
+    // }
+
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
         const days = milliseconds / 1000 / 60 / 60 / 24
@@ -119,17 +127,14 @@ export default function ProjectPage() {
                     {console.log("dollar", dollar)}
                     {/* {console.log("value", this.value)} */}
 
-                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                    <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={test()}>
                         <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
                         <input type="hidden" name="no_recurring" value={`${dollar}`} />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </form>
-                </div>
-                <form action="" onSubmit={test}>
-                    <button type="submit">test donor thunk</button>
-                </form> 
+                </div> 
             </div>
 
 
