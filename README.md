@@ -1,98 +1,70 @@
-# Flask React Project
+# CHARITY TREE
 
-This is the backend for the Flask React project.
+*By Drew Long, Mike Sineath, Kevin Betker, Andrew Loeffler - <a href="https://charity-tree.herokuapp.com/landing-page">Visit Charity Tree</a>*
 
-## Getting started
 
-1. Clone this repository (only this branch)
+**Table of Contents**
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+* [Charity Tree Purpose and Overview](#charity-tree-purpose-and-overview)
+* [Design and Build Framework](#design-and-build-framework)
+* [Frontend Overview](#frontend-overview)
+* [Backend Overview](#backend-overview)
+* [Conclusion & Next Steps](#conclusion--next-steps)
 
-2. Install dependencies
+## Charity Tree Purpose and Overview
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+The purpose of Charity Tree is to provide a venue for nonprofit groups and charities to create and maintain fundraising projects.  Charity Tree is a fullstack React app that allows users to discover nonprofits and charities that they can support.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+Charity Tree features include user account creation, the ability to create fundraising projects with customizable project pages, media uploads, and the ability to contribute to projects.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## Design and Build Framework
 
-   ```bash
-   pipenv shell
-   ```
+Charity Tree utilizes a React framework for its frontend operations.  The majority of the frontend logic and operations occur within the frontend's Redux store.  Additionally, the TinyMCE rich-text-editor API was implemented to allow non-technical users the ability to customize the design and content of their individual project pages.
 
-   ```bash
-   flask db upgrade
-   ```
+On the backend, a PostgreSQL database and Flask ORM responds to user requests and serves data to appropriate places in the app.
 
-   ```bash
-   flask seed all
-   ```
+## Frontend Overview
 
-   ```bash
-   flask run
-   ```
+Charity Tree was designed to allow users to create fundraising projects for their nonprofit or charity grouops.  As such, intuitive and easy-to-understand user interfaces were developed to allow non-technical persons the ability to customize and maintain their projects.  Below are the frontend technologies used to make this application possible.
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### Frontend Technologies Used
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+#### React
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+Charity Tree is fundamentally a React application.  It makes use of separate but interconnected functional components and hooks in order to provide a satisfying user experience.
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+#### Redux
 
-## Deploy to Heroku
+Charity Tree integrates the Redux and react-redux library to manage an application state store, serve user data across components, and make fetch requests to the server for user interactions.
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+When a user accesses the site, information about the projects available for the user to view is fetched and loaded into the Redux store for fluid responses and rapid navigation.  While this expensive operation lengthens the initial load time, it allows the data to be quickly displayed onscreen as the user navigates the app.
 
-   ```bash
-   heroku login
-   ```
+#### TinyMCE API
 
-5. Login to the heroku container registry
+The TinyMCE API is an important feature of this project.  It is a rich-text-editor that allows users to customize their individual project pages with media that they have uploaded, as well as formatting the text and contents of their project page.
 
-   ```bash
-   heroku container:login
-   ```
+## Backend Overview
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+Charity Tree utilizes a Flask server with a PostgreSQL database and Sequel-Alchemy ORM.  The backend of Charity Tree passes data to the client and receives request information for the database in order to carry out basic CRUD operations.
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+### Backend Technologies Used
 
-8. Release your docker container to heroku
+#### Flask
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
+Flask handles the light-weight responsibilities of Charity Tree's server.  It utilizes routes to handle various user interactions, such as project CRUD operations, handling information related to user accounts, and allowing users to donate to projects.
 
-9. set up your database:
+#### PostgreSQL
 
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
+PostgreSQL acts as a suitable framework for storing user account information and associating necessary items to build a robust data structure for app interactions.
 
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
+#### Sequel-Alchemy
 
-11. profit
+Sequel-Alchemy stands as an ORM intermediary that uses the Flask-SequelAlchemy library, and allows the Flask server to send and retrieve data from the database.  The simple interactions and structured documentation for querying made Sequel-Alchemy an excellent choice for this project.
+
+## Conclusion & Next Steps
+
+Charity Tree has been a project that helped us all grow as developers.  We learned about how to implement many resources and ideas, as well as combine our love of coding with the ability to help others.
+
+While making Charity Tree, we were able to explore some new concepts and technologies.  Learning about the TinyMCE rich-text-editor API took a lot of time and effort, and still requires some more work to fully integrate it into the styling and functionality of the site.  Additionally, we were able to practice a lot of concepts related to improving the user experience and interfaces..
+
+**Next Steps:** There is still a lot of development left to go for Charity Tree.  As we move forward, we would like to begin by improving the functionality of the interfaces that are used for exploring projects on the site.  We would like to set up a working search feature, so that users can also find projects to back through that option.  Furthermore, we hope to tighten up the site-wide styling so that all of the components in the entire app mesh together smoothly.
