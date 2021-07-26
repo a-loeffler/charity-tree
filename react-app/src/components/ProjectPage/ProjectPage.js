@@ -1,6 +1,6 @@
-import React, {useState, useRef} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import './project_page.css'
 import silverStar from "./silverStar.png"
 import goldStar from "./goldStar.png"
@@ -8,9 +8,11 @@ import platinumStar from "./platinumStar.png"
 import { Link } from "react-router-dom"
 import EditorComponent from '../Editor'
 import { addADonor, getAllDonors } from "../../store/allDonors"
+import RedirectModal from "../RedirectModal"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
+    const history = useHistory()
     const { id } = useParams();
     const form1 = useRef(null);
     const form2 = useRef(null);
@@ -24,7 +26,7 @@ export default function ProjectPage() {
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
     const projectHtml = document.querySelector('.project_html')
-    
+
     // ============ adds the project html ========
     // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
     const test = async (event) => {
@@ -35,10 +37,20 @@ export default function ProjectPage() {
         await dispatch(getAllDonors())
     }
 
+    useEffect(() => {}, [allProjects])
+
+    if (allProjects?.length && !project) {
+        return (
+            <>
+                <RedirectModal destination={'/'} message={'Requested project does not exist.'}/>
+            </>
+        )
+    }
+
     // const doubleSubmit = async event => {
     //     event.preventDefault();
     //     event.stopPropagation();
-    //     form1.submit()  
+    //     form1.submit()
     // }
 
     const daysLeft = () => {
@@ -58,11 +70,11 @@ export default function ProjectPage() {
         if(total === NaN) return "The math is not adding up..."
         return total > 100 ? 100 : total;
     }
-    
-    
+
+
     if (project_medias2) {
         const thumbnails = document.querySelector('.thumbnail--container')
-        
+
         if (thumbnails !== null) {
             thumbnails.innerHTML = '';
             for (let i = 0; i < project_medias2?.length; i++) {
@@ -72,7 +84,7 @@ export default function ProjectPage() {
                 let newImg = `<img src="${obj.media_url}" class="thumbnails"></img>`
                 newSpan.innerHTML = newImg
                 thumbnails.appendChild(newSpan)
-                
+
                 newSpan.addEventListener("click", (e) => {
                     document.querySelector(".background_image").style.backgroundImage = `url("${e.target.src}")`
                     document.querySelector(".mainImage").src = e.target.src
@@ -80,9 +92,9 @@ export default function ProjectPage() {
             }
         }
     }
-    
-    
-    
+
+
+
     return (
         <div className="projectPage--container">
             <div className="header">
@@ -119,7 +131,7 @@ export default function ProjectPage() {
                         : <div className="daysLeft"><h2>{daysLeft()}</h2> days to go</div>
                     }
 
-                    
+
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
                     <textarea placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
                         setDollar(e.target.value)}
@@ -134,7 +146,7 @@ export default function ProjectPage() {
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </form>
-                </div> 
+                </div>
             </div>
 
 

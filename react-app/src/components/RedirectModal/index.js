@@ -5,7 +5,8 @@ import { useHistory } from 'react-router';
 import './index.css'
 
 
-const RedirectModal = () => {
+const RedirectModal = ({destination, message}) => {
+
 
     const history = useHistory();
     const [timeDone, setTimeDone] = useState(false)
@@ -19,13 +20,13 @@ const RedirectModal = () => {
 
 
     if (timeDone) {
-        history.push('/signup')
+        history.push(destination)
     }
 
 
     return (
         <div className="redirect-modal-container">
-            <h1 className="redirect-modal-title">Users must be logged in to create a project</h1>
+            <h1 className="redirect-modal-title">{message}</h1>
             <button className="return-button"></button>
         </div>
     )

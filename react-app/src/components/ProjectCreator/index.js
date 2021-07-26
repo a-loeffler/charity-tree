@@ -117,7 +117,7 @@ const ProjectCreator = () => {
     if (!owner) {
         return (
             <>
-                <RedirectModal />
+                <RedirectModal destination={'/signup'} message={'Users must be logged in to create a project.'}/>
             </>
         )
     }
