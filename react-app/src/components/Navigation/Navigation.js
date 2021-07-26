@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { logout } from "../../store/session";
@@ -23,6 +23,7 @@ function Navigation() {
 
   //========== Log in stuffs ==============
   const dispatch = useDispatch();
+  const history = useHistory()
   const user = useSelector(state => state.session.user)
   const allProjects = useSelector((state) => state.allProjects.projects)
   const allCategories = useSelector((state) => state.allCategories.categories)
@@ -33,6 +34,7 @@ function Navigation() {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [searchText, setSearchText] = useState("")
 
 
   const onLogin = async (e) => {
@@ -120,6 +122,11 @@ function Navigation() {
   function handleSearch(e) {
     e.preventDefault()
     console.log('woot')
+    let splitSearch = searchText.split(" ")
+    let processedSearch = splitSearch.join("+")
+    
+    setSearchText("")
+    history.push(`/search/${processedSearch}`)
   }
 
 
@@ -190,7 +197,7 @@ function Navigation() {
       <div className="nav--element">
         <div className="nav--link--container small-hide">
           <form onSubmit={(e) => handleSearch(e)} className='nav--link--container'>
-            <input type="text" className="homeSearch" placeholder="Search"></input>
+            <input onChange={(e) => setSearchText(e.target.value)} type="text" className="homeSearch" placeholder="Search" value={searchText}></input>
             <button className="search--icon"><img src={justMagnifyingGlass} className="search--icon"></img></button>
           </form>
         </div>
@@ -215,6 +222,7 @@ function Navigation() {
               <>
                 <div className="submenu--link" onClick={(e) => onLogout()}>Log Out!!!</div>
                 <Link to={`/profile/${user.id}`} className="nav--link"><div className="submenu--link">My Profile</div></Link>
+                <Link to="/about" className="nav--link"><div className="submenu--link">About</div></Link>
               </>
 
             :
@@ -223,6 +231,7 @@ function Navigation() {
                 <div id="loginButton"><div className="submenu--link" >Log In</div></div>
                 <Link to="/signup" className="nav--link"><div className="submenu--link">Sign Up</div></Link>
                 <div className="nav--link" onClick={(e) => logInDemo(e)}><div className="submenu--link"> Demo User</div></div>
+                <Link to="/about" className="nav--link"><div className="submenu--link">About</div></Link>
               </>
           }
 

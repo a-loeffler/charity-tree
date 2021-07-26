@@ -23,6 +23,7 @@ import LandingPage from "./components/LandingPage";
 import ProjectCreator from "./components/ProjectCreator";
 import Discover from "./components/Discover/Discover";
 import UpdateUser from "./components/Profile/UpdateUser";
+import About from "./components/About";
 
 import './index.css'
 
@@ -70,6 +71,9 @@ function App() {
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Route>
           <Discover />
