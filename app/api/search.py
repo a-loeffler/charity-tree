@@ -57,7 +57,7 @@ def get_search_results(query):
     projects = []
 
     for word in filtered_search:
-        results = Project.query.filter(Project.name.like(f"%{word}%") | Project.description.like(f"%{word}%")).all()
+        results = Project.query.filter(Project.name.ilike(f"%{word}%") | Project.description.ilike(f"%{word}%")).all()
         for project in results:
             projects.append(project)
 
