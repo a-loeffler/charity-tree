@@ -95,15 +95,15 @@ const LandingPage = () => {
 
 
   const mockRecommendedList = [
-    mockRecommendedData1,
-    mockRecommendedData2,
-    mockRecommendedData3,
-    mockRecommendedData3,
-    mockRecommendedData1,
-    mockRecommendedData2,
-    mockRecommendedData2,
-    mockRecommendedData3,
-    mockRecommendedData1,
+    randomProjects[1],
+    randomProjects[2],
+    randomProjects[3],
+    randomProjects[4],
+    randomProjects[5],
+    randomProjects[6],
+    randomProjects[7],
+    randomProjects[8],
+    randomProjects[9],
   ];
 
   return (

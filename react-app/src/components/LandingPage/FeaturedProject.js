@@ -6,7 +6,6 @@ import './index.css'
 
 const FeaturedProject = ({featuredProject}) => {
 
-    console.log(featuredProject)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     const project_medias2 = project_medias?.filter(obj => obj['project_id'] === featuredProject?.id);
 

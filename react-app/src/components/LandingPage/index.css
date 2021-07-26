@@ -225,7 +225,7 @@
 
 .featured-project-image-container {
     width: 90%;
-    max-height: 300px;
+    height: 300px;
     border-bottom: 10px solid #23924E;
     padding: 0;
     text-align: center;
@@ -276,11 +276,14 @@
 
 .recommended-tile-image-container {
     overflow: hidden;
+    text-align: center;
 }
 
 .recommended-tile-image {
-    width: 100%;
-    height: auto;
+    min-width: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    /* height: auto; */
 }
 
 .recommended-tile-info-container {
