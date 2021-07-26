@@ -53,27 +53,12 @@ def get_search_results(query):
             return True
 
     filtered_search = list(filter(filterFunction, split_query))
-    print(filtered_search, "---------------------------------------")
-
-    # tag = request.form["tag"]
-    # search = "%{}%".format(tag)
-    # posts = Post.query.filter(Post.tags.like(search)).all()
-
-    # def mapFunction(word):
-    #     test = Project.query.all()
-    #     print({"test": [project.to_dict()['name'] for project in test]}, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    #     projects = Project.query.filter(Project.name.like(word)).all()
-    #     return projects
 
     projects = []
 
     for word in filtered_search:
-        print(word, 'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW')
-        chicken = Project.query.filter(Project.name.like(f"%{word}%") | Project.description.like(f"%{word}%")).all()
-        print(chicken, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        for project in chicken:
+        results = Project.query.filter(Project.name.like(f"%{word}%") | Project.description.like(f"%{word}%")).all()
+        for project in results:
             projects.append(project)
 
-
-    print(projects, '____________________________________________________')
     return {"projects": [project.to_dict() for project in projects]}
