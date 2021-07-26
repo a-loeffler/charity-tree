@@ -225,6 +225,7 @@
 
 .featured-project-image-container {
     width: 90%;
+    max-height: 300px;
     border-bottom: 10px solid #23924E;
     padding: 0;
     text-align: center;
@@ -236,6 +237,7 @@
 }
 
 .featured-project-image {
+    width: 100%;
     padding: 0;
     margin: 0;
 }
