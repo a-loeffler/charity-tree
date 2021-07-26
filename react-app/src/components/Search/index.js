@@ -18,9 +18,11 @@ const Search = () => {
 
   useEffect(() => {
     handleSearch(query);
-  }, []);
+  }, [query]);
 
-  useEffect(() => {}, [searchResults]);
+  useEffect(() => {
+    console.log(searchResults, query)
+  }, [searchResults]);
   const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
   let width = "300px"
   let minHeight = "300px"
@@ -28,7 +30,8 @@ const Search = () => {
 
   return (
     <div className="parentGrid">
-        {searchResults.length &&
+        {searchResults.length === 0 && <h1>No Results Found.</h1>}
+        {searchResults.length > 0 &&
           searchResults.map((project) => {
             return <ProjectCard key={project.id} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id
                 )[0]} ownerId={project.owner_id}/>
