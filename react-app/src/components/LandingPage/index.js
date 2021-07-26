@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import Carousel from "./Carousel";
 import FeaturedProject from "./FeaturedProject";
@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const LandingPage = () => {
   const allProjects = useSelector((state) => state.allProjects.projects);
-
+  const MediaList = useSelector((state) => state.MediaList.project_medias)
   // allProjects.forEach((e) => {
   //   console.log(e);
   // });
@@ -95,15 +95,15 @@ const LandingPage = () => {
 
 
   const mockRecommendedList = [
-    mockRecommendedData1,
-    mockRecommendedData2,
-    mockRecommendedData3,
-    mockRecommendedData3,
-    mockRecommendedData1,
-    mockRecommendedData2,
-    mockRecommendedData2,
-    mockRecommendedData3,
-    mockRecommendedData1,
+    randomProjects[1],
+    randomProjects[2],
+    randomProjects[3],
+    randomProjects[4],
+    randomProjects[5],
+    randomProjects[6],
+    randomProjects[7],
+    randomProjects[8],
+    randomProjects[9],
   ];
 
   return (
@@ -111,17 +111,18 @@ const LandingPage = () => {
       <div className="side-space"></div>
       <div className="main-content">
         <div className="upper-content-container">
-          <FeaturedProject featuredProject={mockFeaturedProjectData} />
+          <FeaturedProject featuredProject={randomProjects[0]}  />
           <Recommended recommendedList={mockRecommendedList} />
         </div>
         {allProjects?.length !== 0}
-        <Carousel id={"car-1"} list={recentProjects} title={"Recent"} />
+        <Carousel id={"car-1"} list={recentProjects} title={"Recent"}/>
         <Carousel
           id={"car-2"}
           list={sortedByCompletion}
           title={"Close to Goal"}
+          carouselLink={""}
         />
-        <Carousel id={"car-3"} list={randomProjects} title={"Discover"} />
+        <Carousel id={"car-3"} list={randomProjects} title={"Discover"} carouselLink={""} />
       </div>
       <div className="side-space"></div>
     </div>

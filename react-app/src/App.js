@@ -11,6 +11,7 @@ import EditorComponent from "./components/Editor";
 import EditName from "./components/EditName";
 import EditDescription from "./components/EditDescription";
 import EditGoal from "./components/EditGoal";
+import EditPage from "./components/EditPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
@@ -22,8 +23,10 @@ import LandingPage from "./components/LandingPage";
 import ProjectCreator from "./components/ProjectCreator";
 import Discover from "./components/Discover/Discover";
 import UpdateUser from "./components/Profile/UpdateUser";
+import About from "./components/About";
 
 import './index.css'
+import Search from "./components/Search";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -62,16 +65,19 @@ function App() {
           <MediaUpload />
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
-          <EditName />
-          <EditDescription />
-          <EditGoal />
-          <EditorComponent />
+          <EditPage />
         </Route>
         <Route path="/projects/:id" exact={true}>
           <ProjectPage />
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/search/:query">
+          <Search />
         </Route>
         <Route>
           <Discover />

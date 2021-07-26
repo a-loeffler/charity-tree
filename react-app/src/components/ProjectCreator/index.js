@@ -117,7 +117,7 @@ const ProjectCreator = () => {
     if (!owner) {
         return (
             <>
-                <RedirectModal />
+                <RedirectModal destination={'/signup'} message={'Users must be logged in to create a project.'}/>
             </>
         )
     }
@@ -307,7 +307,7 @@ const ProjectCreator = () => {
                             {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                         </div>
                         <h2 className="project-creator-form-text">Upload media for your project</h2>
-                        <h3 className="project-creator-form-sub-text">Supports video and image uploads</h3>
+                        <h3 className="project-creator-form-sub-text">Supports image uploads</h3>
                         {readyForNewMedia && <MediaUpload />}
                         <div className="project-creator-button-container">
                             <button className="project-creator-next-button max-content-width" onClick={e => goToLast(e)} >Finished Adding Media</button>
