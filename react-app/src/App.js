@@ -26,6 +26,7 @@ import UpdateUser from "./components/Profile/UpdateUser";
 import About from "./components/About";
 
 import './index.css'
+import Search from "./components/Search";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -74,6 +75,9 @@ function App() {
         </Route>
         <Route path="/about">
           <About />
+        </Route>
+        <Route path="/search/:query">
+          <Search />
         </Route>
         <Route>
           <Discover />

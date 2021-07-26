@@ -119,12 +119,12 @@ function Navigation() {
 
 
   //========== ToDo: Search
-  function handleSearch(e) {
+  async function handleSearch(e) {
     e.preventDefault()
     console.log('woot')
     let splitSearch = searchText.split(" ")
     let processedSearch = splitSearch.join("+")
-    
+    if (processedSearch === "") return
     setSearchText("")
     history.push(`/search/${processedSearch}`)
   }
