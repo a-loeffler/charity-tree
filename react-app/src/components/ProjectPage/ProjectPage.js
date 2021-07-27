@@ -154,13 +154,17 @@ export default function ProjectPage() {
 
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
                     <form onSubmit={e => donateSubmit(e)}>
-                        <input type='number' required placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
+                        <div>
+                        <input className="project-creator-input extended-width" type='number' required placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
                             setDollar(e.target.value)}
                         }/>
-                        <input type='number' required placeholder="Enter Card Number" value={cardNumber} onChange={(e) => {
+                        </div>
+                        <div>
+                        <input className="project-creator-input extended-width" type='number' required placeholder="Enter Card Number" value={cardNumber} onChange={(e) => {
                             setCardNumber(e.target.value)
                         }}></input>
-                        <button className="project-creator-next-button">Donate</button>
+                        </div>
+                        <button className="project-creator-next-button center">Donate</button>
                     </form>
                     {console.log("dollar", dollar)}
                     {/* {console.log("value", this.value)} */}

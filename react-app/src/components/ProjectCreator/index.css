@@ -262,3 +262,12 @@
     grid-auto-flow: column;
     grid-column-gap: 5px;
 }
+
+.extended-width {
+    width: 350px;
+}
+
+.center {
+    position: relative;
+    right: -150px;
+}
