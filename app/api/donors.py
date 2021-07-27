@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Donor
+from app.models import Donor, Project
 from app.models.db import db
 
 
@@ -26,7 +26,9 @@ def add_a_donor():
         amount=data["amount"]
     )
     # donor = a
-
+    updatedProject = Project.query.get(data["project_id"])
+    new_amount = updatedProject.to_dict()['current_amount'] + int(data["amount"])
+    updatedProject.current_amount = new_amount
     db.session.add(newDonor)
     db.session.commit()
     return {"donor": newDonor.to_dict()}

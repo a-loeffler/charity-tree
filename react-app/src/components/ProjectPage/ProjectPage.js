@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import EditorComponent from '../Editor'
 import { addADonor, getAllDonors } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
+import { getAllProjects } from "../../store/allProjects"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function ProjectPage() {
     const user = useSelector(state => state.session.user)
     const project = allProjects?.find(obj => obj.id == Number(id));
     const [dollar, setDollar] = useState(null)
+    const [cardNumber, setCardNumber] = useState(null)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
     const projectHtml = document.querySelector('.project_html')
@@ -95,6 +97,24 @@ export default function ProjectPage() {
 
 
 
+    const  donateSubmit = async (e) => {
+        e.preventDefault()
+        if (user) {
+            await dispatch(addADonor({amount: dollar, user_id: user.id, project_id: id}))
+            setDollar(Number(undefined))
+            setCardNumber(Number(undefined))
+            dispatch(getAllProjects())
+        }
+        else {
+            await dispatch(addADonor({amount: dollar, user_id: null, project_id: id}))
+            setDollar(Number(undefined))
+            setCardNumber(Number(undefined))
+            dispatch(getAllProjects())
+        }
+    }
+
+
+
     return (
         <div className="projectPage--container">
             <div className="header">
@@ -133,19 +153,29 @@ export default function ProjectPage() {
 
 
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
-                    <textarea placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
-                        setDollar(e.target.value)}
-                    }/>
+                    <form onSubmit={e => donateSubmit(e)}>
+                        <div>
+                        <input className="project-creator-input extended-width" type='number' required placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
+                            setDollar(e.target.value)}
+                        }/>
+                        </div>
+                        <div>
+                        <input className="project-creator-input extended-width" type='number' required placeholder="Enter Card Number" value={cardNumber} onChange={(e) => {
+                            setCardNumber(e.target.value)
+                        }}></input>
+                        </div>
+                        <button className="project-creator-next-button center">Donate</button>
+                    </form>
                     {console.log("dollar", dollar)}
                     {/* {console.log("value", this.value)} */}
 
-                    <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={() => {test()}}>
+                    {/* <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={() => {test()}}>
                         <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
                         <input type="hidden" name="no_recurring" value={`${dollar}`} />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                    </form>
+                    </form> */}
                 </div>
             </div>
 

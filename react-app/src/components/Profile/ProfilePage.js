@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Carousel from "../LandingPage/Carousel";
 import ProjectCard from "../LandingPage/ProjectCard";
 import './ProfilePage.css'
+import RedirectModal from "../RedirectModal";
 
 export default function ProfilePage() {
     const {id} = useParams();
@@ -30,22 +31,32 @@ export default function ProfilePage() {
         if(user.id === Number(id)) {
             return(
                 <>
-                    <button><Link to={`/profile/${id}/update`}>Update Profile</Link></button>
+                    {/* <button><Link to={`/profile/${id}/update`}>Update Profile</Link></button> */}
                     {/* <button onClick={}>Delete Profile</button> */}
                 </>
             )
         }
     }
-    
+
+    useEffect(() => {}, [Users])
+
+    if (Users?.length && !selectedUser) {
+        return (
+            <>
+                <RedirectModal destination={'/'} message={'Requested profile page does not exist.'}/>
+            </>
+        )
+    }
+
     return(
         <div className="container">
-            <div className="header">
+            {/* <div className="header">
                 <h1>{`Welcome to ${selectedUser?.username}'s Page!`}</h1>
-                {updateInfo()}
+                {updateInfo()} */}
                 {/* <button onClick={() => {
                     return console.log('aewfewfc')
                 }}>tester</button> */}
-            </div>
+            {/* </div> */}
             <h3 className="myProjects">{`${selectedUser?.username}'s Projects:`}</h3>
             <div className="users_projects">
 
