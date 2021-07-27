@@ -39,13 +39,13 @@ export default function ProfilePage() {
 
     return(
         <div className="container">
-            <div className="header">
+            {/* <div className="header">
                 <h1>{`Welcome to ${selectedUser?.username}'s Page!`}</h1>
-                {updateInfo()}
+                {updateInfo()} */}
                 {/* <button onClick={() => {
                     return console.log('aewfewfc')
                 }}>tester</button> */}
-            </div>
+            {/* </div> */}
             <h3 className="myProjects">{`${selectedUser?.username}'s Projects:`}</h3>
             <div className="users_projects">
 
