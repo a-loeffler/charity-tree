@@ -24,6 +24,7 @@ export default function ProjectPage() {
     const user = useSelector(state => state.session.user)
     const project = allProjects?.find(obj => obj.id == Number(id));
     const [dollar, setDollar] = useState(null)
+    const [cardNumber, setCardNumber] = useState(null)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
     const projectHtml = document.querySelector('.project_html')
@@ -100,10 +101,14 @@ export default function ProjectPage() {
         e.preventDefault()
         if (user) {
             await dispatch(addADonor({amount: dollar, user_id: user.id, project_id: id}))
+            setDollar(Number(undefined))
+            setCardNumber(Number(undefined))
             dispatch(getAllProjects())
         }
         else {
             await dispatch(addADonor({amount: dollar, user_id: null, project_id: id}))
+            setDollar(Number(undefined))
+            setCardNumber(Number(undefined))
             dispatch(getAllProjects())
         }
     }
@@ -149,10 +154,12 @@ export default function ProjectPage() {
 
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
                     <form onSubmit={e => donateSubmit(e)}>
-                        <input type='' placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
+                        <input type='number' required placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
                             setDollar(e.target.value)}
                         }/>
-                        <input type='number' placeholder="Enter Card Number"></input>
+                        <input type='number' required placeholder="Enter Card Number" value={cardNumber} onChange={(e) => {
+                            setCardNumber(e.target.value)
+                        }}></input>
                         <button className="project-creator-next-button">Donate</button>
                     </form>
                     {console.log("dollar", dollar)}
