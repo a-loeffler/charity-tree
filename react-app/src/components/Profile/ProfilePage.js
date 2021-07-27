@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Carousel from "../LandingPage/Carousel";
 import ProjectCard from "../LandingPage/ProjectCard";
 import './ProfilePage.css'
+import RedirectModal from "../RedirectModal";
 
 export default function ProfilePage() {
     const {id} = useParams();
@@ -35,6 +36,16 @@ export default function ProfilePage() {
                 </>
             )
         }
+    }
+
+    useEffect(() => {}, [Users])
+
+    if (Users?.length && !selectedUser) {
+        return (
+            <>
+                <RedirectModal destination={'/'} message={'Requested profile page does not exist.'}/>
+            </>
+        )
     }
 
     return(
