@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import EditorComponent from '../Editor'
 import { addADonor, getAllDonors } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
+import { getAllProjects } from "../../store/allProjects"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -93,13 +94,17 @@ export default function ProjectPage() {
         }
     }
 
-    const donateSubmit = (e) => {
+
+
+    const  donateSubmit = async (e) => {
         e.preventDefault()
         if (user) {
-            dispatch(addADonor({amount: dollar, user_id: user.id, project_id: id}))
+            await dispatch(addADonor({amount: dollar, user_id: user.id, project_id: id}))
+            dispatch(getAllProjects())
         }
         else {
-            dispatch(addADonor({amount: dollar, user_id: null, project_id: id}))
+            await dispatch(addADonor({amount: dollar, user_id: null, project_id: id}))
+            dispatch(getAllProjects())
         }
     }
 
