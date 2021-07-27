@@ -1,6 +1,6 @@
 # CHARITY TREE
 
-*By Drew Long, Mike Sineath, Kevin Betker, Andrew Loeffler - <a href="https://charity-tree.herokuapp.com/landing-page">Visit Charity Tree</a>*
+*By Drew Long, Mike Sineath, Kevin Betker, Andrew Loeffler - <a href="https://charity-tree.herokuapp.com/">Visit Charity Tree</a>*
 
 
 **Table of Contents**
