@@ -19,7 +19,7 @@ const addDonor = (donor) => {
 export const getAllDonors = () => async (dispatch) => {
     const response = await fetch(`/api/donors/`)
     const data = await response.json()
-    dispatch(setAllDonors(data))
+    dispatch(setAllDonors(data.donations))
 }
 
 export const addADonor = (newDonorData) => async (dispatch) => {
@@ -40,7 +40,7 @@ export const addADonor = (newDonorData) => async (dispatch) => {
 
     const data = await response.json();
 
-    dispatch(addDonor(data))
+    dispatch(addDonor(data.donor))
 }
 
 const initialState = {donors: []}
@@ -54,7 +54,7 @@ const allDonorsReducer = (state = initialState, action) => {
         }
         case ADD_DONOR: {
             let newState = {...state};
-            newState.newDonor = action.payload
+            newState.donors = [...newState.donors, action.payload]
             return newState
         }
         default: {

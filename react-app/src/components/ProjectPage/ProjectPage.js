@@ -93,6 +93,16 @@ export default function ProjectPage() {
         }
     }
 
+    const donateSubmit = (e) => {
+        e.preventDefault()
+        if (user) {
+            dispatch(addADonor({amount: dollar, user_id: user.id, project_id: id}))
+        }
+        else {
+            dispatch(addADonor({amount: dollar, user_id: null, project_id: id}))
+        }
+    }
+
 
 
     return (
@@ -133,19 +143,23 @@ export default function ProjectPage() {
 
 
                     {/* <h1>{category[project?.category_id]?.name}</h1> */}
-                    <textarea placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
-                        setDollar(e.target.value)}
-                    }/>
+                    <form onSubmit={e => donateSubmit(e)}>
+                        <input type='' placeholder="Enter Donation Amount" value={dollar} onChange={(e) => {
+                            setDollar(e.target.value)}
+                        }/>
+                        <input type='number' placeholder="Enter Card Number"></input>
+                        <button className="project-creator-next-button">Donate</button>
+                    </form>
                     {console.log("dollar", dollar)}
                     {/* {console.log("value", this.value)} */}
 
-                    <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={() => {test()}}>
+                    {/* <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={() => {test()}}>
                         <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
                         <input type="hidden" name="no_recurring" value={`${dollar}`} />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                    </form>
+                    </form> */}
                 </div>
             </div>
 
