@@ -30,13 +30,13 @@ export default function ProfilePage() {
         if(user.id === Number(id)) {
             return(
                 <>
-                    <button><Link to={`/profile/${id}/update`}>Update Profile</Link></button>
+                    {/* <button><Link to={`/profile/${id}/update`}>Update Profile</Link></button> */}
                     {/* <button onClick={}>Delete Profile</button> */}
                 </>
             )
         }
     }
-    
+
     return(
         <div className="container">
             <div className="header">

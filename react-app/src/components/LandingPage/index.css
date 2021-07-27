@@ -95,10 +95,11 @@
     margin: 4px;
     scroll-snap-align: start;
     z-index: -5;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .project-card-container:hover{
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 .card_anchor{
@@ -127,6 +128,10 @@
 .project-card-title {
     font-size: 18px;
     color: #464646;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }
 
 .project-card-description {
