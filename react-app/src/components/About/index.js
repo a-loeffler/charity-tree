@@ -1,4 +1,5 @@
 import React from "react"
+import './index.css'
 
 const About = () => {
     return (
@@ -14,7 +15,7 @@ const About = () => {
                         <p className="about-info-text">
                         Charity Tree is here to give you a way to support your
                         favorite charities and nonprofit organizations. <br/>
-                        We want to help the world 
+                        We want to help the world become a better place by...
                         </p>
                     </div>
                 </div>
