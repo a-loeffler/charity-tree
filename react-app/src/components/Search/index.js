@@ -55,7 +55,7 @@ const Search = () => {
             return <ProjectCard key={index} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id
                 )[0]} ownerId={project.owner_id}/>
           }) : null}
-        {filterCategory !== null && filterSearch.length === 0 ? <h1>No Results Found.</h1> : null}
+        {filterCategory !== null && filterSearch.length === 0 && searchResults.length !== 0 ? <h1>No Results Found.</h1> : null}
         {filterCategory === null ? searchResults.map((project, index) => {
             return <ProjectCard key={index} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id
                 )[0]} ownerId={project.owner_id}/>
