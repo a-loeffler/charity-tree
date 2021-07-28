@@ -29,13 +29,16 @@ const Search = () => {
   let display = "flex"
 
   return (
-    <div className="parentGrid">
+    <div className="search-results-container">
+      
+      <div className="parentGrid">
         {searchResults.length === 0 && <h1>No Results Found.</h1>}
         {searchResults.length > 0 &&
           searchResults.map((project) => {
             return <ProjectCard key={project.id} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id
                 )[0]} ownerId={project.owner_id}/>
           })}
+      </div>
     </div>
   );
 };
