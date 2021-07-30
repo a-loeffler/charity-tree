@@ -119,7 +119,7 @@ const About = () => {
           <div className="creator-bubble" onMouseEnter={e => setHover4(true)} onMouseLeave={e => setHover4(false)}>
             <h1 className="white-text">Kevin Betker</h1>
             <img
-              src="/images/white-cherry.svg"
+              src={whiteCherry}
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover4 &&
