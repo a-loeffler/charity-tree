@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./index.css";
 
+import whiteCherry from './white-cherry.svg';
+import treeVector from './tree-vector.svg';
+
 const About = () => {
   const [hover1, setHover1] = useState(false)
   const [hover2, setHover2] = useState(false)
@@ -14,7 +17,7 @@ const About = () => {
         <h2 className="about-page-heading">Mission and Purpose</h2>
         <div className="about-info-container">
           <div className="about-info-image-container">
-            <img className='tree-image' src="/images/tree-vector.svg"></img>
+            <img className='tree-image' src={treeVector}></img>
           </div>
           <div className="about-info-text-container">
             <p className="about-info-text">
@@ -34,7 +37,7 @@ const About = () => {
           <div className="creator-bubble" onMouseEnter={e => setHover1(true)} onMouseLeave={e => setHover1(false)}>
             <h1 className="white-text">Andrew Loeffler</h1>
             <img
-              src="/images/white-cherry.svg"
+              src={whiteCherry}
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover1 &&
@@ -62,7 +65,7 @@ const About = () => {
           <div className="creator-bubble" onMouseEnter={e => setHover2(true)} onMouseLeave={e => setHover2(false)}>
             <h1 className="white-text">Drew Long</h1>
             <img
-              src="/images/white-cherry.svg"
+              src={whiteCherry}
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover2 &&
@@ -89,7 +92,7 @@ const About = () => {
           <div className="creator-bubble" onMouseEnter={e => setHover3(true)} onMouseLeave={e => setHover3(false)}>
             <h1 className="white-text">Mike Sineath</h1>
             <img
-              src="/images/white-cherry.svg"
+              src={whiteCherry}
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover3 &&
