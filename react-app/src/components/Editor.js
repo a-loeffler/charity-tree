@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import apiKey from "../api-key";
+import apiKey from "./api-key";
 import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
 import { Redirect, useParams, useHistory } from "react-router-dom";
