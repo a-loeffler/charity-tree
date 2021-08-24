@@ -306,7 +306,9 @@ const ProjectCreator = () => {
                         <div className="media-upload-display">
                             {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                         </div>
-                        <h2 className="project-creator-form-text">Upload media for your project</h2>
+                        <h2 className="project-creator-form-text">Upload media for your project
+                            <br/> (recommended
+ aspect ratio for best image quiality: 16:9)</h2>
                         <h3 className="project-creator-form-sub-text">Supports image uploads</h3>
                         {readyForNewMedia && <MediaUpload />}
                         <div className="project-creator-button-container">
