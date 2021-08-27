@@ -118,10 +118,9 @@ function Navigation() {
 
 
 
-  //========== ToDo: Search
+  //========== Search
   async function handleSearch(e) {
     e.preventDefault()
-    console.log('woot')
     let splitSearch = searchText.split(" ")
     let processedSearch = splitSearch.join("+")
     if (processedSearch === "") return

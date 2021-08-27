@@ -29,7 +29,6 @@ const EditGoal = () => {
             },
             body: JSON.stringify(value),
         })
-        console.log('submit')
         dispatch(getAllProjects())
     }
     return (

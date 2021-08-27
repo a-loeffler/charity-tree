@@ -10,22 +10,10 @@ export default function Discover() {
     const projectMedia = useSelector(state => state.MediaList.project_medias)
     const dispatch = useDispatch()
 
-    // useEffect(()=> {
-    //     dispatch(getAllProjects())
-    //     dispatch(mediaGetter())
-    // }, [dispatch])
-
-    // if(!allProjects || !projectMedia) {
-    //     return(
-    //         null
-    //     )
-    // }
-    // console.log('***********************************', allProjects[0]?.name)
     const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
     let width = "300px"
     let minHeight = "300px"
     let display = "flex"
-
 
     return (
         <div className="parentGrid">

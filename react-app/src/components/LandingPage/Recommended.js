@@ -51,10 +51,6 @@ const Recommended = ({recommendedList}) => {
         setDisplayCounter(3)
         setTilePosition(6)
     }
-    //To-do: slice recommendedList to get appropriate data
-    //use arrow buttons to affect indices in state
-
-    //
 
     return (
         <div className="recommended-container">

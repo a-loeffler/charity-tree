@@ -10,9 +10,6 @@ import { useSelector } from "react-redux";
 const LandingPage = () => {
   const allProjects = useSelector((state) => state.allProjects.projects);
   const MediaList = useSelector((state) => state.MediaList.project_medias)
-  // allProjects.forEach((e) => {
-  //   console.log(e);
-  // });
 
   //========== Sort By Most Recent ==============
   let recentProjects = [...allProjects];

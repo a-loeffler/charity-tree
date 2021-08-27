@@ -84,9 +84,6 @@ const ProjectCreator = () => {
                     let indexNumber = process1[process1.length - 1];
 
                     dispatch(deleteTempMedia(indexNumber))
-                    // let newMedia = media.slice();
-                    // newMedia.splice(indexNumber, 1);
-                    // setMedia(newMedia);
                 })
             })
         }
@@ -108,12 +105,6 @@ const ProjectCreator = () => {
 
     }, [tiers, owner, section])
 
-    //TO-DO: get owner id from auth; otherwise redirect to sign-in page
-
-
-
-
-
     if (!owner) {
         return (
             <>
@@ -121,12 +112,6 @@ const ProjectCreator = () => {
             </>
         )
     }
-
-    // setOwnerId(owner.id)
-
-
-    //To do: need to get categories from store
-
 
     const sectionForward = (e) => {
         e.preventDefault();
@@ -194,9 +179,6 @@ const ProjectCreator = () => {
         setTimeout(() => {
             setSection(7)
         }, 1500)
-
-        //to do: dispatch thunk with mediaUrls and project id
-
     }
 
     const mediaSubmit = (e) => {
@@ -307,8 +289,7 @@ const ProjectCreator = () => {
                             {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                         </div>
                         <h2 className="project-creator-form-text">Upload media for your project
-                            <br/> (recommended
- aspect ratio for best image quiality: 16:9)</h2>
+                            <br/> (recommended aspect ratio for best image quiality: 16:9)</h2>
                         <h3 className="project-creator-form-sub-text">Supports image uploads</h3>
                         {readyForNewMedia && <MediaUpload />}
                         <div className="project-creator-button-container">

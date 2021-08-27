@@ -8,7 +8,6 @@ const setAll = (projects) => ({
 export const getAllProjects = () => async (dispatch) => {
     const response = await fetch(`/api/projects/`)
     const data = await response.json()
-    console.log('this will be state data', data)
     dispatch(setAll(data))
 }
 
