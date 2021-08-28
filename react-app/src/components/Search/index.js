@@ -35,7 +35,7 @@ const Search = () => {
     else {
       setFilterSearch([])
     }
-  }, [filterCategory])
+  }, [filterCategory, searchResults])
 
   const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
   let width = "300px"
