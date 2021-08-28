@@ -64,7 +64,6 @@ const SignUpForm = () => {
   return (
     <form onSubmit={onSignUp} className="signup--form">
         <div className="errors">
-          {errors.length > 0 && <h3>Errors:</h3> || backendErrors.length > 0 && <h3>Errors:</h3>}
           {backendErrors.map((error) => ( <div key={error}>{error}</div> ))}
           {errors.map((error) => ( <div key={error}>{error}</div> ))}
         </div>
