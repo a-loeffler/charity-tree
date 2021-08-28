@@ -18,12 +18,12 @@ const EditDescription = () => {
             setValue(project[0]?.description)
             setLoaded(true)
         }
-    }, [project])
+    }, [project, loaded])
 
     //========== Updates the project.description in the Database and Store ==============
     const onSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch(`/api/projects/${id}/edit/description`, {
+        await fetch(`/api/projects/${id}/edit/description`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
