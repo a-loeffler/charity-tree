@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Carousel from "../LandingPage/Carousel";
 import ProjectCard from "../LandingPage/ProjectCard";
 import './ProfilePage.css'
 import RedirectModal from "../RedirectModal";
@@ -11,9 +9,8 @@ export default function ProfilePage() {
     const {id} = useParams();
     const allProjects = useSelector(state => state.allProjects.projects)
     const projectMedia = useSelector(state => state.MediaList.project_medias)
-    const userProjects = allProjects?.filter(obj => obj.owner_id == Number(id));
+    const userProjects = allProjects?.filter(obj => obj.owner_id === Number(id));
     const Users = useSelector(state => state.allUsers.users)
-    const user = useSelector(state => state.session.user)
     const selectedUser = Users?.filter(user => user.id === Number(id))[0]
 
 
