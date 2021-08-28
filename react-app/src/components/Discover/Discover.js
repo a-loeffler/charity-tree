@@ -1,14 +1,11 @@
-import React, {useEffect} from 'react'
+import React from 'react';
 import ProjectCard from "../LandingPage/ProjectCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProjects } from '../../store/allProjects';
-import { mediaGetter } from '../../store/media';
 import "./index.css"
 
 export default function Discover() {
     const allProjects = useSelector(state => state.allProjects.projects)
     const projectMedia = useSelector(state => state.MediaList.project_medias)
-    const dispatch = useDispatch()
 
     const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
     let width = "300px"
