@@ -17,7 +17,7 @@ const About = () => {
         <h2 className="about-page-heading">Mission and Purpose</h2>
         <div className="about-info-container">
           <div className="about-info-image-container">
-            <img className='tree-image' src={treeVector}></img>
+            <img className='tree-image' src={treeVector} alt='tree'></img>
           </div>
           <div className="about-info-text-container">
             <p className="about-info-text">
@@ -38,6 +38,7 @@ const About = () => {
             <h1 className="white-text">Andrew Loeffler</h1>
             <img
               src={whiteCherry}
+              alt='cherry logo'
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover1 &&
@@ -66,6 +67,7 @@ const About = () => {
             <h1 className="white-text">Drew Long</h1>
             <img
               src={whiteCherry}
+              alt='cherry logo'
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover2 &&
@@ -93,6 +95,7 @@ const About = () => {
             <h1 className="white-text">Mike Sineath</h1>
             <img
               src={whiteCherry}
+              alt='cherry logo'
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover3 &&
@@ -120,6 +123,7 @@ const About = () => {
             <h1 className="white-text">Kevin Betker</h1>
             <img
               src={whiteCherry}
+              alt='cherry logo'
               style={{ height: "50px", width: "50px" }}
             ></img>
             {hover4 &&
