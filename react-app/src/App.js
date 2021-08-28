@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
-import NavBar from "./components/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
-import EditorComponent from "./components/Editor";
-import EditName from "./components/EditName";
-import EditDescription from "./components/EditDescription";
-import EditGoal from "./components/EditGoal";
 import EditPage from "./components/EditPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import Homepage from "./components/Homepage";
 import SignUpForm from "./components/SignUpForm"
 import ProjectPage from "./components/ProjectPage";
 import ProfilePage from "./components/Profile/ProfilePage";
@@ -36,7 +26,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
