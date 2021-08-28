@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectCard from "../LandingPage/ProjectCard";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./index.css"
 
 export default function Discover() {
