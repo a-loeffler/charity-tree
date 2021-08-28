@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Redirect, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import TierButton from './TierButton';
 import MediaTile from './MediaTile';
 import MediaUpload from '../MediaUpload';
@@ -19,8 +19,6 @@ const ProjectCreator = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const mockMedia = ["https://i.ibb.co/7CCsBs7/mock-tile.png", "https://i.ibb.co/7CCsBs7/mock-tile.png"]
-
 
     const currentDate = new Date()
     const dd = String(currentDate.getDate()).padStart(2, '0');
@@ -103,7 +101,7 @@ const ProjectCreator = () => {
             })
         }
 
-    }, [tiers, owner, section])
+    }, [tiers, owner, section, dispatch, projectInfo.project])
 
     if (!owner) {
         return (
@@ -137,7 +135,7 @@ const ProjectCreator = () => {
             category_id: category,
         }
 
-        const data = dispatch(postNewProject(projectData, tiers))
+        dispatch(postNewProject(projectData, tiers))
 
         setTimeout(() => {
 
