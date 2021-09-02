@@ -17,26 +17,35 @@
   background-color: #ffffff;
   padding: 50px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .about-page-title {
   font-size: 36px;
   color: #409a00;
+  text-align: center;
 }
 
 .about-page-heading {
   font-size: 28px;
   color: #668866;
+  text-align: center;
 }
 
 .about-info-text {
   font-size: 24px;
   padding: 20px;
+  text-align: center;
 }
 
 .about-page-section {
-  padding-left: 50px;
+  /* padding-left: 50px; */
   padding-top: 20px;
+  display: flex;
+  flex-direction:column;
 }
 
 .about-info-container {
@@ -46,9 +55,10 @@
 }
 
 .about-creators-container {
-  margin-top: 20px;
+  margin-top: 2.1%;
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
+  width: 100%;
+  grid-template-columns: 20% 20% 20% 20%;
   grid-template-rows: 300px;
   grid-column-gap: 50px;
 }
@@ -60,7 +70,8 @@
   flex-direction: column;
   background-color: #cb2934;
   border-radius: 50%;
-  height: 200px;
+  height: 67%;
+  width:auto;
   position: relative;
 }
 
@@ -94,4 +105,14 @@
 .tree-image {
   width: 100%;
   height: auto;
+}
+
+.about-info-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1.white-text {
+  text-align: center;
 }
