@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.css";
 import Carousel from "./Carousel";
 import FeaturedProject from "./FeaturedProject";
@@ -9,10 +9,6 @@ import { useSelector } from "react-redux";
 
 const LandingPage = () => {
   const allProjects = useSelector((state) => state.allProjects.projects);
-  const MediaList = useSelector((state) => state.MediaList.project_medias)
-  // allProjects.forEach((e) => {
-  //   console.log(e);
-  // });
 
   //========== Sort By Most Recent ==============
   let recentProjects = [...allProjects];
@@ -60,39 +56,6 @@ const LandingPage = () => {
   }
   let random = [...allProjects];
   const randomProjects = shuffle(random);
-
-  const mockFeaturedProjectData = {
-    title: "We be broke, y’all!",
-    bannerUrl: "https://i.ibb.co/YWvkzkf/mock-banner.png",
-    creator: "Charity Tree Creators",
-    description:
-      "The creators of Charity Tree are working to develop web software that can aid and support charities and nonprofit organizations.  Join us in helping others!",
-  };
-
-  const mockRecommendedData1 = {
-    title: "Can I has moneyz?!",
-    bannerUrl: "https://i.ibb.co/7CCsBs7/mock-tile.png",
-    funded: 14,
-    creator: "Mr. Whiskers",
-  };
-
-
-  const mockRecommendedData2 = {
-    title: "AHA",
-    bannerUrl: "https://city-sentinel.com/wp-content/uploads/2016/05/AHA-logo.jpg",
-    funded: 12,
-    creator: "City Sentinel",
-  };
-
-  const mockRecommendedData3 = {
-    title: "End Homelessness",
-    bannerUrl: "https://endhomelessness.org/wp-content/uploads/2016/10/2016update.png",
-    funded: 12,
-    creator: "Society for the Prevention of Homelessness",
-  };
-
-
-
 
   const mockRecommendedList = [
     randomProjects[1],

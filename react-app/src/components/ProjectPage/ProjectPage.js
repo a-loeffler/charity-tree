@@ -1,43 +1,29 @@
-import React, {useState, useRef, useEffect} from "react"
+import React, {useState, useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './project_page.css'
 import silverStar from "./silverStar.png"
 import goldStar from "./goldStar.png"
 import platinumStar from "./platinumStar.png"
 import { Link } from "react-router-dom"
-import EditorComponent from '../Editor'
-import { addADonor, getAllDonors } from "../../store/allDonors"
+import { addADonor } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
 import { getAllProjects } from "../../store/allProjects"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
-    const history = useHistory()
     const { id } = useParams();
-    const form1 = useRef(null);
-    const form2 = useRef(null);
     const allProjects = useSelector(state => state.allProjects.projects)
-    const category = useSelector(state => state.allCategories.categories)
     const project_medias = useSelector(state => state.MediaList.project_medias)
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
     const user = useSelector(state => state.session.user)
-    const project = allProjects?.find(obj => obj.id == Number(id));
+    const project = allProjects?.find(obj => obj.id === Number(id));
     const [dollar, setDollar] = useState(null)
     const [cardNumber, setCardNumber] = useState(null)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
-    const projectHtml = document.querySelector('.project_html')
 
     // ============ adds the project html ========
-    // if (project &&  projectHtml) projectHtml.innerHTML = project?.page_html
-    const test = async (event) => {
-        // event.preventDefault();
-
-        console.log("*-*-*-*-*/*-/-*/-*/-*/*-/-*/-*/*-/-*/-*/-*/*-/-*/-*/-*/-*", form2.current)
-        await dispatch(addADonor({'project_id': id, "user_id": user.id, "amount": dollar}))
-        await dispatch(getAllDonors())
-    }
 
     useEffect(() => {}, [allProjects])
 
@@ -49,16 +35,10 @@ export default function ProjectPage() {
         )
     }
 
-    // const doubleSubmit = async event => {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     form1.submit()
-    // }
-
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
         const days = milliseconds / 1000 / 60 / 60 / 24
-        if (days === NaN){
+        if (isNaN(days) === true){
             return 'Hmm... something is broken'
         }
         else if (milliseconds <= 0) {
@@ -69,7 +49,7 @@ export default function ProjectPage() {
     }
     const getPercent = () => {
         const total = Math.trunc(project?.current_amount / project?.goal * 100)
-        if(total === NaN) return "The math is not adding up..."
+        if(isNaN(total) === true) return "The math is not adding up..."
         return total > 100 ? 100 : total;
     }
 
@@ -127,7 +107,7 @@ export default function ProjectPage() {
                 <div className="pic_and_thumbnails">
                     <div className="pics_container" >
                         <div style={{ backgroundImage: `url(${project_medias2[0]?.media_url})` }} className="background_image"></div>
-                        <img src={project_medias2[0]?.media_url} className="mainImage"></img>
+                        <img src={project_medias2[0]?.media_url} alt={`${project?.name}`} className="mainImage"></img>
                     </div>
 
                     <div className="thumbnail--container">
@@ -166,16 +146,6 @@ export default function ProjectPage() {
                         </div>
                         <button className="project-creator-next-button center">Donate</button>
                     </form>
-                    {console.log("dollar", dollar)}
-                    {/* {console.log("value", this.value)} */}
-
-                    {/* <form action="https://www.paypal.com/donate" ref={form1} method="post" target="_top" onSubmit={() => {test()}}>
-                        <input type="hidden" name="business" value="AAAYWPX9MSRSE" />
-                        <input type="hidden" name="no_recurring" value={`${dollar}`} />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                    </form> */}
                 </div>
             </div>
 
@@ -200,9 +170,9 @@ export default function ProjectPage() {
                    { filtered_tiers?.map((obj) =>
                     <div className="tier--container" key={`tier-container-${obj.id}`}>
                         <div className="tierName" key={`tier-name-${obj.id}`}>
-                            { obj.name == "Silver" ? <img src={silverStar} className="tierStar" key={`star-${obj.id}`}></img>
-                                : obj.name == "Gold" ? <img src={goldStar} className="tierStar" key={`star-${obj.id}`}></img>
-                                : <img src={platinumStar} className="tierStar" key={`star-${obj.id}`}></img>
+                            { obj.name === "Silver" ? <img src={silverStar} alt='silver star' className="tierStar" key={`star-${obj.id}`}></img>
+                                : obj.name === "Gold" ? <img src={goldStar} alt='gold star' className="tierStar" key={`star-${obj.id}`}></img>
+                                : <img src={platinumStar} alt='platinum star' className="tierStar" key={`star-${obj.id}`}></img>
                             }
                                 <h1 key={`name-${obj.id}`}>{obj.name}</h1>
                         </div>
@@ -224,9 +194,9 @@ export default function ProjectPage() {
             { filtered_tiers?.map((obj) =>
             <div className="tier--container" key={`tier-container-${obj.id}`}>
                 <div className="tierName" key={`tier-name-${obj.id}`}>
-                    { obj.name == "Silver" ? <img src={silverStar} className="tierStar" key={`star-${obj.id}`}></img>
-                        : obj.name == "Gold" ? <img src={goldStar} className="tierStar" key={`star-${obj.id}`}></img>
-                        : <img src={platinumStar} className="tierStar" key={`star-${obj.id}`}></img>
+                    { obj.name === "Silver" ? <img src={silverStar} alt='silver star' className="tierStar" key={`star-${obj.id}`}></img>
+                        : obj.name === "Gold" ? <img src={goldStar} alt='gold star' className="tierStar" key={`star-${obj.id}`}></img>
+                        : <img src={platinumStar} className="tierStar" alt='platinum star' key={`star-${obj.id}`}></img>
                     }
                         <h1 key={`name-${obj.id}`}>{obj.name}</h1>
                 </div>

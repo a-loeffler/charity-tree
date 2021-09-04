@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import apiKey from "../api-key";
 import { useDispatch, useSelector } from "react-redux";
 import { getMedia } from "../store/media";
 import { Redirect, useParams, useHistory } from "react-router-dom";
@@ -12,7 +11,6 @@ const EditorComponent = () => {
   const [text, setText] = useState("");
   const media = useSelector((state) => state.MediaList.updated_media_info);
   const allProjects = useSelector((state) => state.allProjects.projects)
-  // const project = allProjects?.find(obj => obj.id == Number(id));
   const [value, setValue] = useState('');
   const [loaded, setLoaded] = useState(false)
   const [page_html, setPage_Html] = useState('')
@@ -71,12 +69,10 @@ const EditorComponent = () => {
           setPage_Html(currentProject[0].page_html)
           // add redirect to the project's official page?
           setLetThisWork(true);
-          // return history.push(`/projects/${id}`)
-
         }}
         >
         <Editor
-          apiKey={apiKey}
+          apiKey={process.env.REACT_APP_API_KEY}
           onInit={(evt, editor) => (editorRef.current = editor)}
           value={value}
           onEditorChange={(newValue, editor) => {

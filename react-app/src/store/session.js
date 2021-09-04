@@ -47,18 +47,16 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-    const response = await fetch("/api/auth/logout", {
+    await fetch("/api/auth/logout", {
         headers: {
             "Content-Type": "application/json",
         }
     });
-    const data = await response.json();
     dispatch(removeUser());
 };
 
 
 export const signUp = (username, email, password) => async (dispatch) => {
-    console.log("Begining of thunk")
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {

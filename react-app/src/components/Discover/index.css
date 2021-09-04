@@ -3,3 +3,17 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.test {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-selector {
+    height: 30px;
+    font-size: 25px;
+}
+
+select {
+    text-align-last: center;
+}

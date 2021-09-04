@@ -17,7 +17,7 @@ const About = () => {
         <h2 className="about-page-heading">Mission and Purpose</h2>
         <div className="about-info-container">
           <div className="about-info-image-container">
-            <img className='tree-image' src={treeVector}></img>
+            <img className='tree-image' src={treeVector} alt='tree'></img>
           </div>
           <div className="about-info-text-container">
             <p className="about-info-text">
@@ -38,110 +38,105 @@ const About = () => {
             <h1 className="white-text">Andrew Loeffler</h1>
             <img
               src={whiteCherry}
-              style={{ height: "50px", width: "50px" }}
-            ></img>
+              alt='cherry logo'
+              style={{ height: "50px", width: "50px" }}>
+            </img>
             {hover1 &&
-            <>
-            <a
-            className="white-text"
-            href={"https://github.com/a-loeffler"}
-            target={"_blank"}
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a
-          className="white-text"
-          href={"https://www.linkedin.com/in/andrew-loeffler-fullstack-dev/"}
-          target={"_blank"}
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-        </>
-          }
-
+              <>
+                <a
+                  className="white-text"
+                  href={"https://github.com/a-loeffler"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Github
+                </a>
+                <a
+                  className="white-text"
+                  href={"https://www.linkedin.com/in/andrew-loeffler-fullstack-dev/"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </>
+            }
           </div>
           <div className="creator-bubble" onMouseEnter={e => setHover2(true)} onMouseLeave={e => setHover2(false)}>
             <h1 className="white-text">Drew Long</h1>
             <img
               src={whiteCherry}
-              style={{ height: "50px", width: "50px" }}
-            ></img>
+              alt='cherry logo'
+              style={{ height: "50px", width: "50px" }}>
+            </img>
             {hover2 &&
-            <>
-            <a
-            className="white-text"
-            href={"https://github.com/drewlong314"}
-            target={"_blank"}
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a
-          className="white-text"
-          href={"https://www.linkedin.com/in/drew-long-361772172/"}
-          target={"_blank"}
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-        </>
-          }
+              <>
+                <a
+                  className="white-text"
+                  href={"https://github.com/drewlong314"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Github
+                </a>
+                <a
+                  className="white-text"
+                  href={"https://www.linkedin.com/in/drew-long-361772172/"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </>
+            }
           </div>
           <div className="creator-bubble" onMouseEnter={e => setHover3(true)} onMouseLeave={e => setHover3(false)}>
             <h1 className="white-text">Mike Sineath</h1>
             <img
               src={whiteCherry}
-              style={{ height: "50px", width: "50px" }}
-            ></img>
+              alt='cherry logo'
+              style={{ height: "50px", width: "50px" }}>
+            </img>
             {hover3 &&
-            <>
-            <a
-            className="white-text"
-            href={"https://github.com/msineath"}
-            target={"_blank"}
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a
-          className="white-text"
-          href={"https://www.linkedin.com/in/mike-sineath-93149a213/"}
-          target={"_blank"}
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-        </>
-          }
+              <>
+                <a
+                  className="white-text"
+                  href={"https://github.com/msineath"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Github
+                </a>
+                <a
+                  className="white-text"
+                  href={"https://www.linkedin.com/in/mike-sineath-93149a213/"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </>
+            }
           </div>
           <div className="creator-bubble" onMouseEnter={e => setHover4(true)} onMouseLeave={e => setHover4(false)}>
             <h1 className="white-text">Kevin Betker</h1>
             <img
               src={whiteCherry}
-              style={{ height: "50px", width: "50px" }}
-            ></img>
+              alt='cherry logo'
+              style={{ height: "50px", width: "50px" }}>
+            </img>
             {hover4 &&
-            <>
-            <a
-            className="white-text"
-            href={"https://github.com/kbetker"}
-            target={"_blank"}
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a
-          className="white-text"
-          href={"https://www.linkedin.com/in/kevin-betker-878505128/"}
-          target={"_blank"}
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-        </>
-          }
+              <>
+                <a
+                  className="white-text"
+                  href={"https://github.com/kbetker"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Github
+                </a>
+                <a
+                  className="white-text"
+                  href={"https://www.linkedin.com/in/kevin-betker-878505128/"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </>
+            }
           </div>
         </div>
       </section>

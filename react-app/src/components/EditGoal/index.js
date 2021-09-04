@@ -17,19 +17,18 @@ const EditGoal = () => {
             setValue(project[0]?.goal)
             setLoaded(true)
         }
-    }, [project])
+    }, [project, loaded])
 
     //========== Updates the project.goal in the Database and Store ==============
     const onSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch(`/api/projects/${id}/edit/goal`, {
+        await fetch(`/api/projects/${id}/edit/goal`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(value),
         })
-        console.log('submit')
         dispatch(getAllProjects())
     }
     return (

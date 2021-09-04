@@ -81,7 +81,7 @@ function Navigation() {
     if (allUsers.length === 0) {
       dispatch(getAllUsers())
     }
-  }, [])
+  }, [allCategories.length, allDonors.length, allProjects.length, allTiers.length, allUsers.length, project_medias.length, dispatch])
 
   //================  Submenu =============
   useEffect(() => {
@@ -113,15 +113,14 @@ function Navigation() {
         closeWrapper.classList.add('close-wrapper--slidein')
       })
 
-  }, [onLogout, onLogin, logInDemo])
+  }, [user])
 
 
 
 
-  //========== ToDo: Search
+  //========== Search
   async function handleSearch(e) {
     e.preventDefault()
-    console.log('woot')
     let splitSearch = searchText.split(" ")
     let processedSearch = splitSearch.join("+")
     if (processedSearch === "") return
@@ -186,7 +185,7 @@ function Navigation() {
       {user && <div className="username small-hide">Logged in as: {user.username}</div>}
       <div className="nav--element">
         <Link to="/" className="nav--link">
-          <img src={logo} className="logo"></img>
+          <img src={logo} alt='logo' className="logo"></img>
         </Link>
       </div>
 
@@ -198,12 +197,12 @@ function Navigation() {
         <div className="nav--link--container small-hide">
           <form onSubmit={(e) => handleSearch(e)} className='nav--link--container'>
             <input onChange={(e) => setSearchText(e.target.value)} type="text" className="homeSearch" placeholder="Search" value={searchText}></input>
-            <button className="search--icon"><img src={justMagnifyingGlass} className="search--icon"></img></button>
+            <button className="search--icon"><img src={justMagnifyingGlass} alt='search icon' className="search--icon"></img></button>
           </form>
         </div>
 
         <div className="nav--link--container small-hide">
-          <img src={menuImage} className="subMenuIcon" id="profileMenu" draggable="false"></img>
+          <img src={menuImage} alt='menu' className="subMenuIcon" id="profileMenu" draggable="false"></img>
         </div>
 
         <div className="submenu">
@@ -243,33 +242,3 @@ function Navigation() {
 }
 
 export default Navigation;
-
-
-
-{/* <nav>
-<ul>
-  <li>
-    <NavLink to="/" exact={true} activeClassName="active">
-      Home
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/login" exact={true} activeClassName="active">
-      Login
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/sign-up" exact={true} activeClassName="active">
-      Sign Up
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/users" exact={true} activeClassName="active">
-      Users
-    </NavLink>
-  </li>
-  <li>
-    <LogoutButton />
-  </li>
-</ul>
-</nav> */}

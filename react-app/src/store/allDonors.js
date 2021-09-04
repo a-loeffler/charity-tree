@@ -23,13 +23,6 @@ export const getAllDonors = () => async (dispatch) => {
 }
 
 export const addADonor = (newDonorData) => async (dispatch) => {
-    // const {project_id, user_id, amount} = newDonorData;
-    // console.log(`!!!ADD-A-DONOR-THUNK'S-NEW-DONOR-DATA!!!${JSON.stringify(newDonorData)}`)
-    // const formData = new FormData();
-    // formData.append("project_id", project_id)
-    // formData.append("user_id", user_id)
-    // formData.append("amount", amount)
-    // console.log(formData)
     const response = await fetch(`/api/donors/`, {
         method: "POST",
         headers: {

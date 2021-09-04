@@ -11,7 +11,7 @@ const ProjectCard = ({width, display, minHeight, title, cardId, description, ima
         <Link to={`/projects/${cardId}`} className="card_anchor">
             <div className="project-card-container" id={cardId} style={{width: width, display: display, minHeight: minHeight}}>
                 <div className="project-card-image-container">
-                    <img className="project-card-image" src={image?.media_url} alt={`Banner for project ${title}`}></img>
+                    <img className="project-card-image" src={image?.media_url} alt={`Media for project "${title}" was either deleted by the owner or not uploaded`}></img>
                 </div>
                 <h3 className="project-card-title">{title}</h3>
                 <p className="project-card-description">{description}</p>

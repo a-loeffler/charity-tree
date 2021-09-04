@@ -67,7 +67,6 @@ export const postNewMedia = (newMediaData) => async (dispatch) => {
 
     const formData = new FormData();
 
-    // if (projectId) formData.append("projectId", projectId);
     formData.append("file", file);
 
     const response = await fetch(`/api/media/temp_upload`, {
@@ -118,12 +117,6 @@ const mediaReducer = (state = initialState, action) => {
         case SET_MEDIA: {
             state.updated_media_info = action.payload.medias
             let newState = {...state}
-            // console.log('action.payload', action.payload)
-            // console.log('newState', newState)
-            // action.payload.medias.forEach(url => {
-            //     newState.updated_media_info.push(url.media_url)
-            // });
-            console.log(newState)
             return newState
         }
         case POST_MEDIA: {

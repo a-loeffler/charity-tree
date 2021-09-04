@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Redirect, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import TierButton from './TierButton';
 import MediaTile from './MediaTile';
 import MediaUpload from '../MediaUpload';
@@ -19,8 +19,6 @@ const ProjectCreator = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const mockMedia = ["https://i.ibb.co/7CCsBs7/mock-tile.png", "https://i.ibb.co/7CCsBs7/mock-tile.png"]
-
 
     const currentDate = new Date()
     const dd = String(currentDate.getDate()).padStart(2, '0');
@@ -84,9 +82,6 @@ const ProjectCreator = () => {
                     let indexNumber = process1[process1.length - 1];
 
                     dispatch(deleteTempMedia(indexNumber))
-                    // let newMedia = media.slice();
-                    // newMedia.splice(indexNumber, 1);
-                    // setMedia(newMedia);
                 })
             })
         }
@@ -106,13 +101,7 @@ const ProjectCreator = () => {
             })
         }
 
-    }, [tiers, owner, section])
-
-    //TO-DO: get owner id from auth; otherwise redirect to sign-in page
-
-
-
-
+    }, [tiers, owner, section, dispatch, projectInfo.project])
 
     if (!owner) {
         return (
@@ -121,12 +110,6 @@ const ProjectCreator = () => {
             </>
         )
     }
-
-    // setOwnerId(owner.id)
-
-
-    //To do: need to get categories from store
-
 
     const sectionForward = (e) => {
         e.preventDefault();
@@ -152,7 +135,7 @@ const ProjectCreator = () => {
             category_id: category,
         }
 
-        const data = dispatch(postNewProject(projectData, tiers))
+        dispatch(postNewProject(projectData, tiers))
 
         setTimeout(() => {
 
@@ -194,9 +177,6 @@ const ProjectCreator = () => {
         setTimeout(() => {
             setSection(7)
         }, 1500)
-
-        //to do: dispatch thunk with mediaUrls and project id
-
     }
 
     const mediaSubmit = (e) => {
@@ -306,7 +286,8 @@ const ProjectCreator = () => {
                         <div className="media-upload-display">
                             {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                         </div>
-                        <h2 className="project-creator-form-text">Upload media for your project</h2>
+                        <h2 className="project-creator-form-text">Upload media for your project
+                            <br/> (recommended aspect ratio for best image quiality: 16:9)</h2>
                         <h3 className="project-creator-form-sub-text">Supports image uploads</h3>
                         {readyForNewMedia && <MediaUpload />}
                         <div className="project-creator-button-container">

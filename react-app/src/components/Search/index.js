@@ -15,7 +15,6 @@ const Search = () => {
   const handleSearch = async (query) => {
     const res = await fetch(`/api/search/${query}`);
     const json = await res.json();
-    console.log(json["projects"]);
     setSearchResults(json["projects"]);
   };
 
@@ -24,22 +23,19 @@ const Search = () => {
   }, [query]);
 
   useEffect(() => {
-    console.log(searchResults, query)
   }, [searchResults]);
 
   useEffect(() => {
-    console.log(filterCategory, "-----------------------------")
     if (filterCategory) {
       const filtered = searchResults.filter((project) => {
         return project.category_id === filterCategory
       })
       setFilterSearch(filtered)
-      console.log(filtered)
     }
     else {
       setFilterSearch([])
     }
-  }, [filterCategory])
+  }, [filterCategory, searchResults])
 
   const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
   let width = "300px"
