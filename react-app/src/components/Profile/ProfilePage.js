@@ -13,24 +13,31 @@ export default function ProfilePage() {
     const projectMedia = useSelector(state => state.MediaList.project_medias)
     const Users = useSelector(state => state.allUsers.users)
     const user = useSelector(state => state.session.user)
-    const userLikes = useSelector(state => state?.likes)
+    const userLikes = useSelector(state => state?.userLikes.likes)
     const userProjects = allProjects?.filter(obj => obj.owner_id === Number(id));
+    const likedProjectsIds = userLikes?.map(like => like.project_id)
+    const likedProjects = likedProjectsIds?.map(id => allProjects.filter(project => project.id === id)).flat()
     const selectedUser = Users?.filter(user => user.id === Number(id))[0]
 
-    const limitText = (str) => str.length > 70 ? `${str.substring(0, 70)}...` : str;
+    const limitText = (str) => str?.length > 70 ? `${str.substring(0, 70)}...` : str;
     let width = "300px"
     let minHeight = "300px"
     let display = "flex"
 
-    useEffect(() => async() => {
-        if(user) {
-            console.log('1111111111111111111111111111111', typeof user.id)
+    useEffect(() => {
+        const likes = async () => {
             await dispatch(getUserLikes(user.id))
-            console.log('0000000000000000000000000000000000')
-
         }
-    })
 
+        if(!user) {
+            return null
+        } else {
+            likes()
+        }
+
+    }, [user, dispatch])
+    // console.log('[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[', likedProjectsIds)
+    console.log('====================', JSON.stringify(likedProjects))
     if (Users?.length && !selectedUser) {
         return (
             <>
@@ -39,9 +46,6 @@ export default function ProfilePage() {
         )
     }
 
-    if(userLikes) {
-        console.log('-----------------------------------------', userLikes)
-    }
     return(
         <div className="container">
             <h3 className="myProjects">{`${selectedUser?.username}'s Projects:`}</h3>
@@ -55,15 +59,23 @@ export default function ProfilePage() {
                         <ProjectCard key={project.id} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
                     )
                 })}
-                {/* {} */}
                 </>
 
-             : <div className="noProjects">{`${selectedUser?.username}`} currently has no projects. Shame on you {`${selectedUser?.username}`}!</div>
+             : <div className="noProjects">{`${selectedUser?.username}`} currently has no projects. Shame on you {`${selectedUser?.username}`}</div>
 
             }
-
             </div>
-
+            <div className='liked-projects'>
+            {likedProjects?
+                <>
+                    {likedProjects.map(project => {
+                        return(
+                            <ProjectCard key={`l.${project.id}`} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
+                        )
+                    })}
+                </>
+            :null}
+            </div>
         </div>
     )
 }
