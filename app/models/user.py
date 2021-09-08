@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     avatar_image_url = db.Column(db.String)
     donors = db.relationship("Donor", back_populates="user")
     projects = db.relationship("Project", back_populates="owner")
+    likes = db.relationship("Like", back_populates="user")
 
     @property
     def password(self):

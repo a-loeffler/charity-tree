@@ -22,6 +22,7 @@ class Project(db.Model):
     project_medias = db.relationship("Project_media", back_populates="project")
     donors = db.relationship("Donor", back_populates="project")
     tiers = db.relationship("Tier", back_populates="project")
+    likes = db.relationship("Like", back_populates="project")
 
     def to_dict(self):
         return {
