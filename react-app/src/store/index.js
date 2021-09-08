@@ -7,6 +7,7 @@ import allCategoriesReducer from "./allCategories";
 import allDonorsReducer from "./allDonors";
 import allTiersReducer from "./allTiers"
 import allUsersReducer from "./allusers";
+import userLikesReducer from "./likes";
 import session from "./session"
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     allCategories: allCategoriesReducer,
     allDonors: allDonorsReducer,
     allTiers: allTiersReducer,
-    allUsers: allUsersReducer
+    allUsers: allUsersReducer,
+    userLikes: userLikesReducer
 });
 
 
