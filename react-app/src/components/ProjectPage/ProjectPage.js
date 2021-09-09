@@ -108,6 +108,14 @@ export default function ProjectPage() {
         }
     }
 
+    const addLike = () => {
+        await dispatch(addNewLike(user.id, Number(id)))
+    }
+
+    const removeLike = () => {
+        await dispatch(removeLike(user.id, Number(id)))
+    }
+
     return (
         <div className="projectPage--container">
             <div className="header">
@@ -160,9 +168,9 @@ export default function ProjectPage() {
                         <button className="project-creator-next-button center">Donate</button>
                     </form>
                     {liked() === true?
-                        <button className='like-button'>Unlike</button>
+                        <button className='like-button' onClick={removeLike}>Unlike</button>
                     :
-                        <button className='like-button'>Like</button>
+                        <button className='like-button' onClick={addLike}>Like</button>
                     }
                 </div>
             </div>
