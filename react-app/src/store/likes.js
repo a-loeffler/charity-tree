@@ -27,6 +27,9 @@ export const getUserLikes = (id) => async (dispatch) => {
 
 export const addNewLike = (userId, projectId) => async (dispatch) => {
     const response = await fetch(`/api/likes/${userId}/add`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
         method: 'POST',
         body: projectId
     })
@@ -52,7 +55,7 @@ export default function userLikesReducer(state = initialState, action) {
             return state.likes = action.payload
         case ADD_LIKE:
             newState = {...state}
-            newState.push(action.payload)
+            newState.likes = [...newState.likes, action.payload]
             return newState
         case REMOVE_LIKE:
             return state.filter(like => like !== action.payload)

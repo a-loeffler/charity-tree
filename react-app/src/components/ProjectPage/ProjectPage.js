@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import { addADonor } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
 import { getAllProjects } from "../../store/allProjects"
-import { getUserLikes } from "../../store/likes"
+import { getUserLikes, addNewLike, removeALike } from "../../store/likes"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -108,12 +108,12 @@ export default function ProjectPage() {
         }
     }
 
-    const addLike = () => {
+    const addLike = async () => {
         await dispatch(addNewLike(user.id, Number(id)))
     }
 
-    const removeLike = () => {
-        await dispatch(removeLike(user.id, Number(id)))
+    const removeLike = async () => {
+        await dispatch(removeALike(user.id, Number(id)))
     }
 
     return (
