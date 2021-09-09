@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import { addADonor } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
 import { getAllProjects } from "../../store/allProjects"
+import { getUserLikes } from "../../store/likes"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -18,15 +19,23 @@ export default function ProjectPage() {
     const all_tiers = useSelector(state => state.allTiers.tiers.tiers)
     const user = useSelector(state => state.session.user)
     const project = allProjects?.find(obj => obj.id === Number(id));
-    const [dollar, setDollar] = useState(null)
-    const [cardNumber, setCardNumber] = useState(null)
+    const [dollar, setDollar] = useState(0)
+    const [cardNumber, setCardNumber] = useState(undefined)
     const project_medias2 = project_medias.filter(obj => obj['project_id'] === Number(id));
     const filtered_tiers = all_tiers?.filter(obj => obj['project_id'] === Number(id));
-
+    const userLikes = useSelector(state => state?.userLikes.likes)
+    
+    useEffect(() => {
+        const likes = async () => {
+            await dispatch(getUserLikes(user?.id))
+        }
+        if(user) {
+            likes()
+        }
+    }, [user, dispatch])
+    
     // ============ adds the project html ========
-
-    useEffect(() => {}, [allProjects])
-
+    
     if (allProjects?.length && !project) {
         return (
             <>
@@ -34,7 +43,7 @@ export default function ProjectPage() {
             </>
         )
     }
-
+    
     const daysLeft = () => {
         const milliseconds = Date.parse(project?.deadline) - Date.parse(new Date())
         const days = milliseconds / 1000 / 60 / 60 / 24
@@ -75,8 +84,6 @@ export default function ProjectPage() {
         }
     }
 
-
-
     const  donateSubmit = async (e) => {
         e.preventDefault()
         if (user) {
@@ -93,7 +100,13 @@ export default function ProjectPage() {
         }
     }
 
-
+    const liked = () => {
+        if(userLikes.some(like => like.project_id === Number(id))) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     return (
         <div className="projectPage--container">
@@ -146,6 +159,11 @@ export default function ProjectPage() {
                         </div>
                         <button className="project-creator-next-button center">Donate</button>
                     </form>
+                    {liked() === true?
+                        <button className='like-button'>Unlike</button>
+                    :
+                        <button className='like-button'>Like</button>
+                    }
                 </div>
             </div>
 
