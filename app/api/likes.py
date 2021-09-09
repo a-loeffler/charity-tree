@@ -25,3 +25,17 @@ def add_new_like(id):
 
     print('44444444444444444444', newLike.to_dict())
     return newLike.to_dict()
+
+
+@likes_routes.route("/<int:id>/remove", methods=["DELETE"])
+def delete_like(id):
+    data = request.get_json()
+    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^', data)
+
+    like = Like.query.filter(Like.user_id == id, Like.project_id == data).first()
+    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^', like)
+
+    db.session.delete(like)
+    db.session.commit()
+
+    return get_user_likes(id)

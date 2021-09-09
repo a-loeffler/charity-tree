@@ -39,10 +39,14 @@ export const addNewLike = (userId, projectId) => async (dispatch) => {
 
 export const removeALike = (userId, projectId) => async (dispatch) => {
     const response = await fetch(`/api/likes/${userId}/remove`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
         method: 'DELETE',
         body: projectId
     })
     const data = await response.json()
+    console.log(data)
     dispatch(removeLike(data))
 }
 
@@ -58,7 +62,7 @@ export default function userLikesReducer(state = initialState, action) {
             newState.likes = [...newState.likes, action.payload]
             return newState
         case REMOVE_LIKE:
-            return state.filter(like => like !== action.payload)
+            return state.likes = action.payload
         default:
             return state;
     }
