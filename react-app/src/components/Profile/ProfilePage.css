@@ -3,7 +3,8 @@
     justify-content: space-evenly;
     flex-direction: column;
 }
-.users_projects{
+.users_projects,
+.liked_projects{
     display: flex;
     /* align-items: flex-start; */
     justify-content: flex-start;

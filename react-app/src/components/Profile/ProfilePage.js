@@ -12,7 +12,6 @@ export default function ProfilePage() {
     const allProjects = useSelector(state => state.allProjects.projects)
     const projectMedia = useSelector(state => state.MediaList.project_medias)
     const Users = useSelector(state => state.allUsers.users)
-    const user = useSelector(state => state.session.user)
     const userLikes = useSelector(state => state?.userLikes.likes)
     const userProjects = allProjects?.filter(obj => obj.owner_id === Number(id));
     const likedProjectsIds = userLikes?.map(like => like.project_id)
@@ -26,16 +25,11 @@ export default function ProfilePage() {
 
     useEffect(() => {
         const likes = async () => {
-            await dispatch(getUserLikes(user.id))
+            await dispatch(getUserLikes(selectedUser?.id))
         }
+        likes()
 
-        if(!user) {
-            return null
-        } else {
-            likes()
-        }
-
-    }, [user, dispatch])
+    }, [selectedUser, dispatch])
     // console.log('[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[', likedProjectsIds)
     console.log('====================', JSON.stringify(likedProjects))
     if (Users?.length && !selectedUser) {
@@ -65,13 +59,14 @@ export default function ProfilePage() {
 
             }
             </div>
-            <div className='liked-projects'>
+            <h3 className="myProjects">{`Projects ${selectedUser?.username} Is Following:`}</h3>
+            <div className='liked_projects'>
             {likedProjects?
                 <>
                     {likedProjects.map(project => {
                         return(
                             <ProjectCard key={`l.${project.id}`} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
-                        )
+                            )
                     })}
                 </>
             :null}
