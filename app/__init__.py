@@ -15,6 +15,7 @@ from .api.donors import donors_routes
 from .api.tiers import tiers_routes
 from .api.media import media_routes
 from .api.search import search_routes
+from .api.likes import likes_routes
 
 from .seeds import seed_commands
 
@@ -45,6 +46,7 @@ app.register_blueprint(donors_routes, url_prefix='/api/donors')
 app.register_blueprint(tiers_routes, url_prefix='/api/tiers')
 app.register_blueprint(media_routes, url_prefix='/api/media')
 app.register_blueprint(search_routes, url_prefix='/api/search')
+app.register_blueprint(likes_routes, url_prefix='/api/likes')
 
 db.init_app(app)
 Migrate(app, db)

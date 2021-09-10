@@ -5,6 +5,7 @@ from .projects import seed_projects, undo_projects
 from .project_medias import seed_project_medias, undo_project_medias
 from .tiers import seed_tiers, undo_tiers
 from .donors import seed_donors, undo_donors
+from .likes import seed_likes, undo_likes
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -20,6 +21,7 @@ def seed():
     seed_project_medias()
     seed_tiers()
     seed_donors()
+    seed_likes()
     # Add other seed functions here
 
 
@@ -32,4 +34,5 @@ def undo():
     undo_projects()
     undo_categories()
     undo_users()
+    undo_likes()
     # Add other undo functions here
