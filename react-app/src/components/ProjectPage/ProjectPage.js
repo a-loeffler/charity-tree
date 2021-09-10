@@ -167,11 +167,12 @@ export default function ProjectPage() {
                         </div>
                         <button className="project-creator-next-button center">Donate</button>
                     </form>
-                    {liked() === true?
+                    {liked() === true && user?
                         <button className='like-button' onClick={removeLike}>Unlike</button>
-                    :
+                    :null}
+                    {liked() === false && user?
                         <button className='like-button' onClick={addLike}>Like</button>
-                    }
+                    :null}
                 </div>
             </div>
 
