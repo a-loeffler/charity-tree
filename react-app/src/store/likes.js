@@ -18,10 +18,8 @@ const removeLike = (like) => ({
 })
 
 export const getUserLikes = (id) => async (dispatch) => {
-    console.log('))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))')
     const response = await fetch(`/api/likes/${id}`)
     const data = await response.json()
-    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', data)
     dispatch(getLikes(data))
 }
 
@@ -46,7 +44,6 @@ export const removeALike = (userId, projectId) => async (dispatch) => {
         body: projectId
     })
     const data = await response.json()
-    console.log(data)
     dispatch(removeLike(data))
 }
 

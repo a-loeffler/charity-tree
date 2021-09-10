@@ -30,8 +30,6 @@ export default function ProfilePage() {
         likes()
 
     }, [selectedUser, dispatch])
-    // console.log('[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[', likedProjectsIds)
-    console.log('====================', JSON.stringify(likedProjects))
     if (Users?.length && !selectedUser) {
         return (
             <>
