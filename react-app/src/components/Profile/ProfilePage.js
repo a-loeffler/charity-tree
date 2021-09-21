@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProjectCard from "../LandingPage/ProjectCard";
 import './ProfilePage.css'
@@ -13,10 +14,15 @@ export default function ProfilePage() {
     const projectMedia = useSelector(state => state.MediaList.project_medias)
     const Users = useSelector(state => state.allUsers.users)
     const userLikes = useSelector(state => state?.userLikes.likes)
+    const donations = useSelector(state => state?.allDonors.donors)
     const userProjects = allProjects?.filter(obj => obj.owner_id === Number(id));
     const likedProjectsIds = userLikes?.map(like => like.project_id)
     const likedProjects = likedProjectsIds?.map(id => allProjects.filter(project => project.id === id)).flat()
     const selectedUser = Users?.filter(user => user.id === Number(id))[0]
+    const userDonations = donations?.filter(donation => donation.user_id === Number(id))
+    const test2 = allProjects?.filter(project => project.id === 1)
+
+    console.log(test2[0])
 
     const limitText = (str) => str?.length > 70 ? `${str.substring(0, 70)}...` : str;
     let width = "300px"
@@ -42,7 +48,6 @@ export default function ProfilePage() {
         <div className="container">
             <h3 className="myProjects">{`${selectedUser?.username}'s Projects:`}</h3>
             <div className="users_projects">
-
                 {userProjects.length > 0 ?
                 <>
 
@@ -59,15 +64,36 @@ export default function ProfilePage() {
             </div>
             <h3 className="myProjects">{`Projects ${selectedUser?.username} Is Following:`}</h3>
             <div className='liked_projects'>
-            {likedProjects?
-                <>
-                    {likedProjects.map(project => {
-                        return(
-                            <ProjectCard key={`l.${project.id}`} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
+                {likedProjects?
+                    <>
+                        {likedProjects.map(project => {
+                            return(
+                                <ProjectCard key={`l.${project.id}`} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
+                                )
+                            })}
+                    </>
+                :null}
+            </div>
+            <h3 className="myProjects">{`Projects ${selectedUser?.username} Has Donated To:`}</h3>
+            <div className='donations'>
+                {userDonations?
+                    <table>
+                        {userDonations.map(donation => {
+                            return(
+                                <tr>
+                                    <td>
+                                        <Link to={`/projects/${donation.project_id}`}>
+                                            {allProjects?.find(project => project.id === donation?.project_id).name}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        {`$${donation.amount}`}
+                                    </td>
+                                </tr>
                             )
-                    })}
-                </>
-            :null}
+                        })}
+                    </table>
+                :null}
             </div>
         </div>
     )
