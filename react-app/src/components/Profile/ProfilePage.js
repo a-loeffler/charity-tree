@@ -15,14 +15,34 @@ export default function ProfilePage() {
     const Users = useSelector(state => state.allUsers.users)
     const userLikes = useSelector(state => state?.userLikes.likes)
     const donations = useSelector(state => state?.allDonors.donors)
+    const tiers = useSelector(state => state?.allTiers.tiers.tiers)
     const userProjects = allProjects?.filter(obj => obj.owner_id === Number(id));
     const likedProjectsIds = userLikes?.map(like => like.project_id)
     const likedProjects = likedProjectsIds?.map(id => allProjects.filter(project => project.id === id)).flat()
     const selectedUser = Users?.filter(user => user.id === Number(id))[0]
     const userDonations = donations?.filter(donation => donation.user_id === Number(id))
-    const test2 = allProjects?.filter(project => project.id === 1)
+    const projectTiers = id => tiers?.filter(set => set.project_id === id)
+    
+    const tiersReached = (projectId) => {
+        const tierNames = []
+        const donation = userDonations.find(donation => donation.project_id === projectId)
+        const joiner = projectTiers(projectId)?.forEach(tier => {
+            if(donation?.amount >= tier.value) {
+                tierNames.push(tier.name)
+            }
+        })
 
-    console.log(test2[0])
+        return(
+            <>
+                {tierNames.length > 0 ?
+                    <td>
+                        {tierNames.join(', ')}
+                    </td>
+                    : 'No Tiers Reached'
+                }
+            </>        
+        )
+    }
 
     const limitText = (str) => str?.length > 70 ? `${str.substring(0, 70)}...` : str;
     let width = "300px"
@@ -78,17 +98,23 @@ export default function ProfilePage() {
             <div className='donations'>
                 {userDonations?
                     <table>
+                        <tr>
+                            <td>Project Name</td>
+                            <td>Amount Donated</td>
+                            <td>Donation Tiers Reached</td>
+                        </tr>
                         {userDonations.map(donation => {
                             return(
                                 <tr>
                                     <td>
                                         <Link to={`/projects/${donation.project_id}`}>
-                                            {allProjects?.find(project => project.id === donation?.project_id).name}
+                                            {allProjects?.find(project => project.id === donation.project_id)?.name}
                                         </Link>
                                     </td>
                                     <td>
                                         {`$${donation.amount}`}
                                     </td>
+                                    {tiersReached(donation.project_id)}
                                 </tr>
                             )
                         })}
