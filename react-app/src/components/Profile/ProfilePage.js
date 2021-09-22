@@ -21,6 +21,7 @@ export default function ProfilePage() {
     const likedProjects = likedProjectsIds?.map(id => allProjects.filter(project => project.id === id)).flat()
     const selectedUser = Users?.filter(user => user.id === Number(id))[0]
     const userDonations = donations?.filter(donation => donation.user_id === Number(id))
+    const userDonationProjects = userDonations?.map(donation => allProjects.filter(project => project.id === donation.project_id)).flat()
     const projectTiers = id => tiers?.filter(set => set.project_id === id)
     
     const tiersReached = (projectId) => {
@@ -97,28 +98,25 @@ export default function ProfilePage() {
             <h3 className="myProjects">{`Projects ${selectedUser?.username} Has Donated To:`}</h3>
             <div className='donations'>
                 {userDonations?
-                    <table>
-                        <tr>
-                            <td>Project Name</td>
-                            <td>Amount Donated</td>
-                            <td>Donation Tiers Reached</td>
-                        </tr>
-                        {userDonations.map(donation => {
-                            return(
-                                <tr>
-                                    <td>
-                                        <Link to={`/projects/${donation.project_id}`}>
-                                            {allProjects?.find(project => project.id === donation.project_id)?.name}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        {`$${donation.amount}`}
-                                    </td>
-                                    {tiersReached(donation.project_id)}
-                                </tr>
+                    <>
+                    {userDonationProjects.map(project => {
+                        return(
+                            <div className='donation-card'>
+                                <ProjectCard key={`l.${project.id}`} width={width} minHeight={minHeight} display={display} title={project?.name} description={limitText(project?.description)} cardId={project?.id} image={projectMedia?.filter(item => item.project_id === project.id)[0]} />
+                                <div className='donation-info'>
+                                    <div className='amount-info'>
+                                        <label>Amount Donated</label>
+                                        <p>{`$${userDonations.find(donation => donation.project_id === project.id).amount.toLocaleString("en-US")}`}</p>
+                                    </div>
+                                    <div className='tiers-info'>
+                                        <label>Project Tiers Reached</label>
+                                        <p>{tiersReached(project.id)}</p>
+                                    </div>
+                                </div>
+                            </div>
                             )
                         })}
-                    </table>
+                </>
                 :null}
             </div>
         </div>
