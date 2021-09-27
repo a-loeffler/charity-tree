@@ -57,6 +57,13 @@ const About = () => {
                   rel="noopener noreferrer">
                   LinkedIn
                 </a>
+                <a
+                  className="white-text"
+                  href={"https://angel.co/u/andrew-loeffler"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Angel List
+                </a>
               </>
             }
           </div>
@@ -82,6 +89,13 @@ const About = () => {
                   target={"_blank"}
                   rel="noopener noreferrer">
                   LinkedIn
+                </a>
+                <a
+                  className="white-text"
+                  href={"https://angel.co/u/drew-long-1"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Angel List
                 </a>
               </>
             }
@@ -109,6 +123,13 @@ const About = () => {
                   rel="noopener noreferrer">
                   LinkedIn
                 </a>
+                <a
+                  className="white-text"
+                  href={"https://angel.co/u/michael-sineath"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Angel List
+                </a>
               </>
             }
           </div>
@@ -134,6 +155,13 @@ const About = () => {
                   target={"_blank"}
                   rel="noopener noreferrer">
                   LinkedIn
+                </a>
+                <a
+                  className="white-text"
+                  href={"https://angel.co/u/kevin-betker"}
+                  target={"_blank"}
+                  rel="noopener noreferrer">
+                  Angel List
                 </a>
               </>
             }
