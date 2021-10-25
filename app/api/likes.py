@@ -29,7 +29,10 @@ def add_new_like(id):
 def delete_like(id):
     data = request.get_json()
 
-    like = Like.query.filter(Like.user_id == id, Like.project_id == data).first()
+    like = Like.query.filter(
+                             Like.user_id == id,
+                             Like.project_id == data
+                            ).first()
 
     db.session.delete(like)
     db.session.commit()
