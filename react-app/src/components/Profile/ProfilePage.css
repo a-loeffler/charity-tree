@@ -3,11 +3,10 @@
     justify-content: space-evenly;
     flex-direction: column;
 }
+
 .users_projects,
-.liked_projects{
+.liked_projects {
     display: flex;
-    /* align-items: flex-start; */
-    justify-content: flex-start;
     flex-wrap: wrap;
     width: 1570px;
     background-color: rgb(218, 252, 198);
@@ -15,7 +14,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 20px;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 .noProjects{
@@ -24,8 +23,55 @@
     text-align: center;
     width: 100%;
 }
+
 .myProjects{
     margin: 30px 0 30px 40px;
     text-align: center;
     font-size: 20pt;
+}
+
+.donations {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1570px;
+    background-color: rgb(218, 252, 198);
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    padding-left: 0px;
+    justify-content: space-evenly;
+}
+
+.donation-card {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.donation-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 5%;
+}
+
+.amount-info,
+.tiers-info {
+    height: 50%;
+}
+
+.amount-info {
+    padding-top: 10%;
+}
+
+label {
+    font-weight: 900;
+}
+
+p {
+    position:relative;
+    top: 10%;
+    overflow-wrap: anywhere;
 }
