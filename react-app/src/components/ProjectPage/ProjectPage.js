@@ -10,6 +10,7 @@ import { addADonor } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
 import { getAllProjects } from "../../store/allProjects"
 import { getUserLikes, addNewLike, removeALike } from "../../store/likes"
+import { mediaGetter } from "../../store/media"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function ProjectPage() {
         if(user) {
             likes()
         }
+        dispatch(mediaGetter())
     }, [user, dispatch])
     
     // ============ adds the project html ========
