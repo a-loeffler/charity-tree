@@ -291,6 +291,7 @@ const ProjectCreator = () => {
                         <h3 className="project-creator-form-sub-text">Supports image uploads</h3>
                         {readyForNewMedia && <MediaUpload />}
                         <div className="project-creator-button-container">
+                            <h1>Step 3.) Continue after uploading all files</h1>
                             <button className="project-creator-next-button max-content-width" onClick={e => goToLast(e)} >Finished Adding Media</button>
                         </div>
                     </div>
@@ -301,7 +302,7 @@ const ProjectCreator = () => {
                         {tempMedia.map((url, index) => <MediaTile url={url} key={index} index={index}/>)}
                     </div>
                     <div className="project-creator-button-container">
-                        <button className="media-addmore-button max-content-width" onClick={e => addMoreMedia(e)} >+ Add Additional Media</button>
+                        <button className="media-addmore-button max-content-width" onClick={e => addMoreMedia(e)} >Continue</button>
                     </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 .media-upload-form {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 
@@ -52,11 +52,22 @@
     font-size: 20px;
     text-align: center;
     background-color: #FFFFFF;
+    margin-left: 16.4%;
 }
 
 .media-submit-button-container {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: auto;
     width: 50%;
+}
+
+.upload-file-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
 }
