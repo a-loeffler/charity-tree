@@ -10,15 +10,21 @@ const EditPage = () => {
     <div className="outer-div-edit">
       <div className="edit-page-container">
         <div className="edit-page-field">
-          <h1 className="edit-page-product-descriptor">Product Name</h1>
+          <h1>Project Name</h1>
           <EditName />
         </div>
-        <h1>Product Description</h1>
-        <EditDescription />
-        <h1>Product Goal</h1>
-        <EditGoal />
-        <h1>Product Page</h1>
-        <EditorComponent />
+        <div className="edit-page-field">
+          <h1>Project Description</h1>
+          <EditDescription />
+        </div>
+        <div className="edit-page-field">
+          <h1>Project Goal</h1>
+          <EditGoal />
+        </div>
+        <div className="edit-page-field">
+          <h1>Project Page</h1>
+          <EditorComponent />
+        </div>
       </div>
     </div>
   );

@@ -17,8 +17,17 @@
 
 .edit-page-field {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .edit-page-product-descriptor {
     margin-left: -50px;
+}
+
+.edit-description-form {
+    display: flex;
+    height: 20px;
 }
