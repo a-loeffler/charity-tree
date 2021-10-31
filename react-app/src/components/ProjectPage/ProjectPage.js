@@ -10,6 +10,7 @@ import { addADonor } from "../../store/allDonors"
 import RedirectModal from "../RedirectModal"
 import { getAllProjects } from "../../store/allProjects"
 import { getUserLikes, addNewLike, removeALike } from "../../store/likes"
+import { mediaGetter } from "../../store/media"
 
 export default function ProjectPage() {
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function ProjectPage() {
         if(user) {
             likes()
         }
+        dispatch(mediaGetter())
     }, [user, dispatch])
     
     // ============ adds the project html ========
@@ -119,7 +121,9 @@ export default function ProjectPage() {
     return (
         <div className="projectPage--container">
             <div className="header">
-                <div className="project_name"> <h1>{project?.name}</h1></div>
+                <div className="project_name">
+                    <h1 className='name-text'>{project?.name}</h1>
+                </div>
                 <div className="project_description"><p>{project?.description}</p></div>
             </div>
 
@@ -233,7 +237,7 @@ export default function ProjectPage() {
 
             )}
         </div>
-        {user?.id === project?.owner_id && <Link to={`/projects/${project?.id}/edit`} className="add-page-btn">Add Page</Link>}
+        {user?.id === project?.owner_id && <Link to={`/projects/${project?.id}/edit`} className="add-page-btn">Edit Page</Link>}
         </>
         }
 

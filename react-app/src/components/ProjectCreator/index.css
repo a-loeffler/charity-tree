@@ -55,7 +55,9 @@
 
 .project-creator-button-container {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: auto;
     width: 50%;
 }

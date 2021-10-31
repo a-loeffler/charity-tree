@@ -36,15 +36,19 @@ const MediaUpload = () => {
     return (
         <>
             <form className="media-upload-form" onSubmit={e => handleSubmit(e)}>
-                <label htmlFor="media-file-upload" />
-                <input
-                    className="media-upload-input"
-                    type="file"
-                    id="media-file-upload"
-                    accept="image/*,video/*"
-                    onChange={(e) => updateFile(e)}>
-                </input>
+                <div className='upload-file-div'>
+                    <h1>Step 1.) Select file for upload</h1>
+                    <label htmlFor="media-file-upload" />
+                    <input
+                        className="media-upload-input"
+                        type="file"
+                        id="media-file-upload"
+                        accept="image/*,video/*"
+                        onChange={(e) => updateFile(e)}>
+                    </input>
+                </div>
                 <div className="media-submit-button-container">
+                    <h1>Step 2.) Upload Files to the server</h1>
                     <button className="media-submit-button" type="submit" onClick={e => handleSubmit(e)}>Upload</button>
                 </div>
             </form>

@@ -34,7 +34,7 @@ const EditDescription = () => {
     }
     return (
         <>
-            <form onSubmit={e => onSubmit(e)}>
+            <form className='edit-description-form' onSubmit={e => onSubmit(e)}>
                 <textarea value={value} onChange={(e) => setValue(e.target.value)}></textarea>
                 <button type='submit'>Submit Description</button>
             </form>

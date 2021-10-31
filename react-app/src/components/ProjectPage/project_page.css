@@ -22,10 +22,16 @@
     background-color: lightblue;
 
 }
+
 .project_name{
-    margin-left: 5%;
+    margin: auto;
     font-size: 30px;
     font-weight: bold;
+}
+
+.name-text {
+    overflow-wrap: break-word;
+
 }
 
 .project_description{
