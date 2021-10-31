@@ -235,7 +235,7 @@ export default function ProjectPage() {
 
             )}
         </div>
-        {user?.id === project?.owner_id && <Link to={`/projects/${project?.id}/edit`} className="add-page-btn">Add Page</Link>}
+        {user?.id === project?.owner_id && <Link to={`/projects/${project?.id}/edit`} className="add-page-btn">Edit Page</Link>}
         </>
         }
 
