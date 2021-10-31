@@ -121,7 +121,9 @@ export default function ProjectPage() {
     return (
         <div className="projectPage--container">
             <div className="header">
-                <div className="project_name"> <h1>{project?.name}</h1></div>
+                <div className="project_name">
+                    <h1 className='name-text'>{project?.name}</h1>
+                </div>
                 <div className="project_description"><p>{project?.description}</p></div>
             </div>
 
