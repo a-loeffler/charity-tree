@@ -189,7 +189,7 @@ const ProjectCreator = () => {
         }, 500)
 
         setTimeout(() => {
-            history.push(`/projects/${projectId}/edit`)
+            history.push(`/projects/${projectId}`)
         }, 1000)
     }
 
