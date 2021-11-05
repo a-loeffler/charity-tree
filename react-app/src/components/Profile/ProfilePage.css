@@ -8,13 +8,13 @@
 .liked_projects {
     display: flex;
     flex-wrap: wrap;
-    width: 1570px;
+    justify-content: center;
+    width: 82.5%;
     background-color: rgb(218, 252, 198);
     margin: auto;
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 20px;
-    padding-left: 15px;
 }
 
 .noProjects{
@@ -33,7 +33,7 @@
 .donations {
     display: flex;
     flex-wrap: wrap;
-    width: 1570px;
+    width: 82.5%;
     background-color: rgb(218, 252, 198);
     margin: auto;
     padding-top: 20px;
